@@ -1,0 +1,172 @@
+Note: This document is revised from time to time.   If you are reading
+this from the install iso, be aware that there may be a newer
+version of this document in www.github.com/cruxppc/cruxppc-ng-3.5/iso/doc.
+
+Release Notes for CRUX PPC 3.5
+12/02/2020
+
+   This page discusses the relevant changes introduced in CRUX PPC 3.5.
+
+   This is the CRUX PPC 3.5 release.   Changes since
+ the prior (beta) release include several additional packages on the
+ install iso, version updates and bug fixes for various packages.
+
+   
+  Supported machines:
+
+   Apple 32bit "NewWorld" G4 and (in theory) G3 machines are supported.  In 
+   practice however, most of building and testing of CRUX PPC 3.5 is 
+   performed on G4 machines, and G3 is only minimally tested.
+  
+   This release works best on G4 machines with Radeon graphics.   It can
+   be installed and used on G3 machines and/or non-Radeon graphics
+   machines but there are some additional difficulties with the latter
+   machines.
+  
+   Machines which have an NVIDIA card may particularly have problems and
+   even getting just a command line interface working on such machines
+   may be problematic.
+  
+   Older G3 machines with ATI Rage graphics cards don't start a GUI desktop but
+   otherwise function as expected.
+  
+   A minimum of 256Meg RAM and a few Gig of disk space is required to 
+   install CRUX PPC 3.5.   Even 128Meg RAM might work but after install,
+   the user may want to build additional packages and lower RAM machines
+   may not work well when building additional packages.
+ 
+   Non supported machines: 64bit PowerPC.
+
+  Toolchain updates
+
+   CRUX PPC 3.5 includes glibc 2.28, gcc 8.4.0 and binutils 2.32.
+
+  Kernel
+
+   Linux-4.19.160
+
+  Important changes
+
+   CRUX PPC 3.5 is a new port of CRUX to the PowerPC.  There is no support
+   for upgrading from any earlier CRUX PPC releases to 3.5.  Likewise, 
+   future CRUX PPC releases will not likely support upgrading from this
+   release, so make notes of any local configuration changes made so
+   that your changes can be remade when installing later CEUX PPC releases.
+
+  Miscellaneous notes
+
+   Please be sure you are using the  latest version of firmware for your  own
+   machine.  If you are converting a MACOS machine to a Linux only machine, be 
+   aware that Linux does not provide the firmware update tools and so you may
+   wish to update the firmware before wiping out MACOS.
+
+  Known issues
+
+
+   A few warnings will be displayed during boot of the install CD.   These do not
+   cause the install to fail and can be ignored.  
+
+   CRUX PPC does not provide .signature checking on the ppc specific packages.
+   In this release, md5sums checking is provided.
+
+   It is not uncommon for the footprints to mismatch when building on powerpc.
+   Generally a footprint mismatch is benign but may halt package building tools.
+   The package build utilities provide an option to ignore footprints.  Also
+   /etc/pkgmk.conf can be adjusted to ignore footprints by default.   A
+   footprint mismatch is not necessarily indicative of an actual problem in the
+   build.
+
+   The contents of /usr/ports/core-ppc, opt-ppc, xorg-ppc, and contrib-ppc
+   are not automatically updated when 'ports -u' is run.  When updating ports,
+   in additiona to running 'ports -u',  the user will have to manually pull 
+   the contents from this repository and update their /usr/ports/*-ppc 
+   directory with any changes.
+
+   On some monitors, the left most characters are not visible.  In most
+   cases, this can be resolved by adjusting settings on the monitor
+   controls.  However this does not always work.   Until this
+   is solved, a workaround is to install the xorg server packages and then
+   run 'startx'.  The xorg server provides a rudimentary set of windows
+   and the whole output will be visible.   Enabling ssh access to the 
+   machine and using it to access the machine is also a workaround.
+
+   The monitor resolution may be set incorrectly when starting X windows.   
+   This can be worked around with an xorg.conf file.
+
+   X windows do not work on the imac G3 machines (ATI Rage graphics).
+   X seems to be running but screen is blank.   A fix is not known
+   yet but an xorg.conf or possibly a kernel change may be what is 
+   needed.
+
+   When starting the LXDE desktop, an error box pops up with 
+   a "cannot connect" type of error message.  Simply close the
+   error box.   The fix is unknown yet but the desktop seems to
+   function properly and so the error message is likely benign and
+   can be ignored.
+
+   On G3 machines, netsurf seems to occasionally lock the screen for
+   some seconds (maybe 10 seconds or so).   Then it becomes responsive
+   again.
+
+   The midori browser does not seem to function properly with https
+   connections (on ppc only, works fine on x86..).  Until this is solved, 
+   it is best to not spend the (long) time needed to build it and it's
+   dependency chain.  
+
+   None of the browsers perform really well.  Not even on a fast G4
+   machine.   netsurf and arcticfox seem like the best of the available
+   browsers but even they can be sluggish or not work properly with
+   some websites.   
+
+   Two ports (dhcpcd and libffi) are down reved for CRUXPPC.   The
+   most recent dhcpcd release series (9.3.x) has issues that have 
+   to be worked through and so dhcpcd is downreved to 9.2.0 (which
+   works well).   libffi 3.3 has problems building on powerpc.   There
+   is a patch that makes it build but I'm concerned the patch is
+   not actually the proper fix so libffi is downreved to 3.2.1.
+
+   fakeroot is completely non functional on ppc.   It hangs and you have
+   to kill it from another window.   It appears to be something 
+   recently broken and looks like it is known to the developers.
+   So, I expect it to be fixed in the next fakeroot update.   
+   If you need to use fakeroot, back it down to a previous version
+   and it will probably work.
+
+   On G3 ibook, the console window switch key sequences (alt-f1,f2,etc) 
+   don't work.   X-windows and/or ssh sessions an be used if more
+   than one login session is needed.
+
+   All of the applicable core packages, most of the opt and xorg packages
+   have been built on powerpc but only a subset of contrib packages have been 
+   built with CRUX PPC.
+
+   Several opt packages fail to build: squid, lld, imlib2 and a few
+   others.
+
+   Several contrib packages fail to build: openblas, suitesparse and
+   most likely numerous others as well. 
+
+   When using CRUX PPC on G3 hardware a few packages may need to be
+   rebuilt natively on the G3 machine in order to function properly.
+   If a package causes illegal instruction exceptions, it may need
+   to be rebuilt on the G3 machine to function properly.   
+
+   
+
+  Tips
+
+   Package build times can be quite long even on faster powerpc machines.
+   Allow for some hours (maybe days on slower machines) when building 
+   big packages.  Ensure that your machine has the maximum RAM that it
+   can support to help reduce build times.   Also some selected prebuilt 
+   packages from opt (and sometimes contrib)  may be found and installed 
+   from in the 'extras' section of the repository and this avoids the
+   time needed to build them from source.
+
+   Netsurf and ArcticFox browsers are provided on the install CD.   Other
+   browsers (firefox, seamonkey, etc.) can be built and used if desired.
+   However none of them work really well.   
+
+   The lynx or links browser can also be installed if a text based
+   browser is sufficient for the users needs.
+

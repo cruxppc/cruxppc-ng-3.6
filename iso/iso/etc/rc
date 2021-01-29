@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# /etc/rc: system boot script
+#
+
+echo "The system is coming up.  Please wait."
+
+# Start udev
+/bin/mount -n -t proc none /proc
+/bin/mount -n -t sysfs none /sys
+/sbin/start_udev
+#/sbin/udevd --daemon
+
+# Mount filesystems
+/bin/mount -n -a &> /dev/null
+sleep 1
+
+# Create /tmp/var
+/bin/mkdir /tmp/var
+/bin/chmod 0755 /tmp/var
+/bin/mkdir /var/lock /var/log /var/run /var/tmp
+/bin/touch /var/run/utmp
+
+# Start log daemons
+/usr/sbin/syslogd
+#/usr/sbin/klogd -c 4
+
+# Setup network
+/sbin/ifconfig lo 127.0.0.1
+
+# End of file

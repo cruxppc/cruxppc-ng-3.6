@@ -1,0 +1,130 @@
+#!/bin/bash
+# post setup
+#
+# This file is not used and is just a place holder for future use.
+
+ROOT=$1
+DB=$ROOT/var/lib/pkg/db
+
+## those values should be changed:
+TMPDB=$DB.tmp
+BACKUPDB=$DB.backup
+PKGADD="pkgadd"
+PKGRM="pkgrm"
+MV="mv"
+
+
+is_installed() {
+    printf "%s" $(pkginfo -r $ROOT -i | gawk -v r="^$1\$" '$1 ~ r {print $1}')
+}
+
+
+rename_packages() {
+    if [ -z "$1" ]; then
+	return
+    fi
+    pkg=$@
+
+    filter="sed "
+    runfilter="no"
+    for tuple in $@; do
+	split=($(echo $tuple|sed -e 's|:| |'))
+	if [ -n "${split[1]}" ] && [ `is_installed ${split[0]}` ]; then
+	    echo "Package renamed:  ${split[0]} -> ${split[1]}"
+	    filter="$filter -e 's|^${split[0]}$|${split[1]}|'"
+	    runfilter="yes"
+	fi
+    done
+    if [ "$runfilter" = "no" ]; then
+	return
+    fi
+
+    :> $TMPDB
+    if [ -f $DB ]; then
+	nextIsName=1
+	cat $DB|while read l; do
+	    if [ $nextIsName -eq 1 ]; then
+		nextIsName=0
+		echo $l|eval $filter >> $TMPDB
+	    else
+		if [ "$l" = "" ]; then
+		    nextIsName=1
+		fi
+		echo $l >> $TMPDB
+	    fi
+	done
+    fi
+
+    $MV $DB $BACKUPDB
+    $MV $TMPDB $DB
+}
+
+
+remove_packages() {
+    for package in $@; do
+	if [ `is_installed $package` ]; then
+	    echo "Package removed:  $package"
+            $PKGRM -r $ROOT $package
+	fi
+    done
+}
+
+inject_packages() {
+    for package in $@; do
+    pkg="`find core opt xorg \( -name \"${package}#*.pkg.tar.gz\" -o -name \"${package}#*.pkg.tar.bz2\" -o -name \"${package}#*.pkg.tar.xz\" \)&2> /dev/null`"
+	if [ -z "$pkg" ]; then
+		echo "  ERROR: package $package not found on ISO"
+	else
+		if [ -z `is_installed $package` ]; then
+		    echo "Package injected: $package"
+			$PKGADD -r $ROOT -f $pkg
+		else
+			echo "Package upgraded: $package"
+			$PKGADD -r $ROOT -u -f $pkg
+		fi
+	fi
+    done
+}
+
+####################
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <root>"
+    exit -1
+fi
+
+
+##### # 3.5 -> 3.6 #####
+echo "* CRUX PPC 3.5 -> 3.6 setup-helper"
+
+inject_packages linux-pam
+
+if [ `is_installed cryptsetup` ]; then
+	inject_packages json-c
+fi
+
+if [ `is_installed mesa3d` ]; then
+	inject_packages libglvnd
+	inject_packages python3-mako
+	inject_packages python3-markupsafe
+	inject_packages python3-setuptools
+	inject_packages xorg-libxrandr
+fi
+
+if [ `is_installed meson` ]; then
+	inject_packages python3-setuptools
+fi
+
+if [ `is_installed python3-mako` ]; then
+	inject_packages python3-markupsafe
+	inject_packages python3-setuptools
+fi
+
+if [ `is_installed python3-markupsafe` ]; then
+	inject_packages python3-setuptools
+fi
+
+if [ `is_installed xorg-mkfontdir` ]; then
+	remove_packages xorg-mkfontdir
+	inject_packages xorg-mkfontscale
+fi

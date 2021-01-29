@@ -1,0 +1,364 @@
+acl: attr acl 
+attr: attr 
+autoconf: autoconf 
+automake: ncurses libgmp db autoconf readline libmpfr gdbm gawk perl automake 
+bash: ncurses readline bash 
+bc: ncurses readline bc 
+binutils: zlib flex binutils 
+bison: ncurses attr acl gettext bison 
+bzip2: bzip2 
+ca-certificates: ca-certificates 
+coreutils: libgmp attr linux-pam acl libcap coreutils 
+cpio: cpio 
+curl: openssl zlib xz zstd curl 
+dash: dash 
+db: db 
+dcron: dcron 
+dhcpcd: kmod eudev dhcpcd 
+diffutils: diffutils 
+e2fsprogs: kmod zlib ncurses bzip2 xz eudev file readline util-linux e2fsprogs 
+ed: ed 
+elfutils: bzip2 xz zlib elfutils 
+eudev: kmod eudev 
+exim: db openssl libpcre exim 
+expat: expat 
+file: zlib file 
+filesystem: filesystem 
+findutils: findutils 
+flex: flex 
+gawk: ncurses libgmp readline libmpfr gawk 
+gcc: zlib libgmp xz libmpfr zstd libmpc gcc 
+gdbm: ncurses readline gdbm 
+gettext: ncurses attr acl gettext 
+glibc: glibc 
+gperf: gperf 
+grep: libpcre grep 
+groff: groff 
+gzip: gzip 
+hdparm: hdparm 
+hfsutils: hfsutils 
+httpup: openssl zlib xz zstd curl httpup 
+iana-etc: iana-etc 
+inetutils: ncurses readline inetutils 
+iproute2: db iptables attr linux-pam libcap iproute2 
+iptables: iptables 
+kbd: kbd 
+kmod: kmod 
+less: ncurses libpcre less 
+libarchive: bzip2 xz zlib attr lzo zstd acl libarchive 
+libcap: attr linux-pam libcap 
+libdevmapper: kmod zlib ncurses bzip2 xz eudev file readline util-linux libdevmapper 
+libffi: libffi 
+libgmp: libgmp 
+libmpc: libgmp libmpfr libmpc 
+libmpfr: libgmp libmpfr 
+libnsl: libnsl 
+libpcre: libpcre 
+libpipeline: libpipeline 
+libtirpc: libtirpc 
+libtool: libtool 
+libusb: kmod eudev libusb 
+linux-pam: linux-pam 
+lzo: lzo 
+m4: m4 
+mac-fdisk: mac-fdisk 
+make: make 
+man-db: zlib ncurses libpipeline readline gdbm man-db 
+man-pages: man-pages 
+mlocate: mlocate 
+mpdecimal: mpdecimal 
+nasm: nasm 
+ncurses: ncurses 
+nvsetenv: nvsetenv 
+openssh: linux-pam openssl zlib openssh 
+openssl: openssl 
+patch: patch 
+pciutils: kmod eudev pciutils 
+perl: db ncurses readline gdbm perl 
+pkg-config: pkg-config 
+pkgutils: bzip2 xz zlib attr lzo zstd acl libarchive pkgutils 
+ports: ports 
+procps: ncurses procps 
+prt-get: prt-get 
+psmisc: ncurses psmisc 
+python3: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 
+rc: rc 
+rdate: rdate 
+readline: ncurses readline 
+rsync: attr openssl zlib acl rsync 
+sed: attr acl sed 
+shadow: attr linux-pam acl shadow 
+signify: signify 
+sqlite3: ncurses zlib readline sqlite3 
+start-stop-daemon: start-stop-daemon 
+sudo: zlib linux-pam sudo 
+sysfsutils: sysfsutils 
+sysklogd: sysklogd 
+sysvinit: sysvinit 
+tar: tar 
+time: time 
+tzdata: tzdata 
+usbutils: kmod eudev libusb usbutils 
+util-linux: kmod zlib ncurses bzip2 xz eudev file readline util-linux 
+vim: ncurses attr acl vim 
+wget: openssl wget 
+which: which 
+xz: xz 
+yaboot: yaboot 
+zlib: zlib 
+zstd: zlib xz zstd 
+adwaita-icon-theme: librsvg adwaita-icon-theme
+alsa-lib: alsa-lib 
+apr: util-linux expat db gdbm apr
+arcticfox: arcticfox 
+at-spi2-atk: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal db xorg-xorgproto xorg-util-macros eudev file readline libxml2 dbus xorg-libxau xorg-libxdmcp xorg-xtrans util-linux gdbm sqlite3 perl python3 p5-xml-parser python3-setuptools ninja xorg-xcb-proto intltool meson xorg-libxcb glib xorg-libx11 gobject-introspection xorg-libxext xorg-libxfixes atk xorg-libxi xorg-libxtst at-spi2-core at-spi2-atk 
+at-spi2-core: expat libpcre kmod zlib ncurses bzip2 xz libffi libnsl libtirpc mpdecimal db xorg-xorgproto xorg-util-macros dbus eudev file readline xorg-libxau xorg-libxdmcp xorg-xtrans util-linux gdbm sqlite3 perl python3 p5-xml-parser python3-setuptools ninja xorg-xcb-proto intltool meson xorg-libxcb glib xorg-libx11 gobject-introspection xorg-libxext xorg-libxfixes xorg-libxi xorg-libxtst at-spi2-core 
+atk: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal eudev file readline util-linux gdbm sqlite3 python3 python3-setuptools ninja meson glib gobject-introspection atk 
+autoconf-2.13: autoconf-2.13
+b43-fwcutter: b43-fwcutter
+bindutils: openssl zlib libuv bindutils 
+btrfs-progs: lzo zlib xz zstd btrfs-progs 
+cairo: zlib expat xorg-xorgproto bzip2 ncurses libffi libnsl libtirpc mpdecimal xz xorg-util-macros xorg-libpixman libpcre kmod libpng file xorg-libxau xorg-libxdmcp readline xorg-xtrans eudev freetype gdbm sqlite3 util-linux fontconfig python3 xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxrender cairo 
+cdrkit: zlib openssl xz bzip2 attr lzo expat ncurses linux-pam file zstd acl libcap curl libarchive cmake cdrkit 
+cmake: openssl zlib xz bzip2 attr lzo expat ncurses zstd acl curl libarchive cmake 
+cryptsetup: kmod zlib ncurses bzip2 xz openssl attr lzo expat eudev file readline zstd acl util-linux curl gettext libarchive libdevmapper popt cmake json-c cryptsetup 
+dbus-glib: expat libpcre kmod zlib ncurses bzip2 xz libffi libnsl libtirpc mpdecimal dbus eudev file readline util-linux gdbm sqlite3 python3 python3-setuptools ninja meson glib dbus-glib 
+dbus: expat dbus 
+desktop-file-utils: glib pkg-config meson desktop-file-utils
+dialog: ncurses dialog 
+dosfstools: dosfstools 
+exfat-utils: fuse exfat-utils
+exiv2: exiv2
+f2fs-tools: f2fs-tools 
+fakeroot: fakeroot 
+fetchmail: openssl fetchmail 
+fontconfig: zlib expat libpng freetype fontconfig 
+freetype: zlib libpng freetype 
+fribidi: fribidi 
+fuse: fuse
+gdk-pixbuf: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal openssl attr lzo nasm db eudev file libpng readline zstd libxml2 acl util-linux gdbm sqlite3 curl libarchive perl python3 cmake p5-xml-parser python3-setuptools ninja libjpeg-turbo intltool meson libtiff glib gobject-introspection shared-mime-info gdk-pixbuf 
+git: expat curl git
+glib: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal eudev file readline util-linux gdbm sqlite3 python3 python3-setuptools ninja meson glib 
+gobject-introspection: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal eudev file readline util-linux gdbm sqlite3 python3 python3-setuptools ninja meson glib gobject-introspection 
+gtk3: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal openssl attr lzo nasm db xorg-xorgproto xorg-util-macros xorg-libpixman fribidi xorg-libpciaccess eudev file libpng readline zstd libxml2 elfutils dbus acl xorg-libxau xorg-libxdmcp xorg-xtrans xorg-libxshmfence freetype util-linux gdbm sqlite3 curl libarchive xorg-libice fontconfig perl python3 cmake xorg-libsm p5-xml-parser python3-setuptools ninja xorg-xcb-proto libjpeg-turbo intltool meson python3-markupsafe llvm xorg-libxcb libtiff glib libdrm python3-mako xorg-libx11 xorg-xcb-util gobject-introspection shared-mime-info xorg-libxext xorg-libxrender xorg-libxfixes atk gdk-pixbuf libglvnd libvdpau xorg-libxv xorg-libxxf86vm cairo xorg-libxrandr xorg-libxi xorg-libxdamage xorg-libxvmc harfbuzz xorg-libxtst mesa xorg-libxft at-spi2-core libepoxy pango at-spi2-atk gtk3 
+gtk: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal hicolor-icon-theme openssl attr lzo nasm db xorg-xorgproto xorg-util-macros xorg-libpixman fribidi eudev file libpng readline zstd libxml2 acl xorg-libxau xorg-libxdmcp xorg-xtrans freetype util-linux gdbm sqlite3 curl libarchive xorg-libice fontconfig perl python3 cmake xorg-libsm p5-xml-parser python3-setuptools ninja xorg-xcb-proto libjpeg-turbo intltool meson xorg-libxcb libtiff glib xorg-libx11 xorg-xcb-util gobject-introspection shared-mime-info xorg-libxext xorg-libxrender xorg-libxfixes atk gdk-pixbuf xorg-libxinerama cairo xorg-libxrandr xorg-libxcursor xorg-libxcomposite harfbuzz xorg-libxft pango gtk 
+harfbuzz: zlib expat xorg-xorgproto bzip2 ncurses libffi libnsl libtirpc mpdecimal xz xorg-util-macros xorg-libpixman libpcre kmod libpng file xorg-libxau xorg-libxdmcp readline xorg-xtrans eudev freetype gdbm sqlite3 util-linux fontconfig python3 xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxrender gobject-introspection cairo harfbuzz 
+hicolor-icon-theme: hicolor-icon-theme 
+icu: icu
+inih: inih 
+intltool: expat db ncurses readline gdbm perl p5-xml-parser intltool 
+iputils: attr linux-pam openssl bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz libcap readline gdbm sqlite3 python3 python3-setuptools ninja meson iputils 
+jfsutils: kmod zlib ncurses bzip2 xz eudev file readline util-linux jfsutils 
+json-c: openssl zlib xz bzip2 attr lzo expat ncurses zstd acl curl libarchive cmake json-c 
+keyutils: keyutils 
+lcms2: xz libtiff lcms2
+libaio: libaio 
+libcroco: glib libxml2 libcroco
+libevent: openssl libevent 
+libexif: libexif
+libgcrypt: libgpg-error libgcrypt 
+libglade: gtk xorg-libxdamage python libglade
+libgpg-error: libgpg-error 
+libidl: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal eudev file readline util-linux gdbm sqlite3 python3 python3-setuptools ninja meson glib libidl 
+libidn: libidn
+libjpeg-turbo: openssl zlib xz bzip2 attr lzo expat ncurses nasm zstd acl curl libarchive cmake libjpeg-turbo 
+libmng: lcms2 libmng
+libmpeg2: libsdl libmpeg2
+libnl: libnl 
+libogg: libogg
+libpcap: libpcap
+libpcre2: libpcre2
+libpng: zlib libpng 
+librsvg: gtk3 libcroco librsvg
+libsdl: libsdl
+libtiff: openssl zlib xz bzip2 attr lzo expat ncurses nasm zstd acl curl libarchive cmake libjpeg-turbo libtiff 
+libunique: gtk xorg-libxdamage libunique
+libuv: libuv 
+libvorbis: libogg libvorbis
+libvpx: yasm libvpx
+libwnck: gtk gobject-introspection libwnck
+libxml2: zlib xz libxml2 
+libxslt: zlib xz libxml2 libxslt 
+libyaml: libyaml
+llvm: openssl zlib xz bzip2 attr lzo expat ncurses libffi libnsl libtirpc mpdecimal zstd libxml2 acl readline curl libarchive gdbm sqlite3 cmake python3 ninja llvm 
+lvm2: kmod zlib ncurses bzip2 xz libaio eudev file readline util-linux libdevmapper lvm2 
+lxappearance: gtk lxappearance
+mdadm: mdadm 
+memtester: memtester
+meson: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 python3-setuptools meson 
+mozjs78: readline zlib nspr python python3 mozjs78
+mtools: mtools 
+mutt: ncurses openssl zlib readline gdbm mutt 
+nano: zlib ncurses bzip2 xz file nano 
+netsurf: libidn libmng gtk netsurf
+nfs-utils: kmod zlib ncurses bzip2 xz attr linux-pam rpcsvc-proto libtirpc openssl keyutils eudev file readline libcap rpcbind libevent util-linux sqlite3 libdevmapper nfs-utils 
+ninja: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 ninja 
+nspr: nspr
+nss: nspr sqlite3 nss
+openbox: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libpixman libpcre fribidi xorg-libxau xorg-libxdmcp readline file libpng libxml2 xorg-xtrans eudev gdbm sqlite3 freetype xorg-libice util-linux python3 fontconfig xorg-libsm xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxrender gobject-introspection xorg-libxinerama xorg-libxrandr cairo harfbuzz xorg-libxft pango openbox 
+p5-html-parser: p5-html-tagset p5-html-parser
+p5-html-tagset: p5-html-tagset
+p5-xml-parser: expat db ncurses readline gdbm perl p5-xml-parser 
+pango-compat: xorg-libsm xorg-libxft pango-compat
+pango: kmod zlib ncurses bzip2 xz xorg-xorgproto xorg-util-macros expat libffi libnsl libtirpc mpdecimal xorg-libpixman libpcre fribidi eudev file libpng readline xorg-libxau xorg-libxdmcp xorg-xtrans freetype util-linux gdbm sqlite3 xorg-libice fontconfig python3 xorg-libsm xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxrender gobject-introspection cairo harfbuzz xorg-libxft pango 
+parted: kmod zlib ncurses bzip2 xz eudev file readline util-linux libdevmapper parted 
+polkit: glib util-linux nspr mozjs78 intltool gobject-introspection polkit
+poppler-glib: gobject-introspection poppler poppler-glib
+poppler: cmake cairo lcms2 poppler
+popt: ncurses attr acl gettext popt 
+ppp: openssl libpcap ppp 
+prt-utils: bzip2 xz zlib elfutils prt-utils 
+python-cairo: cairo python python-cairo
+python-pyparsing: python-setuptools python-pyparsing
+python-setuptools: python python-setuptools
+python3-mako: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 python3-setuptools python3-markupsafe python3-mako 
+python3-markupsafe: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 python3-setuptools python3-markupsafe 
+python3-setuptools: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 python3-setuptools 
+python: db ncurses openssl bzip2 zlib readline gdbm sqlite3 python 
+reiserfsprogs: kmod zlib ncurses bzip2 xz eudev file readline util-linux e2fsprogs reiserfsprogs 
+rpcbind: libtirpc rpcbind 
+rpcsvc-proto: rpcsvc-proto 
+shared-mime-info: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal db eudev file readline libxml2 util-linux gdbm sqlite3 perl python3 p5-xml-parser python3-setuptools ninja intltool meson glib shared-mime-info 
+smartmontools: smartmontools
+spice-protocol: meson ninja spice-protocol
+talloc: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 talloc 
+u-boot-tools: openssl u-boot-tools
+unzip: unzip 
+vte: gtk util-linux vte
+wireless-tools: wireless-tools 
+wpa_supplicant: openssl ncurses libnl expat readline dbus wpa_supplicant 
+xterm: kmod zlib ncurses bzip2 xz xorg-xorgproto expat libffi libnsl libtirpc mpdecimal xorg-util-macros xorg-font-alias xorg-libpixman libpcre xorg-font-util eudev file libpng readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans freetype util-linux gdbm sqlite3 xorg-libice fontconfig xorg-libxfont python3 xorg-libsm xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxt xorg-libxrender xorg-mkfontscale gobject-introspection xorg-libxmu xorg-libxpm cairo xorg-libxaw harfbuzz xorg-bdftopcf xorg-font-misc-misc xterm 
+yasm: yasm 
+zip: bzip2 zip 
+glu: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo elfutils zstd libxml2 readline xorg-libxau xorg-libxdmcp xorg-xtrans xorg-libxshmfence acl curl gdbm sqlite3 libarchive python3 cmake python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm python3-mako xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxrender libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libxdamage xorg-libxrandr xorg-libxvmc mesa glu 
+libdrm: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-libpciaccess readline gdbm sqlite3 python3 python3-setuptools ninja meson libdrm 
+libepoxy: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo elfutils zstd libxml2 readline xorg-libxau xorg-libxdmcp xorg-xtrans xorg-libxshmfence acl curl gdbm sqlite3 libarchive python3 cmake python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm python3-mako xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxrender libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libxdamage xorg-libxrandr xorg-libxvmc mesa libepoxy 
+libglvnd: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext libglvnd 
+libinput: kmod bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz mtdev eudev readline gdbm sqlite3 python3 python3-setuptools ninja xorg-libevdev meson libinput 
+libpthread-stubs: libpthread-stubs 
+libvdpau: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-libxext libvdpau 
+mesa: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo elfutils zstd libxml2 readline xorg-libxau xorg-libxdmcp xorg-xtrans xorg-libxshmfence acl curl gdbm sqlite3 libarchive python3 cmake python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm python3-mako xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxrender libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libxdamage xorg-libxrandr xorg-libxvmc mesa 
+mtdev: mtdev 
+xkeyboard-config: expat db ncurses xorg-xorgproto bzip2 libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros readline xorg-libxau xorg-libxdmcp libxml2 xorg-xtrans gdbm sqlite3 libxslt perl python3 p5-xml-parser xorg-xcb-proto intltool xorg-libxcb xorg-libx11 xorg-libxkbfile xorg-xkbcomp xkeyboard-config 
+xorg: kmod bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz mtdev xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre xorg-font-util db eudev readline libpng file elfutils zstd libxml2 xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-rgb xorg-xtrans xorg-libxshmfence acl gdbm sqlite3 freetype util-linux curl libxslt xorg-libice libarchive perl python3 fontconfig xorg-libxfont xorg-libxfont2 xorg-libsm cmake p5-xml-parser python3-setuptools ninja xorg-libevdev xorg-xcb-proto intltool meson python3-markupsafe llvm xorg-libxcb libinput libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-xkbcomp xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw xkeyboard-config mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-input-libinput xorg-xf86-video-vesa xorg-xinit xorg-xauth xorg 
+xorg-bdftopcf: zlib expat xorg-xorgproto bzip2 ncurses libffi libnsl libtirpc mpdecimal xz xorg-util-macros xorg-libpixman libpcre kmod libpng file xorg-libxau xorg-libxdmcp xorg-libfontenc readline xorg-xtrans eudev freetype gdbm sqlite3 util-linux fontconfig xorg-libxfont python3 xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxrender gobject-introspection cairo harfbuzz xorg-bdftopcf 
+xorg-font-alias: xorg-font-alias 
+xorg-font-bitstream-vera: xorg-font-bitstream-vera 
+xorg-font-misc-misc: zlib expat xorg-xorgproto bzip2 ncurses libffi libnsl libtirpc mpdecimal xz xorg-util-macros xorg-libpixman libpcre kmod xorg-font-util libpng file xorg-libxau xorg-libxdmcp xorg-libfontenc readline xorg-xtrans eudev freetype gdbm sqlite3 util-linux fontconfig xorg-libxfont python3 xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxrender xorg-mkfontscale gobject-introspection cairo harfbuzz xorg-bdftopcf xorg-font-misc-misc 
+xorg-font-util: xorg-font-util 
+xorg-iceauth: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-iceauth 
+xorg-libdmx: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libdmx 
+xorg-libevdev: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 xorg-libevdev 
+xorg-libfontenc: xorg-xorgproto zlib xorg-libfontenc 
+xorg-libice: xorg-xorgproto xorg-util-macros xorg-xtrans xorg-libice 
+xorg-libpciaccess: xorg-libpciaccess 
+xorg-libpixman: xorg-libpixman 
+xorg-libsm: kmod zlib ncurses bzip2 xz xorg-xorgproto xorg-util-macros eudev file readline xorg-xtrans util-linux xorg-libice xorg-libsm 
+xorg-libx11: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 
+xorg-libxau: xorg-xorgproto xorg-libxau 
+xorg-libxaw: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-libxpm xorg-libxaw 
+xorg-libxcb: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-libxau xorg-libxdmcp readline gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb 
+xorg-libxcomposite: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxcomposite 
+xorg-libxcursor: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxfixes xorg-libxrender xorg-libxcursor 
+xorg-libxdamage: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxfixes xorg-libxdamage 
+xorg-libxdmcp: xorg-xorgproto xorg-libxdmcp 
+xorg-libxext: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext 
+xorg-libxfixes: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxfixes 
+xorg-libxfont: bzip2 zlib xorg-xorgproto xorg-util-macros libpng xorg-libfontenc xorg-xtrans freetype xorg-libxfont 
+xorg-libxfont2: bzip2 zlib xorg-xorgproto xorg-util-macros libpng xorg-libfontenc xorg-xtrans freetype xorg-libxfont2 
+xorg-libxft: zlib expat xorg-xorgproto bzip2 ncurses libffi libnsl libtirpc mpdecimal xz xorg-util-macros xorg-libpixman libpcre kmod libpng file xorg-libxau xorg-libxdmcp readline xorg-xtrans eudev freetype gdbm sqlite3 util-linux fontconfig python3 xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxrender gobject-introspection cairo harfbuzz xorg-libxft 
+xorg-libxi: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxi 
+xorg-libxinerama: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxinerama 
+xorg-libxkbfile: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxkbfile 
+xorg-libxkbui: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxkbfile xorg-libxt xorg-libxkbui 
+xorg-libxmu: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu 
+xorg-libxpm: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxpm 
+xorg-libxrandr: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxrender xorg-libxrandr 
+xorg-libxrender: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxrender 
+xorg-libxres: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxres 
+xorg-libxscrnsaver: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxscrnsaver 
+xorg-libxshmfence: xorg-util-macros xorg-xorgproto xorg-libxshmfence 
+xorg-libxt: kmod zlib ncurses bzip2 xz xorg-xorgproto xorg-util-macros expat libffi libnsl libtirpc mpdecimal eudev file readline xorg-libxau xorg-libxdmcp xorg-xtrans util-linux gdbm sqlite3 xorg-libice python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxt 
+xorg-libxtst: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxi xorg-libxtst 
+xorg-libxv: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxv 
+xorg-libxvmc: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxv xorg-libxvmc 
+xorg-libxxf86dga: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxxf86dga 
+xorg-libxxf86misc: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxxf86misc 
+xorg-libxxf86vm: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxxf86vm 
+xorg-makedepend: xorg-xorgproto xorg-makedepend 
+xorg-mkfontscale: zlib xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal xz xorg-util-macros libpng xorg-libfontenc xorg-libxau xorg-libxdmcp readline xorg-xtrans freetype gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-mkfontscale 
+xorg-rendercheck: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxrender xorg-rendercheck 
+xorg-rgb: xorg-xorgproto xorg-rgb 
+xorg-server: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server 
+xorg-sessreg: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-sessreg 
+xorg-setxkbmap: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxkbfile xorg-setxkbmap 
+xorg-util-macros: xorg-util-macros 
+xorg-x11perf: zlib expat xorg-xorgproto bzip2 ncurses libffi libnsl libtirpc mpdecimal xz xorg-util-macros xorg-libpixman libpcre kmod libpng file xorg-libxau xorg-libxdmcp readline xorg-xtrans eudev freetype gdbm sqlite3 xorg-libice util-linux fontconfig python3 xorg-libsm xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxrender xorg-libxt gobject-introspection cairo xorg-libxmu harfbuzz xorg-libxft xorg-x11perf 
+xorg-xauth: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xauth 
+xorg-xbacklight: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-libxau xorg-libxdmcp readline gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-xcb-util xorg-xbacklight 
+xorg-xbitmaps: xorg-xbitmaps 
+xorg-xcb-proto: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 xorg-xcb-proto 
+xorg-xcb-util: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-libxau xorg-libxdmcp readline gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-xcb-util 
+xorg-xcb-util-wm: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-libxau xorg-libxdmcp readline gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-xcb-util-wm 
+xorg-xcb-util-renderutil: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-libxau xorg-libxdmcp readline gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-xcb-util-renderutil 
+xorg-xcb-util-keysyms: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-libxau xorg-libxdmcp readline gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-xcb-util-keysyms 
+xorg-xcb-util-image: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-libxau xorg-libxdmcp readline gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-xcb-util xorg-xcb-util-image 
+xorg-xcompmgr: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxcomposite xorg-libxdamage xorg-xcompmgr 
+xorg-xdpyinfo: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxrender xorg-libdmx xorg-libxinerama xorg-libxxf86dga xorg-libxxf86misc xorg-libxxf86vm xorg-libxcomposite xorg-libxi xorg-libxtst xorg-xdpyinfo 
+xorg-xdriinfo: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo elfutils zstd libxml2 readline xorg-libxau xorg-libxdmcp xorg-xtrans xorg-libxshmfence acl curl gdbm sqlite3 libarchive python3 cmake python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm python3-mako xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxrender libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libxdamage xorg-libxrandr xorg-libxvmc mesa xorg-xdriinfo 
+xorg-xev: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxrender xorg-libxrandr xorg-xrandr xorg-xev 
+xorg-xf86-input-evdev: mtdev bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util readline libpng file elfutils zstd libxml2 xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev gdbm sqlite3 freetype curl xorg-libice libarchive util-linux python3 fontconfig xorg-libxfont xorg-libxfont2 cmake xorg-libsm xorg-libevdev python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-input-evdev 
+xorg-xf86-input-keyboard: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-input-keyboard 
+xorg-xf86-input-libinput: kmod bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz mtdev xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre xorg-font-util eudev readline libpng file elfutils zstd libxml2 xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl gdbm sqlite3 freetype util-linux curl xorg-libice libarchive python3 fontconfig xorg-libxfont xorg-libxfont2 xorg-libsm cmake python3-setuptools ninja xorg-libevdev xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libinput libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-input-libinput 
+xorg-xf86-input-mouse: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-input-mouse 
+xorg-xf86-input-synaptics: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto xorg-libevdev meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-input-synaptics 
+xorg-xf86-video-ati: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-video-ati 
+xorg-xf86-video-dummy: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-video-dummy 
+xorg-xf86-video-fbdev: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-video-fbdev 
+xorg-xf86-video-neomagic: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-video-neomagic 
+xorg-xf86-video-nouveau: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-video-nouveau 
+xorg-xf86-video-tga: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-video-tga 
+xorg-xf86-video-vesa: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xf86-video-vesa 
+xorg-xfontsel: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-libxpm xorg-libxaw xorg-xfontsel 
+xorg-xgamma: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxxf86vm xorg-xgamma 
+xorg-xhost: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-xhost 
+xorg-xinit: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xinit 
+xorg-xkbcomp: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxkbfile xorg-xkbcomp 
+xorg-xkill: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-xkill 
+xorg-xlsfonts: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-xlsfonts 
+xorg-xmodmap: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-xmodmap 
+xorg-xorgproto: xorg-xorgproto 
+xorg-xprop: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-xprop 
+xorg-xrandr: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxrender xorg-libxrandr xorg-xrandr 
+xorg-xrdb: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-xrdb 
+xorg-xset: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-xset 
+xorg-xsetroot: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo xorg-libpixman libpcre kmod xorg-font-util xorg-xbitmaps elfutils zstd libxml2 libpng file readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans xorg-libxshmfence acl eudev curl freetype gdbm sqlite3 xorg-libice libarchive util-linux fontconfig xorg-libxfont xorg-libxfont2 python3 cmake xorg-libsm python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm glib python3-mako xorg-libx11 xorg-xcb-util xorg-xcb-util-keysyms gobject-introspection xorg-libxext xorg-libxfixes xorg-libxrender xorg-libxt xorg-libxkbfile xorg-mkfontscale libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libdmx xorg-libxinerama xorg-libxres xorg-libxxf86dga xorg-libxdamage xorg-libxcomposite xorg-libxi xorg-libxrandr cairo xorg-libxcursor xorg-libxmu xorg-libxpm xorg-libxvmc xorg-libxtst harfbuzz xorg-libxaw mesa xorg-bdftopcf xorg-libxft libepoxy xorg-server xorg-xsetroot 
+xorg-xtrans: xorg-util-macros xorg-xtrans 
+xorg-xvinfo: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxv xorg-xvinfo 
+xorg-xwininfo: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-xwininfo 
+consolekit2: eudev linux-pam polkit consolekit2
+gdk-pixbuf-xlib: gdk-pixbuf xorg-libx11 gdk-pixbuf-xlib
+gpicview: gtk gpicview
+keybinder: gtk gobject-introspection pygtk keybinder
+libcanberra: alsa-lib gtk gtk3 libvorbis libcanberra
+libfm: gtk menu-cache lxmenu-data libexif vala libfm
+libfm-extra: glib libfm-extra
+libglade-compat: libglade pango-compat libglade-compat
+lsb-release: lsb-release
+lxappearance-obconf: lxappearance openbox lxappearance-obconf
+lxde: lxmenu-data libfm-extra menu-cache libfm pcmanfm lxpanel lxappearance lxsession lxde-common gpicview lxappearance-obconf lxinput lxrandr lxtask lxterminal lxde
+lxde-common: lxde-icon-theme lxpanel lxsession openbox pcmanfm desktop-file-utils hicolor-icon-theme shared-mime-info consolekit2 dbus notification-daemon lxde-common
+lxde-icon-theme: gtk lxde-icon-theme
+lxinput: gtk lxinput
+lxmenu-data: lxmenu-data
+lxpanel: alsa-lib libwnck keybinder lxmenu-data menu-cache libxml2 wireless-tools gdk-pixbuf-xlib lxpanel
+lxrandr: gtk xorg-xrandr lxrandr
+lxsession: dbus-glib libunique lsb-release polkit gtk vala lxsession
+lxtask: gtk lxtask
+lxterminal: vte lxterminal
+menu-cache: libfm-extra menu-cache
+notification-daemon: gtk3 libcanberra notification-daemon
+pcmanfm: libfm adwaita-icon-theme pcmanfm
+pygtk: libglade-compat python-cairo python-gobject-compat pygtk
+python-gobject-compat: glib python-gobject-compat
+vala: glib vala

@@ -1,0 +1,356 @@
+#!/bin/bash
+#
+# CRUX PPC Setup, based on CRUX Setup
+#
+# Copyright (c) 2001-2005 by Per Liden <per@fukt.bth.se>
+# Copyright (c) 2004 Giulivo Navigante <giulivo@linuxmail.org>
+# Copyright (c) 2005-2020 The CRUX PPC Team - http://www.github.com/cruxppc
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, 
+# USA.
+#
+
+VERSION="3.6"
+
+do_dialog() {
+    dialog --backtitle "CRUX PPC $VERSION Setup" --no-shadow "$@"
+}
+
+do_abort() {
+    do_dialog --aspect 50 --defaultno --yesno "Abort installation?" 0 0 && exit 1
+}
+
+do_select() {
+    while true; do
+	do_dialog "$@"
+	if [ $? != 0 ]; then
+	    do_abort
+	else
+	    break
+	fi
+    done
+}
+
+welcome() {
+    do_select --aspect 5 --yesno "Welcome!\n\nThis script will guide you through the installation of CRUX PPC packages.\n\nBefore starting the installation make sure you have read and understood the \"CRUX PPC Installation Guide\". If you have done that then please continue, else abort the installation and come back later.\n\nAre you really sure you want to continue?" 0 0
+}
+
+select_action() {
+    do_select --menu "Install or upgrade?" 9 45 2 \
+	             "1" "Install CRUX PPC $VERSION" \
+                     "2" "Upgrade to CRUX PPC $VERSION" 2> $tmpfile
+    ACTION=`cat $tmpfile`
+    if [ "$ACTION" = "1" ]; then
+	ACTION="INSTALL"
+    else
+	ACTION="UPGRADE"
+	do_select --aspect 5 --yesno "NOTE!\n\nBefore upgrading make sure /etc/pkgadd.conf in the old installation is tuned to fit your needs, important files might otherwise be overwritten. Further, when setup has completed the upgrade you need to go though the rejected files in /var/lib/pkg/rejected/ and upgrade them manually if needed (or use the rejmerge(8) tool). See the pkgadd(8) man page for more information about /etc/pkgadd.conf.\n\nAre you really sure you want to continue?" 0 0
+    fi
+}
+
+select_root() {
+    while true; do
+	do_select --aspect 40 --inputbox "Enter directory where your CRUX PPC root partition is mounted:" 0 0 "/mnt" 2> $tmpfile
+	ROOT=`cat $tmpfile`
+	if [ -d "$ROOT" ]; then
+	    if [ "$ACTION" = "INSTALL" ] || [ -f "$ROOT/var/lib/pkg/db" ]; then
+		break
+	    fi
+	    do_dialog --aspect 50 --msgbox "Directory does not look like a CRUX PPC root directory. Try again." 0 0
+	else
+	    do_dialog --aspect 50 --msgbox "Directory not found. Try again." 0 0
+	fi
+    done
+}
+
+select_collections() {
+	if [ "$ACTION" != "INSTALL" ]; then
+		return 0
+	fi
+	if [ ! -d core ] || [ ! -d opt ] || [ ! -d xorg ] || [ ! -d lxde ] || [ ! -d kernel ]; then
+		do_dialog --aspect 50 --msgbox "Package directories (core, opt, xorg, lxde, or kernel) were not found in $crux_dir. Aborting." 0 0
+		exit 1
+	fi
+	TITLE="Select collections to install:\n(detailed package selection will follow)"
+	do_select --separate-output --checklist "$TITLE" 13 60 6 \
+		core "The core packages (required)" ON \
+		opt "Optional packages" OFF \
+		xorg "X.org packages" OFF \
+		lxde "LXDE packages" OFF 2> $collfile
+	sed -i 's|\"||g' $collfile
+}
+
+ask_detailed() {
+	if [ "$ACTION" != "INSTALL" ]; then
+		return 0
+	fi
+	do_dialog --aspect 50 --defaultno --yesno "Do you want the chance to select packages individually?" 0 0 && DO_DETAILED="yes"
+}
+
+select_packages() {
+	if [ ! -d core ] || [ ! -d opt ] || [ ! -d xorg ] || [ ! -d lxde ] || [ ! -d kernel ]; then
+		do_dialog --aspect 50 --msgbox "Package directories (core, opt, xorg, lxde, and kernel) were not found in $crux_dir. Aborting." 0 0
+		exit 1
+	fi
+	if [ "$ACTION" = "INSTALL" ]; then
+		if [ "$DO_DETAILED" = "yes" ]; then
+			for collection in core opt xorg lxde; do
+				presel=`grep $collection $collfile`
+				if [ "$presel" == "$collection" ]; then
+					checked=ON
+				else
+					checked=OFF
+				fi
+				do_dialog --aspect 50 --infobox "Searching for packages, please wait..." 0 0
+				TITLE="Select $collection packages to install:"
+				find $collection \( -name '*.pkg.tar.gz' -o -name '*.pkg.tar.bz2' -o -name '*.pkg.tar.xz' \) -printf "%f ($collection) $checked\n" | sed 's/.pkg.tar.[^ ]*//g' | sort > $tmpfile
+				PKG_LIST=`cat $tmpfile | xargs echo ' '`
+				do_select --separate-output --checklist "$TITLE" 19 60 12 $PKG_LIST 2>> $pkgfile
+			done
+		else # no detailed selection
+			for collection in core opt xorg lxde; do
+				presel=`grep $collection $collfile`
+				if [ "$presel" == "$collection" ]; then
+					find $collection \( -name '*.pkg.tar.gz' -o -name '*.pkg.tar.bz2' -o -name '*.pkg.tar.xz' \) -printf "%f\n" | sed 's/.pkg.tar.*//g' | sort >> $pkgfile
+				fi
+			done
+		fi
+	else
+		# Upgrade
+		do_dialog --aspect 50 --infobox "Searching for packages, please wait..." 0 0
+		TITLE="Select packages to upgrade:"
+		INSTALLED_PACKAGES=`pkginfo -r $ROOT -i | gawk '{ print $1; }'`
+		for package in $INSTALLED_PACKAGES; do
+			CORE_LIST="$CORE_LIST `find core \( -name \"${package}#*.pkg.tar.gz\" -o -name \"${package}#*.pkg.tar.bz2\" -o -name \"${package}#*.pkg.tar.xz\" \) -printf '%f (core) ON\n' | sed 's/.pkg.tar.[^ ]*/ /g' | sort | xargs echo ' '`"
+			OPT_LIST="$OPT_LIST `find opt \( -name \"${package}#*.pkg.tar.gz\" -o -name \"${package}#*.pkg.tar.bz2\" -o -name \"${package}#*.pkg.tar.xz\" \) -printf '%f (opt) ON\n' | sed 's/.pkg.tar.[^ ]*/ /g' | sort | xargs echo ' '`"
+			XORG_LIST="$XORG_LIST `find xorg \( -name \"${package}#*.pkg.tar.gz\" -o -name \"${package}#*.pkg.tar.bz2\" -o -name \"${package}#*.pkg.tar.xz\" \) -printf '%f (xorg) ON\n' | sed 's/.pkg.tar.[^ ]*/ /g' | sort | xargs echo ' '`"
+			LXDE_LIST="$LXDE_LIST `find lxde \( -name \"${package}#*.pkg.tar.gz\" -o -name \"${package}#*.pkg.tar.bz2\" -o -name \"${package}#*.pkg.tar.xz\" \) -printf '%f (lxde) ON\n' | sed 's/.pkg.tar.[^ ]*/ /g' | sort | xargs echo ' '`"
+		done
+		do_select --separate-output --checklist "$TITLE" 19 60 12 $CORE_LIST $OPT_LIST $XORG_LIST 2> $pkgfile
+	fi
+	sed -i 's|\"||g' $pkgfile
+	sed -i 's|\\\#|\#|g' $pkgfile
+}
+
+check_dependencies() {
+	if [ "$ACTION" != "INSTALL" ]; then
+		return 0
+	fi
+	do_dialog --aspect 50 --infobox "Checking dependencies, please wait..." 0 0
+	get_missing_deps
+	if [ -n "$MISSING_DEPS" ]; then
+		for package in $MISSING_DEPS; do
+		    MISSING_LIST="$MISSING_LIST `find . \( -name \"${package}#*.pkg.tar.gz\" -o -name \"${package}#*.pkg.tar.bz2\" -o -name \"${package}#*.pkg.tar.xz\" \) -printf '%f %p ON\n' | sed 's/.pkg.tar.[^ ]*/ /g' | sed 's|./|(|;s|/.* O|) O|' | sort | xargs echo ' '`"
+		done
+		TITLE="The following packages are needed by the ones you selected"
+		do_select --separate-output --checklist "$TITLE" 19 60 12 $MISSING_LIST 2>> $pkgfile
+	fi
+	sed -i 's|\"||g' $pkgfile
+	sed -i 's|\\\#|\#|g' $pkgfile
+}
+
+get_missing_deps() {
+	needed=""
+	toinstall=`sed 's/\#.*//g' $pkgfile`
+	for f in $toinstall; do
+		pdeps=`grep "^$f\:" $depsfile|sed "s|^$f: ||g"`
+		for d in $pdeps; do
+			needed="$needed $d"
+		done
+	done
+	sed 's/\#.*//g' $pkgfile|sort -u > $markedfile
+	echo $needed|tr ' ' '\n'|sort -u > $neededfile
+	MISSING_DEPS=`comm -1 -3 $markedfile $neededfile`
+}
+
+confirm() {
+	if [ "$ACTION" = "INSTALL" ]; then
+		# Install
+		do_select --aspect 25 --yesno "Selected packages will now be installed. Are you sure you want to continue?" 0 0
+	else
+		# Upgrade
+		do_select --aspect 25 --yesno "Selected packages will now be upgraded. Are you sure you want to continue?" 0 0
+	fi
+}
+
+progressbar() {
+    echo "XXX"
+    expr $COUNT '*' 100 / $TOTAL
+    echo "\n$*"
+    echo "XXX"
+    let $((COUNT+=1))
+}
+
+install_packages() {
+    if [ ! -d $ROOT/var/lib/pkg ]; then
+	mkdir -p $ROOT/var/lib/pkg
+	touch $ROOT/var/lib/pkg/db
+    fi
+
+    if [ -d $ROOT/var/lib/pkg/rejected ]; then
+	rm -rf $ROOT/var/lib/pkg/rejected
+    fi
+
+    if [ "$ACTION" = "INSTALL" ]; then
+	PKGARGS=""
+    else
+	# We use -f here since we want to avoid pkgadd conflicts.
+	# Unwanted/Unexpected conflicts could arise if files are
+	# moved from one package to another, or if the user added
+	# the files himself. Instead of failing the whole upgrade
+	# we force the upgrade. This should be fairly safe and it
+	# will probably help to avoid some "semi-bogus" errors from
+	# pkgadd. The rules in /etc/pkgadd.conf will still be used.
+	PKGARGS="-f -u"
+    fi
+
+    (
+        # Log header
+	echo "Log  ($logfile)" > $logfile
+	echo "----------------------------------------------------------" >> $logfile
+
+        # Install packages
+	KERNEL=./kernel/linux-*.tar.xz
+	KERNEL_VERSION=`basename $KERNEL .tar.xz | sed "s/linux-//"`
+	TOTAL=`cat $pkgfile | wc -l`
+	let $((TOTAL+=1))
+	let $((COUNT=0))
+	let $((ERRORS=0))
+#	for FILE in `cat $pkgfile`; do
+	for FILE in `grep filesystem $pkgfile; grep -v filesystem $pkgfile`; do
+	    progressbar "Installing $FILE..."
+	    echo -n "Installing $FILE....." >> $logfile
+	    PKG_FILE=`find . \( -name "$FILE.pkg.tar.gz" -o -name "$FILE.pkg.tar.bz2" -o -name "$FILE.pkg.tar.xz" \)`
+	    pkgadd -r $ROOT $PKGARGS $PKG_FILE > $tmpfile 2>&1
+	    if [ $? = 0 ]; then
+		echo "OK" >> $logfile
+	    else
+		let $((ERRORS+=1))
+		echo "ERROR" >> $logfile
+		echo "" >> $logfile
+		cat $tmpfile >> $logfile
+		echo "" >> $logfile
+	    fi
+	done
+
+	# Install kernel
+# SKIP kernel install for now
+#	if [ ! -d $ROOT/usr/src/linux-$KERNEL_VERSION ]; then
+#	    progressbar "Installing `basename $KERNEL .tar.xz`..."
+#	    echo -n "Installing `basename $KERNEL .tar.xz`....." >> $logfile
+#	    (
+#		set -e
+#		tar -C $ROOT/usr/src -xJf $KERNEL
+#		cp -f ./kernel/linux-$KERNEL_VERSION.defconfig $ROOT/usr/src/linux-$KERNEL_VERSION/.config
+#		chown -R root.root $ROOT/usr/src/linux-$KERNEL_VERSION
+#		chmod -R go-w $ROOT/usr/src/linux-$KERNEL_VERSION
+#		shopt -s nullglob
+#		# modified to be filename-agnostic
+#		#for patch in ./kernel/linux-$KERNEL_VERSION-*.patch; do
+#		for patch in ./kernel/*patch; do
+#		    patch -s -d $ROOT/usr/src/linux-$KERNEL_VERSION -p1 < $patch
+#			cp $patch $ROOT/usr/src/
+#		done
+#		if [ ! -d $ROOT/lib/modules/$KERNEL_VERSION ]; then
+#		    mkdir -p $ROOT/lib/modules/$KERNEL_VERSION
+#		    depmod -b $ROOT -a $KERNEL_VERSION
+#		fi
+#	    ) > $tmpfile 2>&1
+#	    if [ $? = 0 ]; then
+#		echo "OK" >> $logfile
+#	    else
+#		let $((ERRORS+=1))
+#		echo "ERROR" >> $logfile
+#		echo "" >> $logfile
+#		cat $tmpfile >> $logfile
+#		echo "" >> $logfile
+#	    fi
+#	else
+#	    echo "Directory $ROOT/usr/src/linux-$KERNEL_VERSION already exists." >> $logfile
+#	    echo "Assuming linux-$KERNEL_VERSION is already installed." >> $logfile
+#	fi
+
+        # Log footer
+	echo "----------------------------------------------------------" >> $logfile
+	echo "$ERRORS error(s) found" >> $logfile
+
+	cat $logfile > $tmpfile
+
+	echo "" > $logfile
+	if [ "$ERRORS" = "0" ]; then
+	    echo "$ACTION COMPLETED SUCCESSFULLY!" >> $logfile
+	else
+	    echo "$ACTION FAILED!" >> $logfile
+	fi
+	echo "" >> $logfile
+	echo "" >> $logfile
+	cat $tmpfile >> $logfile
+
+    ) | do_dialog --title " Please wait " --gauge "" 8 60 0
+
+    # Show log
+    do_dialog --exit-label "OK" --textbox $logfile 19 68
+}
+
+main() {
+	welcome
+	select_action
+	select_root
+	select_collections
+	ask_detailed
+	select_packages
+	check_dependencies
+	confirm
+	if [ "$ACTION" = "UPGRADE" ] && [ -f /usr/bin/setup-helper ]
+	then
+		(/usr/bin/setup-helper $ROOT &> $helperlogfile) | do_dialog \
+			--title " Please wait [3.5 -> 3.6 check]" --gauge "" 8 60 0
+	fi
+	install_packages
+	cat $helperlogfile 2> /dev/null
+}
+
+tmpfile=/tmp/tmp.$$
+collfile=/tmp/collections.$$
+pkgfile=/tmp/packages.$$
+logfile=/tmp/log.$$
+helperlogfile=/tmp/log-helper.$$
+crux_dir=/crux
+neededfile=/tmp/needed.$$
+markedfile=/tmp/marked.$$
+
+# Detailed selection of packages
+DO_DETAILED="no"
+EXECUTE_SCRIPTS="yes"
+MISSINGDEPS=""
+
+trap "rm -f $tmpfile $pkgfile $collfile $neededfile $markedfile" 0 1 2 5 15
+
+if [ "$1" != "" ]; then
+	crux_dir=$1
+fi
+
+depsfile=$crux_dir/setup.dependencies
+
+if [ -d $crux_dir ]; then
+	cd $crux_dir
+else
+	do_dialog --aspect 50 --msgbox "Directory $crux_dir not found. Aborting." 0 0
+	exit 1
+fi
+
+main
+
+# End of file

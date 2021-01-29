@@ -1,0 +1,15 @@
+#
+# Generate the .iso file from the cdrom filesystem.
+#
+cat > $ROOTFS_DIR/boot/map.hfs << "EOF"
+# ext.  xlate  creator  type    comment
+
+.b Raw 'chrp' 'tbxi' "bootstrap"
+yaboot Raw 'unix' 'boot' "bootstrap"
+.conf Ascii 'unix' 'text' "config"
+.msg Ascii 'unix' 'text' "text"
+* Raw '????' '????' "unknown" 
+EOF
+#
+rm -f cruxppc3.6.iso
+genisoimage -r -V "CRUXPPC_3.6_PRE-ALPHA__$(date +%Y%m%d)" -iso-level 4 -chrp-boot -hfs -part -probe -no-desktop -hfs-bless $ROOTFS_DIR/ppc/mac -map $ROOTFS_DIR/boot/map.hfs -b ppc/mac/yaboot -no-emul-boot -hide-rr-moved -o cruxppc3.6.iso $ROOTFS_DIR

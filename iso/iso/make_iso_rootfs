@@ -1,0 +1,174 @@
+#!/bin/bash
+set -e
+
+date
+export CRUXVERSION=3.6
+export CUSTOMVERSION=
+export CRUX_DIR=/mnt/hd/crux
+export PWD=`pwd`
+export ROOTFS_DIR=$PWD/tmp/rootfs
+export ROOTFS_KERNEL=$CRUX_DIR/kernel/crux-*kern*.tar.xz
+
+#
+# Create an empty CRUX PPC rootfs dir.
+#
+rm -fr $ROOTFS_DIR
+mkdir -pv $ROOTFS_DIR
+mkdir -pv $ROOTFS_DIR/var/lib/pkg
+>$ROOTFS_DIR/var/lib/pkg/db
+
+#
+# Add CRUX payload area
+#
+mkdir $ROOTFS_DIR/crux
+
+#
+# Populate ISO rootfs
+#
+echo "- Installing rootfs packages..."
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/filesystem#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/glibc#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/readline#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/ncurses#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/coreutils#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/acl#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/attr#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/bash#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/bc#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/btrfs-progs#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/bzip2#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/cryptsetup#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/dash#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/dbus#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/dialog#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/dosfstools#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/e2fsprogs#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/ed#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/elfutils#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/eudev#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/exfat-utils*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/file#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/findutils#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/fuse*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/gawk#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/grep#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/gzip#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/hfsutils#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/inetutils#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/jfsutils#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/json-c#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/kbd#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/kmod#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/less#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libaio#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libcap#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libdevmapper#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libgcrypt#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libgmp#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libgpg-error#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libmpfr#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libnl#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libpcre#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/libusb#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/linux-pam#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/lvm2#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/lzo#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/mac-fdisk#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/mdadm#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/memtester*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/nvsetenv#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/patch#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/pkgutils#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/popt#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/procps#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/rc#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/reiserfsprogs#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/sed#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/shadow#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/smartmontools*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/start-stop-daemon#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/sysfsutils#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/sysklogd#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/sysvinit#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/tar#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/usbutils#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/util-linux#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/vim#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/which#*.pkg.tar.xz
+#pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/xfsprogs#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/xz#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/yaboot#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/zlib#*.pkg.tar.xz
+pkgadd --root $ROOTFS_DIR $CRUX_DIR/*/zstd#*.pkg.tar.xz
+
+date >$ROOTFS_DIR/DATE
+
+#
+# Install kernel
+#
+echo "- Installing kernel..."
+tar xfp $ROOTFS_KERNEL -C $ROOTFS_DIR 
+#
+# remove the modules under drivers/char/agp, otherwise, the screen will garbled on
+# systems with nvidia graphics.
+#cd $ROOTFS_DIR && rm -fr lib/modules/*/kernel/drivers/char/agp
+
+#
+# Adjust bootloader/kernel for CD boot.
+#
+mkdir -pv $ROOTFS_DIR/ppc/mac
+mkdir -pv $ROOTFS_DIR/ppc/ppc32
+mkdir -pv $ROOTFS_DIR/ppc/ppc64
+mkdir -pv $ROOTFS_DIR/ppc/chrp  
+cp $ROOTFS_DIR/boot/vmlinux-* $ROOTFS_DIR/ppc/ppc32/zImage.pmac
+mv $ROOTFS_DIR/boot/vmlinux-* $ROOTFS_DIR/ppc/ppc64/vmlinux
+cp $ROOTFS_DIR/boot/System* $ROOTFS_DIR/ppc/ppc32/System.map
+mv $ROOTFS_DIR/boot/System* $ROOTFS_DIR/ppc/ppc64/System.map
+cp $ROOTFS_DIR/usr/lib/yaboot/yaboot $ROOTFS_DIR/ppc/mac/yaboot
+cp $ROOTFS_DIR/usr/lib/yaboot/yaboot $ROOTFS_DIR/ppc/chrp/yaboot.chrp
+
+
+#
+# Remove unneeded files to reduce size.
+#
+echo "- Deleting superfluous files..."
+cd $ROOTFS_DIR && rm -rf var opt home
+ln -s  /tmp/var $ROOTFS_DIR/var
+cd $ROOTFS_DIR/usr && rm -rf man include lib/*.a lib/*.o lib/gconv lib/locale src
+cd $ROOTFS_DIR/usr/share && mkdir l v x; cp terminfo/l/linux l; cp terminfo/v/vt100 v; cp terminfo/x/xterm x; rm -rf terminfo/*; mv l v x terminfo
+cd $ROOTFS_DIR/usr/share && rm -rf et ss vim i18n zoneinfo
+cd $ROOTFS_DIR/usr/bin && rm cal locale localedef compile_et mk_cmds
+cd $ROOTFS_DIR/usr/sbin && rm groupadd groupdel groupmod useradd userdel usermod grpck pwck iconvconfig
+cd $ROOTFS_DIR/etc && rm -rf cron resolv.conf lilo.conf sysctl.conf pkgadd.conf pkgmk.conf securetty
+
+#
+# Install CRUX install scripts and
+# bootcd startup scripts
+#
+git clone https://www.github.com/cruxppc/cruxppc-ng-3.6
+cp -r cruxppc-ng-3.6/iso/iso/bin/* $ROOTFS_DIR/usr/bin
+cp -r cruxppc-ng-3.6/iso/iso/etc/* $ROOTFS_DIR/etc
+cp -r cruxppc-ng-3.6/iso/iso/ppc/* $ROOTFS_DIR/ppc
+cp cruxppc-ng-3.6/iso/license/* $ROOTFS_DIR/crux
+cp cruxppc-ng-3.6/iso/doc/* $ROOTFS_DIR/crux
+cp cruxppc-ng-3.6/iso/iso/setup.dependencies $ROOTFS_DIR/crux
+cp cruxppc-ng-3.6/misc/makelocales $ROOTFS_DIR/crux
+cp -r cruxppc-ng-3.6/misc/post-installs $ROOTFS_DIR/crux
+rm -fr cruxppc-ng-3.6
+
+#
+case $(uname -m) in
+	ppc64) 
+		sed -i "s@ppc32@ppc64@" $ROOTFS_DIR/ppc/mac/ofboot.b
+		rm -fr $ROOTFS_DIR/ppc/ppc32 
+        ;;
+	ppc) 
+		rm -fr $ROOTFS_DIR/ppc/ppc64 
+        ;;
+esac
+
+#
+# Next step is to populate the crux install payload directories:
+# crux/core, crux/opt, crux/xorg, crux/kernel, crux/lxde and
+# any other packages available for installation.
+#

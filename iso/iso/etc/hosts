@@ -1,0 +1,7 @@
+#
+# /etc/hosts: static lookup table for host names
+#
+
+127.0.0.1	localhost
+
+# End of file

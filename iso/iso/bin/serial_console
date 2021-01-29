@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# /usr/bin/serial_console
+#
+# This script opens a tty on /dev/tts/0 if it is a valid terminal, otherwise
+# goes to sleep for a year. This script is needed to prevent init(1) from
+# respawning agetty over and over again on machines that don't have a serial
+# port.
+#
+# CRUX PPC - 32bit Release
+
+        # Apple Power Mac, Xserve G4
+if stty -F /dev/ttyPZ0 > /dev/null 2>&1; then
+        exec /sbin/agetty 57600 ttyPZ0 vt100
+       # generic Freescale SoC
+elif stty -F /dev/ttyPSC0 > /dev/null 2>&1; then
+        exec /sbin/agetty 115200 ttyPSC0 vt100
+       # usb serial coonsole
+elif stty -F /dev/ttyUSB0 > /dev/null 2>&1; then
+        exec /sbin/agetty 9600 ttyUSB0 vt100
+        # standard serial console
+elif stty -F /dev/ttyS0 > /dev/null 2>&1; then
+        # serial console - Acube Sam440ep, Sam440ep-flex
+    if [ "`cat /proc/cpuinfo | grep 440EP`" != "" ]; then
+        exec /sbin/agetty 115200 ttyS0 vt100
+        # serial console - Acube Sam460ex
+    elif [ "`cat /proc/cpuinfo | grep 460EX`" != "" ]; then
+        exec /sbin/agetty 115200 ttyS0 vt100
+        # serial console - IBM CHRP
+    elif [ "`cat /proc/cpuinfo | grep CHRP`" != "" ]; then
+        exec /sbin/agetty 9600 ttyS0 vt100
+    else
+        #  serial console - unknown generic
+        exec /sbin/agetty 9600 ttyS0 vt100
+    fi
+else
+        exec /bin/sleep 365d
+fi
+
+# End Of File

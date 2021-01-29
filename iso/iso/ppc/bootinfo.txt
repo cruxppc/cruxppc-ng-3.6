@@ -1,0 +1,5 @@
+<chrp-boot>
+<description>CRUX PPC GNU/Linux</description>
+<os-name>CRUX PPC</os-name>
+<boot-script>boot &device;:\ppc\chrp\yaboot.chrp</boot-script>
+</chrp-boot>

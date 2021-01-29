@@ -1,0 +1,5 @@
+/dev/sr0	/		auto		defaults	0	0
+devpts		/dev/pts	devpts		defaults	0	0
+none	/proc	proc	defaults	0	0
+none	/sys	sysfs	defaults	0	0
+tmp	/tmp	tmpfs	defaults	0	0

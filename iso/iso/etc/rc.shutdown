@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# /etc/rc.shutdown: system shutdown script
+#
+
+# Set linefeed mode to avoid staircase effect
+/bin/stty onlcr
+
+echo "The system is coming down.  Please wait."
+
+# Terminate all processes
+/sbin/killall5 -15
+/bin/sleep 5
+/sbin/killall5 -9
+
+# Umount file systems
+/bin/umount -n -a &> /dev/null
+
+# Halt or reboot
+if [ $RUNLEVEL = 0 ]; then
+    /sbin/poweroff -d -f -i
+else
+    /sbin/reboot -d -f -i
+fi
+
+# End of file

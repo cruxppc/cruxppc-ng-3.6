@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# /etc/rc.single: single-user setup script
+#
+
+# Terminate all processes
+/sbin/killall5 -15
+/bin/sleep 5
+/sbin/killall5 -9
+
+# Enter single-user mode
+exec /sbin/init -t1 S
+
+# End of file

@@ -1,0 +1,1554 @@
+
+Note: This document is revised from time to time.   If you are reading
+this from the install iso, be aware that there may be a newer
+version of this document in www.github.com/cruxppc/cruxppc-ng-3.5/iso/doc.
+
+Additionally, you may find materials on the www.github.com/cruxppc website
+that supplement the information in this handbook.   This handbook is a 
+concise description of installation and configuration.  The supplemental
+materials provide additional information that may helpful.
+
+
+HANDBOOK FOR CRUX PPC 3.5
+12/01/2020
+
+   1. Preface
+
+         1. What is CRUX PPC?
+         2. Why use CRUX PPC?
+         3. License
+
+              1. Packages
+              2. Build Scripts
+              3. GPL
+              4. NO WARRANTY
+
+    3. Installing CRUX PPC
+
+         1. Supported Hardware
+         2. Installing From CD-ROM
+         3. Upgrading From CD-ROM
+         4. Alternative Installation Methods
+
+              1. Network Installation
+
+    4. The Package System
+
+         1. Introduction
+         2. Using the Package System
+
+              1. Installing a Package
+              2. Upgrading a Package
+              3. Removing a Package
+              4. Querying the Package Database
+
+         3. Package management frontend:
+
+              1. prt-get and CRUX PPC
+
+         4. Creating Packages
+
+              1. Adjusting/Configuring the Package Build Process
+
+         5. Package Guidelines
+
+              1. General
+              2. Directories
+
+         6. Remove Junk Files
+
+              1. Pkgfile
+              2. Pkgfile Header
+
+    5. The Ports System
+
+         1. Introduction
+
+              1. What is a Port?
+
+         2. What is the Ports System?
+
+              1. Port collections
+              2. The official collection 'opt' and 'core'
+              3. The user contributed collection 'contrib'
+              4. The individual collections from CRUX users
+
+         3. Using the Ports System
+
+              1. Synchronizing Your Local Ports Structure
+              2. Listing Local Ports
+              3. Listing Version Differences
+              4. Building and Installing Packages
+              5. Enabling the 'contrib' collection
+              6. Additional Tools
+
+                   1. Building ports as unprivileged user
+                   2. Useful scripts
+
+    6. Configuration
+
+         1. Initialization Scripts
+
+              1. Runlevels
+              2. Layout
+              3. Configuration Variables in /etc/rc.conf
+              4. Generating Locales
+              5. Network Configuration
+
+         2. Passwords
+         3. Upgrading the Kernel
+
+    7. Appendix
+
+         1. Troubleshooting
+         2. Installation
+         3. Configuration
+
+                        CRUX PPC Handbook - release 3.5
+
+   Copyright (c) 2001-2004 Per Liden
+   Copyright (c) 2004-2005 Giulivo Navigante
+   Copyright (c) 2005-2020 The CRUX PPC team
+
+   This handbook covers the installation, configuration and administration of
+   CRUX PPC  and  most in  general  of  the CRUX  distribution.  For  further
+   information about the GNU/Linux system see the GNU's Not Unix project page
+   and the Linux Documentation Project.
+
+Preface
+
+   Per Liden wrote this  handbook. Robert McMeekin  converted it to  DocBook.
+   Giulivo Navigante and  further on  The CRUX PPC  Team adapted  it for  PPC
+   users and made  a Wiki version.  Numerous others have  given feedback  and
+   improvement suggestions.
+
+Introduction
+
+  What is CRUX PPC?
+
+   CRUX PPC is  a port  for the Power  Architecture^(R) platform  of CRUX,  a
+   lightweight and optimized GNU/Linux  distribution targeted at  experienced
+   GNU/Linux users.  The  primary focus  of  this distribution  is  "keep  it
+   simple", which  it  reflects  in a  simple  tar.xz-based  package  system,
+   BSD-style initscripts,  and  a  relatively  small  collection  of  trimmed
+   packages. The secondary focus is utilization of new Linux kernel  features
+   and recent tools  and libraries. CRUX  PPC also has  a ports system  which
+   makes it easy to install and upgrade applications.
+
+  Why use CRUX PPC?
+
+   There are many GNU/Linux distributions out there these days, so what makes
+   this distribution any better than the  others? Well, it's all about  taste
+   really. Here are  a few hints  about the  tastes and goals  of the  people
+   behind CRUX PPC. CRUX PPC is  made with simplicity in mind from  beginning
+   to end. Making it easy to create new and update old packages is essential;
+   updating a package in CRUX PPC is  often just a matter of typing pkgmk  -d
+   -u (or prt-get update). The usage of ports helps keep your packages up-to-date;
+   not the latest bleeding-edge-alpha version, but the latest stable version.
+   Other features include creating packages optimized for your processor, eg.
+   by  compiling  with   -mcpu=G4  -maltivec   -mabi=altivec,  and   avoiding
+   cluttering the filesystem  with files  you'll never  use, eg.  /usr/doc/*,
+   etc. If you  need more information  about a specific  program, other  than
+   information found in the man-page, a  web search engine usually knows  all
+   about it.  Finally,  it  strives  to  use  new  features  as  they  become
+   available, as long as they are consistent with the rest of the goals.
+
+   If you are a  somewhat experienced GNU/Linux user  that wants a clean  and
+   solid GNU/Linux  distribution  as  the foundation  of  your  installation,
+   prefers editing configuration  files with an  editor to using  a GUI,  and
+   doesn't hesitate  to download  and compile  programs yourself,  then  this
+   distribution might suit you well.
+
+  License
+
+    Packages
+
+   Since CRUX PPC is a  GNU/Linux distribution, it contains software  written
+   by a lot  of different people.  Each software package  comes with its  own
+   license, chosen by its author(s). To find out how a particular package  is
+   licensed, have a look at its source code.
+
+    Build Scripts
+
+   Package build scripts in  CRUX PPC (initially  in package categories  ppc)
+   are Copyright (c) by  CRUX PPC Team and  licensed through the GNU  General
+   Public License. Other  build scripts (in  package categories x86/core  and
+   x86/opt) are Copyright (c) 2000-2010 by Per Liden and the CRUX development
+   team and licensed through the GNU General Public License.
+
+    GPL
+
+   Any code or documentation  authored by the CRUX  PPC Team that comes  with
+   CRUX PPC is released under the terms of the GNU General Public License  as
+   published by the Free  Software Foundation; either version  2 or (at  your
+   option) later. You should have received  a copy of the GNU General  Public
+   License along with CRUX PPC.
+
+    NO WARRANTY
+
+   CRUX PPC is distributed in  the hope that it  will be useful, but  WITHOUT
+   ANY WARRANTY;  without even  the implied  warranty of  MERCHANTABILITY  or
+   FITNESS FOR A PARTICULAR PURPOSE. Use it at YOUR OWN RISK.
+
+Installing CRUX PPC
+
+  Supported Hardware
+
+   Packages  on  the  official   CRUX  PPC  ISO   image  are  compiled   with
+   optimizations to support Power Architecture(R) processors.  The packages
+   should be compatible with any machine which supports the classic
+   PowerPC instruction set.  However, the CRUX PPC installer is strongly
+   oriented for Apple NewWorld (G3, G4, 32 bit only).   
+
+   A minimum of 256Meg of RAM is needed to boot the install CD and
+   install CRUX PPC 3.5.   However, the CRUX user may find the time needed
+   to compile additional CRUX packages on lower end machines to be quite
+   lengthy.
+
+   CRUX can be installed in as little as 2 Gig of disk space although 
+   10 to 20 Gig is a more reasonable value and adding on many packages 
+   could require 100Gig or more of disk space.
+
+  Installing From CD-ROM
+
+   Prior to installing CRUX PPC, it is important to make a backup copy of
+   any data on the installation system that may be of importance.   
+   Although unlikely, it is possible that attempting to install CRUX PPC
+   on your system could in some way damage existing data on the system.  To
+   ensure that you don't lose anything of importance, back it up first.
+
+   1.   Download   the   CRUX    PPC   ISO   image   (crux-ppc-3.5.iso    or
+   similar naming). To  ensure  that  the download  was  successful  you
+   should examine its checksum using md5sum.
+   Compare   the   output   with    the   file   crux-ppc-3.5.iso.md5    (or
+   crux-ppc64-3.5.iso.md5), which can be found in the same directory as  the
+   ISO image on the  download site. If the  checksums match the download  was
+   successful and you can continue with burning the ISO image on a CD.
+
+   Note that you must use a CD, not DVD, for burning the image.   For 
+   yet unknown reasons, CRUXPPC install does not work from a DVD media.
+
+   2. The ISO  image is bootable,  on Apple computers  just insert the  newly
+   burned CD into the first CD-ROM drive, reboot your computer and keep the C
+   key pressed to boot from CD. Select  at the boot prompt press return 
+   to install on apple32 machines.
+
+   Note On some systems you might have to adjust the root= parameter (that
+   defaults to /dev/sr0) to your cdrom device. Please keep in mind that
+   device names vary according to your hardware configuration: The first
+   SCSI, SATA (or EFIKA IDE) disk is called /dev/sda, while the first SCSI
+   cdrom is called /dev/scd0 or /dev/sr0; the first IDE disk or cdrom is
+   called /dev/sda too. For more information about harddisk naming
+   conventions please checkout this HOWTO.
+
+   Some systems have slower startup CDROM drives and you may need to 
+   specifiy a larger rootdelay than the default.   e.g.  "rootdelay=45"
+
+   2a.  CRUX PPC can (on most machines) be installed from a USB stick
+   rather than a CDROM.  Creating the usb stick and booting it is 
+   described in a seperate document in the cruxppc repository (TBA).
+
+   3. Login as root (no password required).
+
+   4. Use mac-fdisk (on Macs) to create and then format the partition(s)
+   you want CRUX PPC to be installed on.  
+
+  $ mac-fdisk /dev/sd?
+  $ mkfs.ext4 /dev/sd??
+  $ mkswap /dev/sd??
+
+   Partitioning of a hard drive is very dependent on the individual users
+   needs and decisions.   It's not possible to provide a description of
+   partitioning that addresses every possible choice.   The Gentoo PPC
+   handbook has a good explanation of disk partitioning and it might be
+   useful to review that (and other such documents on the internet) to 
+   help figure out  the proper partitioning for your system.
+
+   A simple paritioning for a CRUX PPC system could be as follows:
+
+   Partition 1:  Apple partition map.
+   Partition 2:  800K Apple bootstrap partition.
+   Partition 3:  1G /boot partition.  (For kernels and ramdisks.  format as ext2).
+   Partition 4:  2G swap partition.
+   Partition 5:  2G (at the very least) root (/) partition.
+
+   Additional partitions would be needed for dual boot systems or for
+   other user specific needed.
+
+   Note A special bootstrap partition of 800k is needed to install the yaboot
+   loader on Macs; mac-fdisk has a special key to do this. Also consider that
+   yaboot can't read kernel images from JFS and Ext4fs partitions, so if you
+   intend to use those as root filesystem, a supplementary ext2/ext3
+   partition is needed to store the boot kernel images. Please note that
+   mac-fdisk works with existing MacOS partition tables, it can create/delete
+   partitions on a drive with MacOS installed; cfdisk and fdisk do not
+   recognize MacOS partition table and will destroy it creating a PC
+   compatible table from which you won't be able to boot, so use mac-fdisk on
+   Apple computers.
+   
+   The amount of disk space you need depends on how many packages you  choose
+   to install. It is recommend to have at least a 5G root partition (CRUX PPC will
+   use about 500MB-1.5GB depending on your configuration).   
+
+   Using   ReiserFS   is    possible,   but   there    is   support    for
+   Ext2fs/Ext3fs/Ext4fs, XFS,  JFS  and  BTRFS as  well.  Further,  I  highly
+   recommend separating  system data  from  user data,  i.e. use  a  separate
+   partition for /home (and possibly /var)  since that will make your life  a
+   lot easier the day you want to upgrade/reinstall/remove your system.
+
+   5. Mount the partition on which you want to install this distribution.
+
+  $ mount -t type /dev/sd?? /mnt
+
+   If you want the installation to span more than one partition, mount  those
+   partitions as well. For example, if you want to have a different partition
+   for /home or /var, then do:
+
+  $ mkdir /mnt/var
+  $ mount -t type /dev/sd?? /mnt/var
+
+   6. Activate your swap partition(s).   (Not needed on larger RAM systems)
+
+  $ swapon /dev/sd??
+
+   7. Type setup to  start the package installation  script. The script  will
+   ask where you mounted your new root partition and which packages you  want
+   to install. Just  select the packages  you want and  nothing else will  be
+   installed. However,  I  recommend at  least  installing all  the  packages
+   marked core.  Also git (from opt) is also recommended as it is used
+   for updates of the powerpc specific portions of the ports tree.
+
+   It is suggested to install either all of "core" or all of "core", "opt" and 
+   "xorg" (and "lxde" if desired) to ensure that all dependencies are satisfied.
+   Selecting individual packages within collections is not recommended but if
+   you choose to do so, spend some time after installation verifying that 
+   all expected dependencies are installed.
+
+   Once it has installed the selected packages, the setup script will display
+   an installation log. Make sure the last line in the log says "0 error(s)".
+
+   If you at a later  stage find that you  need some additional packages  you
+   can just mount the CRUX PPC CD-ROM and use pkgadd to install them.  In this
+   case, ensure that you also install package dependencies.
+
+   Note There is only a simple package dependency checking. This means that
+   it is up to you to figure out that if you for example install the exim
+   package you also need to install the db package.
+
+   Note that unlike previous crux ppc install cds, the kernel source is
+   not automatically installed into the target system.  A pre built
+   kernel binary is included under /crux/kernel.   
+
+   A prebuilt starter kernel tarball is provided on the install CD
+   (look in /crux/kernel).   If desired, it can be copied to the target 
+   system and used as a quick start kernel. e.g:
+
+   cd /crux/kernel
+   tar xvf cruxppc_kern_102220.tar.xz -C /mnt 
+
+   (The actual name of the prebuilt kernel may vary from release to
+    release...)
+
+   The users other option is to build the initial kernel from source 
+   as part of the CRUX install.  The kernel source is not included on the 
+   install CD so if a kernel build is desired, the kernel source will 
+   need to be loaded via USB stick or otherwise.
+
+   If you are installing onto a machine with smaller amounts of DRAM 
+   (e.g. 128 Meg), you may need to create and add a swap partition prior
+   to making locales, building the kernel, etc.   
+   
+   Part of installing CRUX is that the user must generate the locales.  A
+   script containing a small subset (of the many possible) locales is
+   provided on the install CD (in /crux/makelocales).   Copy it to your
+   target system, modify it as needed for your needs, and then later execute 
+   it from within the installed system.
+
+   A few of the packages available on the install CD have associated
+   "post-install" scripts that perform important package post install
+   work.  The install CD does not run these scripts automatically and 
+   you may wish to run them manually.   To assist this, a directory
+   "post-installs" is provided under /crux.   Copy this directory to
+   your target system and run them either as chroot or shortly after
+   you first boot up your CRUX system.
+
+   e.g.  To copy the 'helper' scripts to the installed system, do:
+
+   cd /crux
+   cp -r makelocales post-installs portsnapshot*.xz /mnt/root 
+   
+   The contents of the 'helper' files may be useful once the 
+   user logs (or chroots) into the newly installed system.  "makelocales"
+   helps with locale creation, "post-installs" helps ensure that the
+   installed packages have properly run their post-install scripts and
+   portsnapshot*.xz is a reference copy of the ports tree at the time the
+   install CD was created.  The ports tree is normally populated 
+   from the online ports repositorie(s) but a copy of what was
+   used to create the install packages may be useful for reference and 
+   so is provided by the portsnapshot tarball.
+
+   8. Now it's time to install your kernel and do basic system configuration.
+   The kernel compilation requires that you  "chroot" into your new CRUX  PPC
+   installation.   When using the prebuilt kernel, chroot is not, strictly
+   speaking, required but is easiest to complete the configuration steps
+   from chroot, so is best to chroot in either case.
+
+  $ mount --bind /dev /mnt/dev
+  $ mount --bind /tmp /mnt/tmp
+  $ mount --bind /run /mnt/run
+  $ mount -t proc proc /mnt/proc
+  $ mount -t sysfs none /mnt/sys
+  $ mount -t devpts -o noexec,nosuid,gid=tty,mode=0620 devpts /mnt/dev/pts
+  $ chroot /mnt /bin/bash
+
+   You can  type setup-chroot  instead of  issuing the  previous commands  to
+   chroot in the system installed in /mnt
+
+   9. Set the root password.
+
+  $ passwd
+
+   10. Edit /etc/fstab to configure your filesystem(s). Editors vim, and nano
+   are available.
+
+   NA WIP: NOTE If you want access your computer via serial console (as it should be
+   for IBM RS/6000, pSeries, Apple Xserve or Genesi EFIKA users) you also
+   have to add ttyS0 (ttyPZ0 for Xserve or ttyPSC0 for EFIKA) in the
+   /etc/securetty and c7:2:respawn:/sbin/agetty 9600 ttyS0
+   (c7:2:respawn:/sbin/agetty 57600 ttyPZ0 for Xserve or
+   c7:2:respawn:/sbin/agetty 115200 ttyPSC0 for EFIKA) in the /etc/inittab
+   file. For IBM Power Systems (POWER5 and newer) and PPC970 cpu based
+   systems if you want access your computer via serial console (and to have a
+   working prompt using keyboard/monitor too) you also have to add hvsi0 or
+   hvc0 in the /etc/securetty and c7:2:respawn:/sbin/agetty 19200 hvsi0 (or
+   c7:2:respawn:/sbin/agetty hvc0) in the /etc/inittab file.
+
+   11. Edit /etc/rc.conf to configure font, keyboard, timezone, hostname  and
+   services. See Section 6.1.3,  Configuration Variables in /etc/rc.conf  for
+   details about /etc/rc.conf .   It may also be useful to enable sshd at this
+   time.
+
+   12. Generate  locales  for  your system.  See  Section  6.1.4,  Generating
+   Locales for more information.  A 'makelocales' script is provided which
+   may be helpful in this process.   To use it simply edit it and make
+   any needed changes and then type "makelocales".   It takes some
+   minutes to complete.
+
+   12a.  Run the post-install scripts by entering the directory 
+   /root/post-installs and running the script "POST.sh".   POST.sh will run
+   post-install scripts for those installed packages which require
+   a post-install.
+
+   13. If needed, edit /etc/rc.d/net, /etc/hosts and /etc/resolv.conf to 
+   configure  your network (ip-address/gateway/hostname/domain/dns).   
+
+   14. Install kernel:
+
+   Classic CRUX installation expects the user to build and install their own
+   kernel.   This can be quite a long process on PowerPC machines so
+   CRUX PPC also provides the alternative of installing a prebuilt starter
+   kernel.   If you already installed the pre-built kernel, for now skip this step 
+   and sometime after install is completed, the user can build their own
+   kernel that better suits their specific needs.
+
+   NVIDIA ugly hack tip:  If you are installing a kernel onto a machine with an 
+   nvidia graphics card (not likely), remove the modules under drivers/char/agp, 
+   otherwise, the screen may be garbled and essentially unusable upon boot.  CRUX
+   PPC is not recommended for machines with NVIDA graphics cards.
+
+   If you wish to build your own kernel, unpack the linux-4.19.xx tarball,
+   (typically into /usr/src/linux-4.19.x) configure and compile it.
+
+   On a 32 bit system:
+
+     * for Apple
+
+  $ cd /usr/src/linux-4.19.24.x
+  $ patch -p1 < ../your_patch   (if you have one)
+  $ make menuconfig
+  $ make all
+  $ make modules_install
+  $ cp System.map /boot/System.map
+  $ cp vmlinux /boot
+  $ cp arch/powerpc/boot/zImage.pmac /boot/zImage  (needed ?)
+
+   Useful kernel  config  files and  (maybe) patches  can be found in 
+   /crux/kernel/*config.
+
+   15. On Apple computers, edit /etc/yaboot.conf to boot the kernel you  just
+   compiled  and  run  mkofboot  -v  to  install  yaboot  into  the  boostrap
+   partition, then ybin -v to make the new system bootable.  
+
+   A sample.yaboot.conf file can be found under /etc/ and may be useful as
+   a starting point for creating the needed yaboot.conf.
+
+   Note that if you are installing CRUX-PPC in a dual boot configuration
+   with an other OS, you will need to obtain and modify the other OSs existing
+   yaboot.conf file rather than writing a new one.
+
+   16. Remove the CRUX PPC CD-ROM from your drive and reboot from harddisk.
+
+  Upgrading From CD-ROM
+
+   Upgrading from a previous crux ppc to crux ppc 3.5 is not supported.  
+   You may try it if you wish but it is not likely to work.   
+
+   1.   Download   the   CRUX    PPC   ISO   image   (crux-ppc-3.5.iso    or
+   crux-ppc64-3.5.iso). To  ensure  that  the download  was  successful  you
+   should examine its checksum using md5sum.
+   Compare   the   output   with    the   file   crux-ppc-3.5.iso.md5    (or
+   crux-ppc64-3.5.iso.md5), which can be found in the same directory as  the
+   ISO image on the  download site. If the  checksums match the download  was
+   successful and you can continue with burning the ISO image on a CD.
+
+   2. The ISO  image is bootable,  on Apple computers  just insert the  newly
+   burned CD-ROM into the first CD-ROM  drive, reboot your computer and  keep
+   the C key  pressed to  boot from  CD-ROM. Select  at the  boot prompt  the
+   kernel chrp32 for  604e cpu  based systems,  apple32 for  G3/G4 cpu  based
+   systems, apple64  and ppc970  for  G5 cpu  based  systems or  pseries  for
+   RS64/POWERn cpu based machines.
+
+   3. Login as root (no password required).
+
+   4. Mount your CRUX PPC root partition.
+
+  $ mount -t type /dev/sd?? /mnt
+
+   If your installation spans over more than one partition, then mount  those
+   partitions as well.  For example, if  you have a  different partition  for
+   /var, then do:
+
+  $ mount -t type /dev/sd?? /mnt/var
+
+   5. Activate your swap partition(s).
+
+  $ swapon /dev/sd??
+
+   6. Type setup to  start the package installation  script. The script  will
+   ask you where you mounted your root partition and which packages you  want
+   to upgrade. It is a good idea to upgrade all packages, else you might  get
+   into trouble later, e.g. in case a new version of some library isn't  100%
+   backwards compatible.
+
+   Note The setup script uses the /etc/pkgadd.conf of the target system to
+   determine which files to upgrade and which files not to upgrade. The files
+   that are not upgraded are put in /var/lib/pkg/rejected/ (Section 4.2.2,
+   Upgrading a Package).
+
+   When the setup script  has upgraded the selected  packages an upgrade  log
+   will be displayed. Make sure the last line in the log says "0 error(s)".
+
+   If you at a later  stage find that you  need some additional packages  you
+   can just mount the CRUX  PPC CD-ROM and use  pkgadd to install them  (e.g.
+   pkgadd /mnt/crux/opt/package#1.0-1.pkg.tar.xz).
+
+   7. Now it's time to compile  your kernel. The kernel compilation  requires
+   that you "chroot" into your CRUX PPC installation.
+
+  $ mount -o bind /dev /mnt/dev
+  $ chroot /mnt /bin/bash
+
+   8. Go to /usr/src/linux-4.19.24.x, patch (if needed), configure and compile
+   a new kernel.
+   Useful kernel  config  files and  patches  are placed  into  the  /usr/src
+   directory. They  are the  config files  used to  build the  boot  kernels.
+   Adjust /etc/fstab if needed.
+
+   WARNING udev reads files in /sys/* and /proc/*. Make sure that those
+   pseudo filesystems are enabled in your kernel configuration and available
+   during system-startup. Also note that unlike devfsd, udev doesn't
+   automatically mount /dev/pts. Terminal applications such as xterm(1) will
+   not work if you forget to mount it. If you want udev to detect your
+   connected USB hardware you'll need the USB-Filesystem mounted on
+   /proc/bus/usb. We highly recommend you check your fstab file.
+
+   9. On Apple computers, edit /etc/yaboot.conf  to boot the kernel you  just
+   compiled  and  run  mkofboot  -v  to  install  yaboot  into  the  boostrap
+   partition, then ybin -v to make the new system bootable.
+
+   10. Remove the CRUX PPC CD-ROM from your drive and reboot from harddisk.
+
+
+  Alternative Installation Methods
+
+   USB flash drive:  TBA
+
+
+
+
+
+The Package System
+
+  Introduction
+
+   The package system (pkgutils) is made  with simplicity in mind, where  all
+   packages are plain  tar.xz files  (i.e. without  any kind  of meta  data).
+   Packages          follow          the          naming           convention
+   <name>#<version>-<release>.pkg.tar.xz, where  <name> is  the name  of  the
+   program, <version> is the version number of the program, and <release>  is
+   the version  number  of the  package.  The pkg.tar.xz  extension  is  used
+   (instead of just  tar.xz) to  indicate that this  is not  just any  tar.gz
+   file, but a tar.xz that is meant to be installed using pkgadd. This way it
+   is easy to tell packages apart from other tar.xz files.
+
+   pkgadd(8), pkgrm(8), pkginfo(8), and  pkgmk(8) are the package  management
+   utilities. With these utilities you can install, uninstall, inspect,  make
+   packages and query the package database.
+
+   When a package  is installed using  pkgadd a  new record is  added to  the
+   package database  (stored in  /var/lib/pkg/db). The  basic package  system
+   does not have any kind of dependency  checking, thus it will not warn  you
+   if you install a package that requires other packages to be installed. The
+   included prt-get tools, however, do support dependencies when installing
+   from source.   If you pkgadd binary packages dependency checking, 
+   and taking care of any pre or post install requirements is up to the user.
+
+   The following  sections will  in short  describe how  to use  the  package
+   utilities. Additional information  about these utilities  can be found  on
+   their respective man page.
+
+  Using the Package System
+
+    Installing a Package
+
+   Installing a package  is done by  using pkgadd. This  utility requires  at
+   least one argument, the package you want to install. Example:
+
+  $ pkgadd bash#3.2.33-1.pkg.tar.xz
+
+   When installing  a  package  the  package  manager  will  ensure  that  no
+   previously installed  files are  overwritten. If  conflicts are  found  an
+   error message will be printed and pkgadd will abort without installing the
+   package. The  error message  will  contain the  names of  the  conflicting
+   files. Example:
+
+  $ pkgadd bash#3.2.33-1.pkg.tar.xz
+  bin/sh
+  usr/man/man1/sh.1.gz
+  pkgadd error: listed file(s) already installed (use -f to ignore and overwrite)
+
+   To force the installation and overwrite the conflicting files you can  use
+   the option -f (or --force). Example:
+
+  $ pkgadd -f bash#3.2.33-1.pkg.tar.xz
+
+   The package system allows a file to be owned by exactly one package.  When
+   forcing an installation  the ownership  of the conflicting  files will  be
+   transferred to the package that is currently being installed.  Directories
+   can however be owned by more than one package.
+
+   WARNING It is often not a good idea to force the installation unless you
+   really know what you are doing. If a package conflicts with already
+   installed files it could be a sign that the package is broken and installs
+   unexpected files. Use this option with extreme care, preferably not at
+   all.
+
+   As said earlier the  package file itself does  not contain any meta  data.
+   Instead the package  manager uses  the package filename  to determine  the
+   package name  and version.  Thus,  when installing  a package  file  named
+   bash#3.2.33-1.pkg.tar.xz the  package manager  will  interpret this  as  a
+   package named bash at version 3.2.33-1.  If pkgadd is unable to  interpret
+   the filename  (e.g.  #  is missing  or  the  filename does  not  end  with
+   .pkg.tar.xz) an  error  message will  be  printed and  pkgadd  will  abort
+   without installing the package.
+
+    Upgrading a Package
+
+   Upgrading a package is done using pkgadd with the -u option. Example:
+
+  $ pkgadd -u bash#3.2.33-1.pkg.tar.xz
+
+   This will replace the previously installed bash package with the new  one.
+   If you have  not previously  installed bash,  pkgadd will  print an  error
+   message. The package system does not care about the version number of  the
+   package in that you can "upgrade" version 3.2.33-1 with version 2.04-1 (or
+   even with version 3.2.33-1 itself). The installed package will be replaced
+   with the specified package.
+
+   Upgrading a package is  equivalent to executing  pkgrm followed by  pkgadd
+   with one (big) exception.  When upgrading a package  (with pkgadd -u)  you
+   have the  option to  prevent  some of  the  already installed  files  from
+   getting replaced.  This is  typically  useful when  you want  to  preserve
+   configuration and log files.
+
+   When executing pkgadd the  file /etc/pkgadd.conf will  be read. This  file
+   can contain rules describing how pkgadd should behave when doing upgrades.
+   A rule is  built out of  three fragments; event,  pattern and action.  The
+   event describes in  what kind  of situation this  rule applies.  Currently
+   only one type of  event is supported,  that is UPGRADE.  The pattern is  a
+   filename  pattern  expressed  as  a  regular  expression  and  the  action
+   applicable to the UPGRADE event  is YES or NO. More  than one rule of  the
+   same event type is  allowed, in which  case the first  rule will have  the
+   lowest priority and the last rule will have the highest priority. Example:
+
+   #
+   # /etc/pkgadd.conf: pkgadd(8) configuration
+   #
+
+   UPGRADE         ^etc/.*$                NO
+   UPGRADE         ^var/log/.*$            NO
+   UPGRADE         ^etc/X11/.*$            YES
+   UPGRADE         ^etc/X11/xorg.conf$     NO
+
+   # End of file
+
+   The above example will cause pkgadd to never upgrade anything in /etc/  or
+   /var/log/   (subdirectories   included),   except   files   in   /etc/X11/
+   (subdirectories included), unless it  is the file /etc/X11/xorg.conf.  The
+   default rule is to upgrade everything,  rules in this file are  exceptions
+   to that rule.
+
+   Note A pattern should never contain an initial "/" since you are referring
+   to the files in the package, not the files on the disk.
+
+   If pkgadd  finds that  a specific  file  should not  be upgraded  it  will
+   install it under /var/lib/pkg/rejected/. Files in this directory are never
+   added to  the package  database. The  user is  then free  to examine,  use
+   and/or remove that file manually. Another  option is to use rejmerge.  For
+   each rejected file found in /var/lib/pkg/rejected/, rejmerge will  display
+   the difference between the installed version and the rejected version. The
+   user can  then  choose to  keep  the  installed version,  upgrade  to  the
+   rejected version or perform a merge  of the two. Example (using the  above
+   /etc/pkgadd.conf):
+
+   $ pkgadd -u bash#3.2.33-1.pkg.tar.xz
+   pkgadd: rejecting etc/profile, keeping existing version
+   $ ls /var/lib/pkg/rejected/
+   etc/
+   $ ls /var/lib/pkg/rejected/etc/
+   profile
+
+    Removing a Package
+
+   Removing a  package is  done by  using pkgrm.  This utility  requires  one
+   argument, the name of the package you want to remove. Example:
+
+  $ pkgrm bash
+
+   WARNING This will remove all files owned by the package, no questions
+   asked. Think twice before doing it and make sure that you did not misspell
+   the package name since that could remove something completely different
+   (e.g. think about what could happen if you misspelled glib as glibc).
+
+    Querying the Package Database
+
+   Querying the package database  is done using pkginfo.  This utility has  a
+   few options to answer different queries.
+
+   +------------------------------------------------------------------------+
+   | Option                  | Description                                 ||
+   |-------------------------+---------------------------------------------||
+   | -i, --installed         | List installed packages and their version.  ||
+   |-------------------------+---------------------------------------------||
+   | -l, --list package|file | List files owned by the specified package   ||
+   |                         | or contained in file                        ||
+   |-------------------------+----------------------------------------------|
+   | -o, --owner pattern     | List owner(s) of file(s) matching pattern.   |
+   +------------------------------------------------------------------------+
+
+   Examples:
+
+  $ pkginfo -i
+   atk 1.20.0-1
+   autoconf 2.61-1
+   automake 1.10-1
+   <...>
+   yaboot 1.3.14-1
+   zip 2.32-1
+   zlib 1.2.3-1
+
+   $ pkginfo -l bash
+   bin/
+   bin/bash
+   bin/sh
+   etc/
+   etc/profile
+   usr/
+   usr/man/
+   usr/man/man1/
+   usr/man/man1/bash.1.gz
+   usr/man/man1/sh.1.gz
+
+   $ pkginfo -l grep#2.5.3-1.pkg.tar.xz
+   usr/
+   usr/bin/
+   usr/bin/egrep
+   usr/bin/fgrep
+   usr/bin/grep
+   usr/man/
+   usr/man/man1/
+   usr/man/man1/egrep.1.gz
+   usr/man/man1/fgrep.1.gz
+   usr/man/man1/grep.1.gz
+
+   $ pkginfo -o bin/ls
+   Package            File
+   coreutils          bin/ls
+   e2fsprogs          usr/bin/lsattr
+   module-init-tools  sbin/lsmod
+   pciutils           usr/sbin/lspci
+   usbutils           usr/sbin/lsusb
+
+  Creating Packages
+
+   Creating a package is  done using pkgmk. This  utility uses a file  called
+   Pkgfile, which  contains  information about  the  package (such  as  name,
+   version, etc) and the commands that should be executed in order to compile
+   the package in question. To be more specific, the Pkgfile file is actually
+   a bash(1)  script, which  defines a  number of  variables (name,  version,
+   release and source) and a function (build). Below is an example of what  a
+   Pkgfile file might look like. The example shows how to package the grep(1)
+   utility. Some comments are inserted for explanation.
+
+   # Specify the name of the package.
+   name=grep
+
+   # Specify the version of the package.
+   version=2.4.2
+
+   # Specify the package release.
+   release=1
+
+   # The source(s) used to build this package.
+   source=(ftp://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
+
+   # The build() function below will be called by pkgmk when
+   # the listed source files have been unpacked.
+   build() {
+      # The first thing we do is to cd into the source directory.
+      cd $name-$version
+
+      # Run the configure script with desired arguments.
+      # In this case we want to put grep under /usr/bin and
+      # disable national language support.
+      ./configure --prefix=/usr --disable-nls
+
+      # Compile.
+      make
+
+      # Install the files, BUT do not install it under /usr, instead
+      # we redirect all the files to $PKG/usr by setting the DESTDIR
+      # variable. The $PKG variable points to a temporary directory
+      # which will later be made into a tar.xz-file. Note that the
+      # DESTDIR variable is not used by all Makefiles, some use prefix
+      # and others use ROOT, etc. You have to inspect the Makefile in
+      # question to find out. Some Makefiles do not support redirection
+      # at all. In those cases you will have to create a patch for it.
+      make DESTDIR=$PKG install
+
+      # Remove unwanted files, in this case the info-pages.
+      rm -rf $PKG/usr/info
+   }
+
+   In reality you do not include all those comments, thus the real Pkgfile
+   for grep(1) looks like this:
+
+   # Description: GNU grep, egrep and fgrep
+   # URL:         http://www.gnu.org/software/grep/grep.html
+   # Maintainer:  Per Lideacute;n, per at fukt dot bth dot se
+
+   name=grep
+   version=2.4.2
+   release=1
+   source=(ftp://ftp.ibiblio.org/pub/gnu/$name/$name-$version.tar.xz)
+
+   build() {
+     cd $name-$version
+     ./configure --prefix=/usr --disable-nls
+     make
+     make DESTDIR=$PKG install
+     rm -rf $PKG/usr/info
+   }
+
+   Note The build() function in the example above is just an example of how
+   grep is built. The contents of the function can differ significantly if
+   the program is build in some other way, e.g. does not use autoconf.
+
+   When the build() function  has been executed, the  $PKG directory will  be
+   made into  a package  named <name>#<version>-<release>.pkg.tar.xz.  Before
+   the package creation  is completed, pkgmk  will check the  content of  the
+   package against the .footprint file. If this file does not exist, it  will
+   be created and the test will be skipped. The .footprint file will  contain
+   a list  of all  files that  should  be in  the package  if the  build  was
+   successful or a list of all the files that were installed in $PKG (if  the
+   .footprint did not already  exist). If there is  a mismatch the test  will
+   fail and  an error  message will  be  printed. You  should not  write  the
+   .footprint file by hand. Instead, when a package has been upgraded and you
+   need to update  the contents of  the .footprint file  you simply do  pkgmk
+   -uf. This  test  ensures that  a  rebuild of  the  package turned  out  as
+   expected.
+
+   If the  package built  without errors  it's time  to install  it by  using
+   pkgadd and  try it  out. I  highly  recommend looking  at the  Pkgfile  in
+   another package(s), since looking at examples is a great way to learn.
+
+    Adjusting/Configuring the Package Build Process
+
+   Many settings pertaining to the package  build process can be adjusted  by
+   editing the pkgmk(8)  configuration file /etc/pkgmk.conf  . Some of  these
+   configurable settings include:
+
+   * CFLAGS, CXXFLAGS - these settings control optimization and  architecture
+   options for package compiles.  It is best NOT  to change these unless  you
+   absolutely know what you're doing!
+
+   * PKGMK_SOURCE_MIRRORS - this setting  defines locations from which  pkgmk
+   will attempt to fetch source archives
+
+   * PKGMK_SOURCE_DIR  - this  setting  defines where  pkgmk will  store  (if
+   downloading) and use source archives when building
+
+   * PKGMK_PACKAGE_DIR - this setting defines where pkgmk will create package
+   files once the build process is complete
+
+   * PKGMK_WORK_DIR -  this setting  defines a work  area pkgmk  will use  to
+   build the package
+
+   Here are some examples:
+
+  PKGMK_SOURCE_MIRRORS=(http://fileserver.intranet/crux/sources/)
+
+   This setting instructs pkgmk to attempt to fetch all source archives  from
+   http://fileserver.intranet/crux/sources/ before falling back to the source
+   URL specified in the Pkgfile. Multiple URLS can be separated by spaces.
+
+  PKGMK_SOURCE_DIR="/usr/ports/srcfiles"
+
+   This example  instructs  pkgmk  to  store  and  find  source  archives  in
+   /usr/port/srcfiles . An example benefit of this setup would be the ability
+   to store /usr/ports/srcfiles on  an NFS server on  your local network  for
+   use by multiple crux installations. PKGMK_PACKAGE_DIR can be set and  used
+   the same way.
+
+  PKGMK_WORK_DIR="/usr/ports/work/$name"
+
+   This example instructs pkgmk to  use /usr/ports/work/$name as a work  area
+   for building the specified package. Building the grep package would result
+   in the work area being /usr/ports/work/grep  . An alternative would be  to
+   use a tmpfs as your work directory.
+   There are a few  more settings which  can be found  in the pkgmk.conf  man
+   page.
+
+  Package Guidelines
+
+    General
+
+   * The name of  a package should always  be lowercase (e.g. name=eterm  and
+   not name=Eterm). In case the package is added to the CRUX ports system the
+   exact same name should be use for  the name of the directory in the  ports
+   structure, i.e. /usr/ports/???/eterm.
+
+   * Do not  combine several separately  distributed programs/libraries  into
+   one package. Make several packages instead.
+
+    Directories
+
+   *  In  general  packages  should  install  files  in  these   directories.
+   Exceptions are of course  allowed if there  is a good  reason. But try  to
+   follow the following directory structure as close as possible.
+
+   +------------------------------------------------------------------------+
+   | Directory          | Description                               |       |
+   |--------------------+-------------------------------------------|       |
+   | /usr/bin/          | User command/application binaries         |       |
+   |--------------------+-------------------------------------------|       |
+   | /usr/sbin/         | System binaries (e.g. daemons)            |       |
+   |--------------------+-------------------------------------------|       |
+   | /usr/lib/          | Libraries                                 |       |
+   |--------------------+-------------------------------------------|       |
+   | /usr/include/      | Header files                              |       |
+   |--------------------+-------------------------------------------|       |
+   | /usr/lib/<prog>/   | Plug-ins, addons, etc                     |       |
+   |--------------------+-------------------------------------------|       |
+   | /usr/man/          | Man pages                                 |       |
+   |--------------------+-------------------------------------------|       |
+   | /usr/share/<prog>/ | Data files                                |       |
+   |--------------------+-------------------------------------------|       |
+   | /usr/etc/<prog>/   | Configuration files                       |       |
+   |--------------------+---------------------------------------------------|
+   | /etc/              | Configuration files for system software (daemons, |
+   |                    | etc)                                              |
+   +------------------------------------------------------------------------+
+
+   * /opt directory is reserved for manually compiled/installed applications.
+   Packages should never place anything there.
+
+   * /usr/libexec/ is not  used in CRUX, thus  packages should never  install
+   anything there. Use /usr/lib/<prog>/ instead.
+
+  Remove Junk Files
+
+   * Packages should not contain "junk  files". This includes info pages  and
+   other online documentation,  man pages excluded  (e.g. usr/doc/*,  README,
+   *.info, *.html, etc).
+
+   *  Files  related   to  NLS  (national   language  support),  always   use
+   --disable-nls when available.
+
+   *   Useless   or   obsolete    binaries   (e.g.   /usr/games/banner    and
+   /sbin/mkfs.minix).
+
+    Pkgfile
+
+   * Do not add  new variables to  the Pkgfile. Only in  very few cases  does
+   this actually  improve the  readability  or the  quality of  the  package.
+   Further, the  only  variables  that  are guranteed  to  work  with  future
+   versions of  pkgmk are  name, version,  release, and  source. Other  names
+   could be in conflict with internal variables in pkgmk.
+
+   * Use  the $name  and $version  variables to  make the  package easier  to
+   update/maintain.                       For                        example,
+   source=(http://xyz.org/$name-$version.tar.xz)     is      better      than
+   source=(http://xyz.org/myprog-1.0.3.tar.xz)    since    the    URL    will
+   automatically updated when you modify the $version variable.
+
+   * Remember that source  is an array, i.e.  always do source=(...) and  not
+   source=...
+
+    Pkgfile Header
+
+   Provide a header including the following fields:
+
+   +------------------------------------------------------------------------+
+   | Name        | Meaning                                                 ||
+   |-------------+---------------------------------------------------------||
+   | Description | A short description of the package; keep it factual     ||
+   |-------------+---------------------------------------------------------||
+   | Maintainer  | Your full name and e-mail address, obfuscated if you    ||
+   |             | want                                                    ||
+   |-------------+---------------------------------------------------------||
+   | Packager    | The original packager's full name and e-mail address    ||
+   |-------------+---------------------------------------------------------||
+   | URL         | A webpage with more information on this software        ||
+   |             | package                                                 ||
+   |-------------+----------------------------------------------------------|
+   | Depends on  | A list of dependencies, separated either by spaces or    |
+   |             | commas                                                   |
+   +------------------------------------------------------------------------+
+
+   Depends on can be  omitted if there are  no dependencies; Packager can  be
+   omitted if the maintainer and packager are the same person.
+   Example header
+
+   # Description: Terminal based IRC client for UNIX systems
+   # URL: http://www.irssi.org/
+   # Maintainer: Jukka Heino, jukka at karsikkopuu dot net
+   # Packager: Daniel K. Gebhart, dkg at con-fuse dot org
+   # Depends on: glib
+
+   Note If your package specifically addresses the PPC platform, or if your
+   Pkgfile is a modified version of an x86 package build file, please add an
+   extra header field PPC!=upstream that explains what's different from x86
+   and/or a field that indicates the PPC packager name like Modified version
+   for PPC.
+
+   Example PPC header:
+
+   # Description: Mozilla Web Browser Component
+   # URL: http://www.mozilla.com/firefox/
+   # Maintainer: Matt Housh, jaeger at morpheus dot net
+   # Modified version for PPC: http://cruxppc.sunsite.dk
+   # Depends on: libidl, gtk, libpng, libjpeg, zlib
+   # PPC!=upstream: footprint, mozconfig with ac_cv_visibility_pragma=no
+
+The Ports System
+
+  Introduction
+
+    What is a Port?
+
+   A port is a directory containing  the files needed for building a  package
+   using pkgmk. This means that this directory at least has the files Pkgfile
+   (which is the package build description) and .footprint (which is used for
+   regression testing and contains a list  of files this package is  expected
+   to contain  once it  is  built). Further,  a  port directory  can  contain
+   patches and/or  other  files  needed  for  building  the  package.  It  is
+   important to understand that the actual source code for the package is not
+   necessarily present in port directory. Instead the Pkgfile contains an URL
+   which points to a location where the source can be downloaded.
+
+   The use of the word port in  this context is borrowed from the BSD  world,
+   where a port  refers to  a program  that has been  ported to  a system  or
+   platform. The word can sometimes be  a bit misleading since most  programs
+   require no actual porting to run on CRUX (or on GNU/Linux in general).
+
+  What is the Ports System?
+
+   The term Ports System refers to a remote repository containing ports and a
+   client program capable  of downloading  ports from  that repository.  CRUX
+   users use the ports(8) utility to download ports from the repositorty  and
+   place them in /usr/ports/. CRUX PPC  ports(8) utility syncs with both  the
+   CRUX PPC repositories, whose copy is kept in /usr/ports/ppc, and the  CRUX
+   repositories, whose copy is kept in /usr/ports/x86. The ports utility uses
+   rsync(1) to do the actual  synchronization with the PPC repositories,  and
+   rsync(1) to sync with the main CRUX repositories.
+
+    Port collections
+
+   CRUX ports are organized  in so called collections;  the CRUX PPC  project
+   provides PPC specific collections that only contain ports that need to  be
+   different on Power  Architecture than  CRUX upstream  (x86). Whenever  the
+   user seeks for a port  and finds it in a  PPC repository, s/he should  use
+   the PPC version instead of the CRUX upstream.
+   There are three different layers of ports.
+
+    The official collection 'opt', 'core' and 'xorg'
+
+   x86/core, x86/opt and x86/xorg are the three primary collections of  CRUX.
+   They're maintained by the CRUX development team which ensures that they're
+   consistent and working well together.
+   ppc/core, ppc/opt and ppc/xorg collections are maintained by the CRUX  PPC
+   Team and  are meant  to override  the x86  ports when  there is  some  ppc
+   specific issue  that prevents  the upstream  ports from  working on  Power
+   Architecture. Those three x86 collections  and their ppc counterparts  are
+   also enabled by default in CRUX PPC.
+
+    The user contributed collection 'contrib'
+
+   The x86/contrib  collection  is  a  relatively  new  collection  which  is
+   provided  by  experienced  port  maintainers,   some  part  of  the   CRUX
+   development team, some regular users. Its goal is to reduce the number  of
+   duplicate ports  provided  in  the individual  collections.  If  you're  a
+   seasoned port  maintainer,  you  might  even  want  to  join  the  contrib
+   collection. The most of these ports should  work on CRUX PPC, but not  all
+   of them  have  been  verified  by  The CRUX  PPC  Team  or  fixed  in  the
+   ppc/contrib collection.
+
+   The ppc/contrib collection  contains some special  PowerPC specific  ports
+   not available in the upstream  contrib collection, and some contrib  ports
+   adjusted for PPC.
+
+   As those ports are not provided  officially by the CRUX development  team,
+   this collection is disabled by default.
+
+    The individual collections from CRUX users
+
+   ---fill--
+
+  Using the Ports System
+
+    Synchronizing Your Local Ports Structure
+
+   When CRUX PPC is  installed for the first  time the local ports  structure
+   (/usr/ports/) is empty. To bring your local ports structure up to date you
+   use the ports utility with the -u option. Example:
+
+  $ ports -u
+
+   The -u  option  means  update,  and  tells  ports  to  contact  the  ports
+   repository and  download  new and  updated  ports. The  output  from  this
+   execution is something like this:
+
+   Updating file list from cruxppc.org::ports/core/3.5/
+   Updating collection core
+   ...
+   Updating file list from cruxppc.org::ports/opt/3.5/
+   Updating collection opt
+   ...
+   Updating file list from cruxppc.org::ports/xorg/3.5/
+   Updating collection xorg
+   ...
+   Updating file list from crux.nu::ports/crux-3.5/core/
+   Updating collection core
+   ...
+   Updating file list from crux.nu::ports/crux-3.5/opt/
+   Updating collection opt
+   ...
+   Updating file list from crux.nu::ports/crux-3.5/xorg/
+   Updating collection xorg
+   ...
+   Finished successfully
+
+   The output reveals which files are downladed, updated and deleted.
+
+   The user must manually install the -ppc portion of the ports tree as follows:
+
+# git clone https://www.github.com/cruxppc/cruxppc-ng-3.5
+# cd cruxppc-ng-3.5/ports
+# cp -r * /usr/ports
+
+    Listing Local Ports
+
+   When the local ports structure has been updated the directory  /usr/ports/
+   will contain two  package categories, base  and opt. Under  each of  these
+   directories you  will find  ports. You  can simply  browse around  in  the
+   directory structure to find out which ports are available.
+
+  $ ls /usr/ports/ppc/core/
+              ed          iptables            mlocate            sed
+ acl          exim        iputils             module-init-tools  shadow
+ attr         file        jfsutils            ncurses            sudo
+ autoconf     filesystem  kbd                 net-tools          sysfsutils
+ automake     findutils   less                openrdate          sysklogd
+ bash         flex        libarchive          openssh            sysvinit
+ bc           gawk        libcap              openssl            tar
+ bindutils    gcc         libdevmapper        patch              tcp_wrappers
+ binutils     gdbm        libgmp              pciutils           time
+ bison        gettext     libmpc              perl               traceroute
+ btrfs-progs  glibc       libmpfr             pkg-config         udev
+ bzip2        grep        libpcre             pkgutils           unzip
+ cloog-ppl    groff       libstdc++-compat    ports              usbutils
+ coreutils    gzip        libstdc++-compat64  ppl                util-linux-ng
+ cpio         hdparm      libtool             ppp                vim
+ curl         hfsutils    libusb              procps             wget
+ db           httpup      libusb-compat       psmisc             which
+ dcron        iana-etc    m4                  rc                 xfsprogs
+ dhcpcd       ilenia      make                readline           xz
+ diffutils    inetutils   man                 reiserfsprogs      zip
+ e2fsprogs    iproute2    man-pages           rsync              zlib
+
+
+   You can also use ports with the -l option to list all local ports.
+   Example:
+
+   $ ports -l
+   ppc/core/acl
+   ppc/core/attr
+   ppc/core/autoconf
+   ppc/core/automake
+   ppc/core/bash
+   ppc/core/bc
+   ppc/core/bindutils
+   ppc/core/binutils
+   ...
+
+   If you are looking for a specific  package it might be easier to use  this
+   approach (e.g. ports -l  | grep sendmail)  to find out  if the package  is
+   available and if so in which category it is located.
+
+    Listing Version Differences
+
+   To find  out if  the  ports structure  carries  ports that  are  different
+   (likely newer) compared to  the versions currently  installed you can  use
+   the option -d. If version differences are found, the output from the above
+   command could look something like this:
+
+   $ ports -d
+   Collection      Name     Port      Installed
+   x86/core        glibc    2.6.1-2   3.5-1
+   x86/opt         gtk      2.12.9-1  2.12.18-1
+
+   If no version differences were found, i.e. the system is in sync with  the
+   ports structure. Then output will simply be:
+
+   $ ports -d
+   No differences found
+
+    Building and Installing Packages
+
+   Once you have found a port that  you want to build and install you  simply
+   go into the desired port directory and use pkgmk to build it. Example:
+
+   $ cd /usr/ports/core/gawk
+   $ pkgmk -d
+
+   The -d  option means  download missing  source files  and tells  pkgmk  to
+   download the source(s)  specified in the  Pkgfile (in case  the source  is
+   already downloaded this option is ignored). When the download is completed
+   the package will be built. If  the package was built successfully you  can
+   use pkgadd to install or upgrade it. Example:
+
+   $ pkgadd gawk#3.1.5-3.pkg.tar.xz
+
+   To make life a bit  easier these two steps can  be made into one by  using
+   the options -i (for install) or -u (for upgrade). Example:
+
+   $ pkgmk -d -i
+
+   or
+
+   $ pkgmk -d -u
+
+   This will download, build and then install/upgrade the package. Note  that
+   the package will only be installed/upgraded if the build is successful.
+
+    Enabling the 'contrib' collection
+
+   As previously mentioned, the 'contrib' collection contains useful ports of
+   experienced port  maintainers. Since  they are  not provided  by the  CRUX
+   development team, you  should be  slightly more critical  with respect  to
+   quality and security. Most members  of the 'contrib' collections are  well
+   respected community members though.
+
+   To enable it for ports, do
+
+   $ cd /etc/ports
+   $ mv contrib.rsync.inactive contrib.rsync
+
+    Additional Tools
+
+      Building ports as unprivileged user
+
+   Normaly building  packages  requires  root-privileges.  This  is  critical
+   because a malicious  or badly designed  port can damage  your system.  The
+   fakeroot  command  provides  a  way   to  build  ports  as  normal   user.
+   Particularly when you  build packages from  user contributed  repositories
+   you should always invoke fakeroot:
+
+  $ fakeroot pkgmk -d
+
+      Useful scripts
+
+   Regarding package and ports management there  are many tasks which can  be
+   done in several steps with the  CRUX PPC standard tools introduced  above.
+   The port prt-utils  in the opt  repository contains a  collection of  such
+   scripts. The usage of these scripts is documented in the corresponding man
+   pages. In the documentation section of the CRUX website is an overview  of
+   all the scripts in prt-utils.
+
+Configuration
+
+  Initialization Scripts
+
+    Runlevels
+
+   The following runlevels are used in CRUX PPC (defined in /etc/inittab).
+
+   +------------------------------+
+   | Runlevel | Description      ||
+   |----------+------------------||
+   | 0        | Halt             ||
+   |----------+------------------||
+   | 1 (S)    | Single-user Mode ||
+   |----------+------------------||
+   | 2        | Multi-user Mode  ||
+   |----------+------------------||
+   | 3-5      | (Not used)       ||
+   |----------+-------------------|
+   | 6        | Reboot            |
+   +------------------------------+
+
+    Layout
+
+   The initialization  scripts used  in  CRUX PPC  follow the  BSD-style  (as
+   opposed to the SysV-style) and have the following layout.
+
+   +------------------------------------------------------------------------+
+   | File             | Description                                        ||
+   |------------------+----------------------------------------------------||
+   | /etc/rc          | System boot script                                 ||
+   |------------------+----------------------------------------------------||
+   | /etc/rc.single   | Single-user startup script                         ||
+   |------------------+----------------------------------------------------||
+   | /etc/rc.modules  | Module initialization script                       ||
+   |------------------+----------------------------------------------------||
+   | /etc/rc.multi    | Multi-user startup script                          ||
+   |------------------+----------------------------------------------------||
+   | /etc/rc.local    | Local multi-user startup script (empty by default) ||
+   |------------------+----------------------------------------------------||
+   | /etc/rc.shutdown | System shutdown script                             ||
+   |------------------+----------------------------------------------------||
+   | /etc/rc.conf     | System configuration                               ||
+   |------------------+-----------------------------------------------------|
+   | /etc/rc.d/       | Service start/stop script directory                 |
+   +------------------------------------------------------------------------+
+
+   Modify /etc/rc.modules, /etc/rc.local and  /etc/rc.conf according to  your
+   needs.
+
+    Configuration Variables in /etc/rc.conf
+
+   The following configuration variables are found in /etc/rc.conf.
+
+   +------------------------------------------------------------------------+
+   | Variable | Description                                            |    |
+   |----------+--------------------------------------------------------|    |
+   |          | Specifies which console font to load at system         |    |
+   |          | startup. The contents of this variable will be passed  |    |
+   | FONT     | as argument to setfont(1). The available fonts are     |    |
+   |          | located in /usr/share/kbd/consolefonts/.               |    |
+   |          |                                                        |    |
+   |          | Example: FONT=default                                  |    |
+   |----------+--------------------------------------------------------|    |
+   |          | Specifies which console keyboard map to load at system |    |
+   |          | startup. The contents of this variable will be passed  |    |
+   | KEYMAP   | as argument to loadkeys(1). The available keyboard     |    |
+   |          | maps are located in /usr/share/kbd/keymaps/.           |    |
+   |          |                                                        |    |
+   |          | Example: KEYMAP=sv-latin1                              |    |
+   |----------+--------------------------------------------------------|    |
+   |          | Specifies the timezone used by the system. The         |    |
+   |          | available zone description files are located in        |    |
+   | TIMEZONE | /usr/share/zoneinfo/.                                  |    |
+   |          |                                                        |    |
+   |          | Example: TIMEZONE=Europe/Rome                          |    |
+   |----------+--------------------------------------------------------|    |
+   |          | Specifies the hostname.                                |    |
+   | HOSTNAME |                                                        |    |
+   |          | Example: HOSTNAME=pluto                                |    |
+   |----------+--------------------------------------------------------|    |
+   |          | Specifies the system logging daemon(s) to run at       |    |
+   | SYSLOG   | startup.                                               |    |
+   |          |                                                        |    |
+   |          | Example: SYSLOG=sysklogd                               |    |
+   |----------+-------------------------------------------------------------|
+   |          | Specifies which services to start at system startup. The    |
+   |          | services specified in this array must have a matching       |
+   |          | start/stop script in /etc/rc.d/. When entering multi-user   |
+   |          | mode the specified scripts will be called in the specified  |
+   | SERVICES | order with the argument start. At system shutdown or when   |
+   |          | entering single-user mode these scripts will be called in   |
+   |          | the reverse order with the argument stop.                   |
+   |          |                                                             |
+   |          | Example: SERVICES=(crond identd sshd sendmail)              |
+   +------------------------------------------------------------------------+
+
+    Generating locales
+
+   Starting with CRUX PPC  2.5, glibc does not  contain all possible  locales
+   anymore, thus  you'll  have to  generate  the locales  you  need/use.  The
+   following example is  a typical  setup for swedish  users, replace  sv_SE*
+   with the locale you want:
+
+  # localedef -i sv_SE -f ISO-8859-1 sv_SE
+  # localedef -i sv_SE -f ISO-8859-1 sv_SE.ISO-8859-1
+  # localedef -i sv_SE -f UTF-8 sv_SE.utf8
+
+   A 'makelocales' helper script can be found under /crux which may be 
+   useful as a starting point for creating whatever locales you require.
+
+    Network Configuration
+
+   The network configuration is found in the service script /etc/rc.d/net. To
+   enable this  service  you  need  to  add net  to  the  SERVICES  array  in
+   /etc/rc.conf. By  default  this  service script  only  configures  the  lo
+   device, you have to  add additional ifconfig(8)  and route(8) commands  if
+   you want to setup other network devices (eth0, eth1, etc). Example:
+
+  #!/bin/sh
+  #
+  # /etc/rc.d/net: start/stop network
+  #
+
+  case $1 in
+  start)
+         # loopback
+         /sbin/ip addr add 127.0.0.1/8 dev lo broadcast + scope host
+         /sbin/ip link set lo up
+         # ethernet
+         /sbin/ip addr add 192.168.1.100/24 dev eth0 broadcast +
+         /sbin/ip link set eth0 up
+         # default route
+         /sbin/ip route add default via 192.168.1.1
+         ;;
+  stop)
+         /sbin/ip route del default
+         /sbin/ip link set eth0 down
+         /sbin/ip addr del 192.168.1.100/24 dev eth0
+         /sbin/ip link set lo down
+         /sbin/ip addr del 127.0.0.1/8 dev lo
+         ;;
+  restart)
+         $0 stop
+         $0 start
+         ;;
+  *)
+         echo "usage: $0 [start|stop|restart]"
+         ;;
+  esac
+
+  # End of file
+
+   If you want  to configure  your system  to be a  DHCP client  you use  the
+   dhcpcd(8) command (instead of ifconfig(8)). Example:
+
+  #!/bin/sh
+  #
+  # /etc/rc.d/net: start/stop network
+  #
+
+  case $1 in
+  start)
+         # loopback
+         /sbin/ip addr add 127.0.0.1/8 dev lo broadcast + scope host
+         /sbin/ip link set lo up
+         # ethernet
+         /sbin/dhcpcd -t 10 -h $HOSTNAME eth0
+         ;;
+  stop)
+         /usr/bin/killall -q /sbin/dhcpcd
+         /sbin/ip link set lo down
+         /sbin/ip addr del 127.0.0.1/8 dev lo
+         ;;
+  restart)
+         $0 stop
+         $0 start
+         ;;
+  *)
+         echo "usage: $0 [start|stop|restart]"
+         ;;
+  esac
+
+  # End of file
+
+  Passwords
+
+   CRUX PPC uses MD5SUM passwords by default.  This can be turned off if  you
+   instead want to use the traditional  DES passwords. Note however that  DES
+   passwords are considered less secure.  To disable MD5SUM passwords  change
+   the MD5_CRYPT_ENAB variable in /etc/login.defs to no.
+
+   Further, when  compiling  programs  that  use  the  crypt(3)  function  to
+   authenticate users you  should make  sure that these  programs are  linked
+   against the  libcrypt  library  (i.e.  use  -lcrypt  when  linking)  which
+   contains the  MD5SUM  version  of  the crypt  function  (this  version  is
+   backwards compatible and understands DES passwords as well).
+
+  Upgrading the Kernel
+
+   The kernel  source,  which  is  found  in  /usr/src/linux-4.19.xx/  is  not
+   installed using  pkgadd. If  you decide  to upgrade  your kernel  you  can
+   safely do so by manually replacing the kernel source with a newer  version
+   (or place it  somewhere else).  This will  not make  the package  database
+   inconsistent (since it's not installed with pkgadd) nor will it affect the
+   kernel headers  found  in /usr/include/linux  and  /usr/include/asm  since
+   these are not symlinks to the kernel source, but instead contain copies of
+   the headers.
+
+Appendix
+
+  Troubleshooting
+
+   Many common  problems  are  answered  in the  CRUX  PPC  frequently  asked
+   questions document and  in the  CRUX one,  so if  you experience  problems
+   please check  whether  http://www.github.com/cruxppc contains  answers  to  your
+   questions already.
+
+  Installation
+
+   1. When booting from the CRUX PPC CD-ROM I get a kernel panic saying:
+
+  " kernel panic - not syncing:  VFS: Unable to mount root fs on unknown-block(0,0) "
+
+   This can happen if you have more than one CD-ROM drive. Make sure you boot
+   from then "first" CD-ROM drive, i.e. /dev/sr0.
+
+   In some cases adding 'rootdelay=20' to the kernel command line may solve
+   this problem.
+
+   2. When logging in to my newly  installed CRUX for the first time it  asks
+   for a  password,  but the  installation  guide  says "Login  as  root  (no
+   password required)". What's wrong?
+
+   You most likely forgot to edit  /mnt/etc/fstab before you rebooted or  you
+   entered the wrong name of your new root parition at the boot prompt.
+
+  Configuration
+
+   1. How do I get sshd running?
+
+   You have to edit /etc/hosts.deny and/or /ets/hosts.allow to specify  which
+   hosts are  allowed/denied  access. To  allow  anyone to  connect  to  your
+   machine you can add sshd: ALL to /etc/hosts.allow. See the hosts_access(5)
+   man-page for further information about the file format. When this is  done
+   you can start  sshd by  entering the command  /etc/rc.d/sshd start  and/or
+   edit /etc/rc.conf and add sshd  to the SERVICES array, i.e.  SERVICES=(...
+   sshd ...), which means that sshd will be started when the system boots.
+
+   2. Firefox crashes or refuses to start, what's wrong?
+
+   Firefox is extremely sensitive to missing fonts.cache-1 files. If  firefox
+   refuses to start (due to  segmentation violation or just silent  permature
+   termination) it is most likely becuase  the font cache files are  missing.
+   Run  fc-cache  (as  root)  to  create/update  the  cache  files.  See  the
+   fc-cache(1) man page for information about this program.
