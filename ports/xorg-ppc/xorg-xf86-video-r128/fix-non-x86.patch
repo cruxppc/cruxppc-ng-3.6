@@ -1,0 +1,102 @@
+diff -Naur a/src/r128_driver.c b/src/r128_driver.c
+--- a/src/r128_driver.c	2018-10-23 04:10:56.000000000 +0000
++++ b/src/r128_driver.c	2020-10-08 13:27:26.362971781 +0000
+@@ -91,7 +91,11 @@
+ #endif
+ #include "xf86cmap.h"
+ #include "xf86xv.h"
++#if defined(__i386__) || defined(__x86_64__)
+ #include "vbe.h"
++#else
++typedef void *xf86Int10InfoPtr;
++#endif
+ 
+ 				/* fbdevhw & vgahw */
+ #ifdef WITH_VGAHW
+@@ -417,11 +421,14 @@
+ 	return FALSE;
+     }
+ 
++#if defined(__x86_64__) || defined(__i386__)
+     if (pInt10) {
+ 	info->BIOSAddr = pInt10->BIOSseg << 4;
+ 	(void)memcpy(info->VBIOS, xf86int10Addr(pInt10, info->BIOSAddr),
+ 		     R128_VBIOS_SIZE);
+-    } else {
++    } else
++#endif
++    {
+ #ifdef XSERVER_LIBPCIACCESS
+ 	if (pci_device_read_rom(info->PciInfo, info->VBIOS)) {
+ 	    xf86DrvMsg(pScrn->scrnIndex, X_WARNING,
+@@ -986,7 +993,7 @@
+ 
+ static Bool R128PreInitDDC(ScrnInfoPtr pScrn, xf86Int10InfoPtr pInt10)
+ {
+-#if !defined(__powerpc__) && !defined(__alpha__) && !defined(__sparc__)
++#if defined(__i386__) || defined(__x86_64__)
+     R128InfoPtr   info = R128PTR(pScrn);
+     vbeInfoPtr pVbe;
+ #endif
+@@ -994,8 +1001,7 @@
+     if (!xf86LoadSubModule(pScrn, "ddc")) return FALSE;
+     if (!xf86LoadSubModule(pScrn, "i2c")) return FALSE;
+ 
+-#if defined(__powerpc__) || defined(__alpha__) || defined(__sparc__)
+-    /* Int10 is broken on PPC and some Alphas */
++#if !defined(__i386__) && !defined(__x86_64__)
+     return TRUE;
+ #else
+     if (xf86LoadSubModule(pScrn, "vbe")) {
+@@ -1031,9 +1037,8 @@
+ 
+ static Bool R128PreInitInt10(ScrnInfoPtr pScrn, xf86Int10InfoPtr *ppInt10)
+ {
++#if defined(__i386__) || defined(__x86_64__)
+     R128InfoPtr   info = R128PTR(pScrn);
+-#if !defined(__powerpc__) && !defined(__alpha__)
+-    /* int10 is broken on some Alphas and powerpc */
+     if (xf86LoadSubModule(pScrn, "int10")) {
+ 	xf86DrvMsg(pScrn->scrnIndex,X_INFO,"initializing int10\n");
+ 	*ppInt10 = xf86InitInt10(info->pEnt->index);
+@@ -1377,9 +1382,11 @@
+     ret = TRUE;
+ freeInt10:
+     /* Free int10 info */
++#if defined(__i386__) || defined(__x86_64__)
+     if (pInt10) {
+         xf86FreeInt10(pInt10);
+     }
++#endif
+ 
+ exit:
+     return ret;
+@@ -1887,14 +1894,15 @@
+ 	        }
+ 
+             if (!info->noAccel) {
++#ifdef HAVE_XAA_H
+                 if (R128XAAAccelInit(pScreen)) {
+                     info->accelOn = TRUE;
+                     xf86DrvMsg(pScrn->scrnIndex, X_INFO,
+                                 "XAA acceleration enabled.\n");
+-                } else {
++                } else
++#endif
+                     xf86DrvMsg(pScrn->scrnIndex, X_INFO,
+                                 "Acceleration disabled.\n");
+-                }
+             }
+         }
+     }
+diff -Naur a/src/r128_output.c b/src/r128_output.c
+--- a/src/r128_output.c	2018-10-23 04:10:56.000000000 +0000
++++ b/src/r128_output.c	2020-10-08 13:27:26.362971781 +0000
+@@ -426,6 +426,7 @@
+     /* non-x86 platform */
+     if (!info->VBIOS) {
+         otypes[0] = OUTPUT_VGA;
++        return;
+     }
+ 
+     bios_header = R128_BIOS16(0x48);

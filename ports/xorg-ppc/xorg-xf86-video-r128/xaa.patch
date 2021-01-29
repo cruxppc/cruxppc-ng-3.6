@@ -1,0 +1,21 @@
+--- xf86-video-r128-6.12.0/src/r128_driver.c.old	2019-01-05 15:59:11.340000000 +0000
++++ xf86-video-r128-6.12.0/src/r128_driver.c	2019-01-05 16:16:10.810000000 +0000
+@@ -1887,14 +1887,16 @@
+ 	        }
+ 
+             if (!info->noAccel) {
++#ifdef HAVE_XAA_H
+                 if (R128XAAAccelInit(pScreen)) {
+                     info->accelOn = TRUE;
+                     xf86DrvMsg(pScrn->scrnIndex, X_INFO,
+                                 "XAA acceleration enabled.\n");
+-                } else {
++                } else 
++#endif
+                     xf86DrvMsg(pScrn->scrnIndex, X_INFO,
+                                 "Acceleration disabled.\n");
+-                }
++                
+             }
+         }
+     }

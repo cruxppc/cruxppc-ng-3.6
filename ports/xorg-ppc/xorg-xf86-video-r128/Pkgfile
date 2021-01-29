@@ -1,0 +1,24 @@
+# Description: xorg driver xf86-video-r128
+# URL: http://xorg.freedesktop.org
+# Maintainer: cruxppc@gmail.com
+# Depends on: xorg-server
+
+name=xorg-xf86-video-r128
+version=6.12.0
+release=2
+source=(http://xorg.freedesktop.org/releases/individual/driver/xf86-video-r128-$version.tar.bz2
+    fix-non-x86.patch
+    xaa.patch
+    ppc.patch)
+
+build() {
+	cd xf86-video-r128-$version
+	#patch -p1 -i $SRC/xaa.patch
+	#patch -p1 -i $SRC/ppc.patch
+	patch -p1 -i $SRC/fix-non-x86.patch
+
+	./configure --prefix=/usr --mandir=/usr/man
+
+	make
+	make DESTDIR=$PKG install
+}

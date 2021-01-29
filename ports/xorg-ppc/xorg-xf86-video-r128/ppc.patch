@@ -1,0 +1,11 @@
+diff -Naur a/src/r128_output.c b/src/r128_output.c
+--- a/src/r128_output.c	2018-10-23 04:10:56.000000000 +0000
++++ b/src/r128_output.c	2019-12-11 13:09:50.894370088 +0000
+@@ -426,6 +426,7 @@
+     /* non-x86 platform */
+     if (!info->VBIOS) {
+         otypes[0] = OUTPUT_VGA;
++        return;   /* Skip BIOS accesses */
+     }
+ 
+     bios_header = R128_BIOS16(0x48);
