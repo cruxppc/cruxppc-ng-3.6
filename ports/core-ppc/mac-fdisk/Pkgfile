@@ -1,0 +1,31 @@
+# Description: fdisk program specific for mac partition tables
+# URL: http://www.debian.org
+# Maintainer:  cruxppc at gmail dot com
+# PPC!=:
+
+name=mac-fdisk
+version=0.1-13
+release=1
+source=(http://archive.debian.org/debian/pool/main/m/mac-fdisk/mac-fdisk_0.1.orig.tar.gz \
+	$name\_$version.diff.gz \
+	largerthan2gb.patch mac-fdisk-0.1-headers.patch \
+	mac-fdisk-0.1-r6-ppc64.patch mac-fdisk-amd64.patch big_pt.patch)
+
+build() {
+	cd $name-0.1.orig
+	zcat ../$name\_$version.diff.gz | patch -p1
+
+	    # gentoo patches
+	    patch -p0 -i $SRC/largerthan2gb.patch
+	    patch -p1 -i $SRC/mac-fdisk-0.1-headers.patch
+	    patch -p1 -i $SRC/mac-fdisk-0.1-r6-ppc64.patch
+	    patch -p1 -i $SRC/mac-fdisk-amd64.patch
+	    patch -p0 -i $SRC/big_pt.patch
+
+	make -j1
+	mkdir -p $PKG/{sbin,usr/man/man8}
+
+	make DESTDIR=$PKG install
+	install -D -m 644 mac-fdisk.8.in $PKG/usr/man/man8/mac-fdisk.8 
+	install -D -m 644 pmac-fdisk.8.in $PKG/usr/man/man8/pmac-fdisk.8 	
+}

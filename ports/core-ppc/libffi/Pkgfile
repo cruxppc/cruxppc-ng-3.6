@@ -1,14 +1,25 @@
 # Description: Portable Foreign Function Interface Library
 # URL:         https://sourceware.org/libffi/
-# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Maintainer:  cruxppc at gmail dot com
 
 name=libffi
 version=3.3
 release=1
-source=(https://sourceware.org/pub/$name/$name-$version.tar.gz)
+source=(https://sourceware.org/pub/$name/$name-$version.tar.gz
+    powerpc-fix.patch
+    powerpc-fix-2.patch)
 
 build() {
     cd $name-$version
+
+    case $(uname -m) in
+	ppc)
+	    cd src
+	    patch -p1 -i ${SRC}/powerpc-fix.patch
+	    patch -p1 -i ${SRC}/powerpc-fix-2.patch
+	    cd ..
+	;;
+    esac
 
     sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/' \
         -i include/Makefile.in
@@ -20,6 +31,7 @@ build() {
 
     ./configure --prefix=/usr
     make
+    #make check
     make DESTDIR=$PKG install
     rm -r $PKG/usr/share/info
 }

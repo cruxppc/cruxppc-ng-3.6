@@ -1,0 +1,256 @@
+.if n .ds Q \&"
+.if t .ds Q ``
+.if n .ds U \&"
+.if t .ds U ''
+.TH "NVSETENV" 8 
+.tr \&
+.nr bi 0
+.nr ll 0
+.nr el 0
+.de DS
+..
+.de DE
+..
+.de Pp
+.ie \\n(ll>0 \{\
+.ie \\n(bi=1 \{\
+.nr bi 0
+.if \\n(t\\n(ll=0 \{.IP \\(bu\}
+.if \\n(t\\n(ll=1 \{.IP \\n+(e\\n(el.\}
+.\}
+.el .sp 
+.\}
+.el \{\
+.ie \\nh=1 \{\
+.LP
+.nr h 0
+.\}
+.el .PP 
+.\}
+..
+.SH NAME
+
+.Pp
+\fBnvsetenv\fP - change/view Open Firmware environment variables 
+.Pp
+.SH SYNOPSIS
+
+.Pp
+\fBnvsetenv 
+\f(CR[\fP\fIvariable\fP \f(CR[\fP\fIvalue\fP\f(CR\fB]]\fP\fP\fP
+.Pp
+.SH DESCRIPTION
+
+.Pp
+\fBnvsetenv\fP is a program to adjust or view the Open Firmware (OF)
+boot parameters stored in non-volatile (battery-powered) RAM.
+\fBnvsetenv\fP will show the current values of all OF's environment
+variables when no parameters are given.
+.Pp
+.SH OPTIONS
+
+.Pp
+.nr ll +1
+.nr t\n(ll 2
+.if \n(ll>1 .RS
+.IP "\fIvariable\fP"
+.nr bi 1
+.Pp
+nvsetenv will show current value of an OF's
+variable, if no value is given
+.IP "\fIvariable value\fP"
+.nr bi 1
+.Pp
+nvsetenv will set \fIvariable\fP to
+\fIvalue\fP
+.if \n(ll>1 .RE
+.nr ll -1
+.Pp
+.SH EXAMPLES
+
+.Pp
+This example will set the boot device to the first SCSI disk on the
+internal SCSI bus, using /vmlinux as boot image, trying to
+use the third partition as root partition.
+.DS
+.sp 
+.ft RR
+.nf
+        > nvsetenv boot-device  "scsi-int/sd@0:0"
+        > nvsetenv boot-file    " /vmlinux root=/dev/sda3"
+.DE
+.fi 
+.ec
+.ft P
+.sp
+.Pp
+Alternatives boot devices are: 
+.DS
+.sp 
+.ft RR
+.nf
+        scsi/sd@1:0             SCSI disk at ID 1
+        ata/ata-disk@0:0        Internal IDE disk
+.DE
+.fi 
+.ec
+.ft P
+.sp
+.Pp
+You can also boot from a floppy, you need a XCOFF-format kernel image
+(in this example: vmlinux.coff), copied to a HFS format high-density
+(1.44Mb) floppy.
+.DS
+.sp 
+.ft RR
+.nf
+        > nvsetenv boot-device  "fd:vmlinux.coff"
+        > nvsetenv boot-file    " root=/dev/sda3"
+.DE
+.fi 
+.ec
+.ft P
+.sp
+
+To return to MacOS, do:
+.DS
+.sp 
+.ft RR
+.nf
+        > nvsetenv boot-device  "/AAPL,ROM"
+.DE
+.fi 
+.ec
+.ft P
+.sp
+.Pp
+Valid values for "input-devices" are:
+.DS
+.sp 
+.ft RR
+.nf
+        ttya                    Modem serial port
+        ttyb                    Printer serial port
+        kbd                     Keyboard
+        enet                    Ethernet interface
+.DE
+.fi 
+.ec
+.ft P
+.sp
+.Pp
+Valid values for "output-devices" are (machine and/or OF dependent):
+.DS
+.sp 
+.ft RR
+.nf
+        screen                  Screen display (newer machines)
+        /chaos/control          Screen display (7500, 7600 and 8500)
+        /bandit/ATY,264GT-B     Screen display (6500)
+.DE
+.fi 
+.ec
+.ft P
+.sp
+.Pp
+OF is not designed to wait for your hard disk to spin up
+(remember MacOS boots from ROM).
+Use the following setting to have OF retry to boot from your disk 
+until is has spun up:
+.DS
+.sp 
+.ft RR
+.nf
+        > nvsetenv boot-command "begin ['] boot catch 1000 ms cr again"
+.DE
+.fi 
+.ec
+.ft P
+.sp
+.Pp
+You only have to append an "S" to the "boot-file" variable to boot
+Linux in single user mode.
+.Pp
+You can use install your own nvramrc patch using the following command:
+.DS
+.sp 
+.ft RR
+.nf
+        > nvsetenv nvramrc "`cat file.patch`"
+.DE
+.fi 
+.ec
+.ft P
+.sp
+
+(please note the backticks!), or: 
+.DS
+.sp 
+.ft RR
+.nf
+        > nvsetenv nvramrc "$(cat file.patch)"
+.DE
+.fi 
+.ec
+.ft P
+.sp
+.Pp
+.SH FILES
+
+.Pp
+.nr ll +1
+.nr t\n(ll 2
+.if \n(ll>1 .RS
+.IP "\fI/dev/nvram\fP"
+.nr bi 1
+.Pp
+character device with major number 10
+and minor number 144
+.IP "\fI/proc/cpuinfo\fP"
+.nr bi 1
+.Pp
+to identify New/Old-World machines
+.if \n(ll>1 .RE
+.nr ll -1
+.Pp
+.SH SEE ALSO
+
+.Pp
+macos(8)
+.Pp
+.SH AUTHORS
+
+.Pp
+.DS
+.sp 
+.ft RR
+.nf
+Paul Mackerras <paulus@cs.anu.edu.au> (program)
+.DE
+.fi 
+.ec
+.ft P
+.sp
+
+.DS
+.sp 
+.ft RR
+.nf
+Richard van Hees <R.M.vanHees@phys.uu.nl> (documentation)
+.DE
+.fi 
+.ec
+.ft P
+.sp
+
+.DS
+.sp 
+.ft RR
+.nf
+Klaus Halfmann  <halfmann@libra.de> (NewWorld code)
+.DE
+.fi 
+.ec
+.ft P
+.sp
+.Pp

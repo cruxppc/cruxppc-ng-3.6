@@ -1,6 +1,6 @@
 # Description: A utility to simplify ports searching/installing
 # URL:         https://crux.nu/gitweb/?p=tools/prt-get.git;a=summary
-# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Maintainer:  cruxppc at gmail dot com
 
 name=prt-get
 version=5.19.5

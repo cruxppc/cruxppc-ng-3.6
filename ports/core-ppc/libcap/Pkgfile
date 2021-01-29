@@ -1,6 +1,6 @@
 # Description: POSIX.1e capabilities library
 # URL:         https://sites.google.com/site/fullycapable/
-# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Maintainer:  cruxppc at gmail dot com
 # Depends on:  attr linux-pam
 
 name=libcap
@@ -17,6 +17,7 @@ build () {
 		GOLANG=no \
 		RAISE_SETFCAP=no \
 		PKGCONFIGDIR=/usr/lib/pkgconfig \
+		lib=lib \
 		DESTDIR=$PKG
 
 	install -d $PKG/usr/lib

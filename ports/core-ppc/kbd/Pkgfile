@@ -1,6 +1,6 @@
 # Description: Keytable files and keyboard utilities
 # URL:         https://kbd-project.org/
-# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Maintainer:  cruxppc at gmail dot com
 
 name=kbd
 version=2.4.0
@@ -21,8 +21,8 @@ build() {
     ln -sf default8x16.psfu.gz $PKG/usr/share/kbd/consolefonts/default.gz
 
     rm -r $PKG/usr/share/kbd/keymaps/{ppc,mac,atari,amiga,sun}
-    rm $PKG/usr/bin/{loadunimap,mapscrn,resizecons,psf*table}
-    rm $PKG/usr/share/man/man8/{loadunimap,mapscrn,resizecons}.8
+    #rm $PKG/usr/bin/{loadunimap,mapscrn,resizecons,psf*table}
+    #rm $PKG/usr/share/man/man8/{loadunimap,mapscrn,resizecons}.8
     rm $PKG/usr/share/man/man1/psf*table.1
     find $PKG/usr/share/kbd/ -type f -name "README*" -delete
 }

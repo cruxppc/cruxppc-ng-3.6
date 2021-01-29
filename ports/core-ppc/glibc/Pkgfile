@@ -1,6 +1,6 @@
 # Description: The C library used in the GNU system
 # URL:         http://www.gnu.org/software/libc/
-# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Maintainer:  cruxppc at gmail dot com
 
 name=glibc
 version=2.32
@@ -25,14 +25,14 @@ build() {
 	../$name-${version}/configure --prefix=/usr \
 		--libexecdir=/usr/lib \
 		--with-headers=$PKG/usr/include \
-		--enable-kernel=4.9 \
+		--enable-kernel=3.2 \
 		--enable-add-ons \
 		--enable-static-nss \
 		--enable-stack-protector=strong \
 		--disable-profile \
 		--disable-werror \
 		--without-gd \
-		--enable-multi-arch
+		--disable-multi-arch
 	make 
 	#make check
 	make install_root=$PKG install

@@ -1,0 +1,17 @@
+# Description: Yaboot is a Power Architecture bootloader for Open Firmware based machines
+# URL:         http://yaboot.ozlabs.org/
+# Maintainer:  cruxppc at gmail dot com
+# PPC!=
+
+name=yaboot
+version=1.3.16
+release=4
+source=(https://cdimage.debian.org/cdimage/cd-sources/yaboot_1.3.16-4_powerpc.deb
+   sample.yaboot.conf)
+
+build() {
+    ar xv yaboot_1.3.16-4_powerpc.deb
+    bsdtar xfp data.tar.gz -C $PKG
+    mkdir -pv $PKG/etc
+    cp $SRC/sample.yaboot.conf $PKG/etc/sample.yaboot.conf
+}
