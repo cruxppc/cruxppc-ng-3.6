@@ -1,0 +1,13 @@
+diff -Naur a/mozilla/memory/mozjemalloc/jemalloc.c b/mozilla/memory/mozjemalloc/jemalloc.c
+--- a/mozilla/memory/mozjemalloc/jemalloc.c	2019-05-06 17:30:52.000000000 +0000
++++ b/mozilla/memory/mozjemalloc/jemalloc.c	2021-01-18 10:41:42.747699903 +0000
+@@ -331,9 +331,6 @@
+ #endif
+ #include <sys/time.h>
+ #include <sys/types.h>
+-#if !defined(MOZ_MEMORY_SOLARIS) && !defined(MOZ_MEMORY_ANDROID)
+-#include <sys/sysctl.h>
+-#endif
+ #include <sys/uio.h>
+ #ifndef MOZ_MEMORY
+ #include <sys/ktrace.h> /* Must come after several other sys/ includes. */

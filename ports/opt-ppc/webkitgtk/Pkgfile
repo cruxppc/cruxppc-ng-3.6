@@ -1,6 +1,6 @@
 # Description: Small, efficient and fast rendering engine for Web Browsers.
 # URL: https://www.webkitgtk.org/
-# Maintainer: Danny Rawlins, crux at romster dot me
+# Maintainer: cruxppc at gmail dot com
 # Depends on: gst-plugins-base gtk gtk3 harfbuzz-icu hyphen libseccomp libsecret libsoup libwebp libxslt ruby woff2 xorg-libxt
 # Optional: enchant libnotify geoclue openjpeg2 xdg-dbus-proxy bubblewrap
 
@@ -32,6 +32,7 @@ build() {
 		-D ENABLE_MINIBROWSER=ON \
 		-D USE_SYSTEM_MALLOC=ON \
 		-D USE_SYSTEMD=OFF \
+		-D USE_LD_GOLD=OFF \
 		-Wno-dev
 
 	cmake --build build

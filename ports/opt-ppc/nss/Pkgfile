@@ -1,6 +1,6 @@
 # Description: Mozilla Network Security Services (NSS)
 # URL:         https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS
-# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Maintainer:  cruxppc at gmail dot com
 # Depends on:  nspr sqlite3
 
 name=nss
@@ -24,7 +24,9 @@ build() {
 	export BUILD_OPT=1
 	export NSS_ENABLE_WERROR=0
 	export NSS_DISABLE_GTESTS=1
-	export USE_64=1
+	case $(uname -m) in
+		ppc64) export USE_64=1 ;;
+	esac
 
 	make -C nss
 

@@ -1,6 +1,6 @@
 # Description: Python interpreter, version 2.7
 # URL:         https://www.python.org
-# Maintainer:  Juergen Daubert, jue at crux dot nu
+# Maintainer:  cruxppc at gmail dot com
 # Depends on:  db gdbm openssl bzip2 zlib sqlite3
 
 name=python
@@ -40,6 +40,6 @@ build () {
     rm $PKG/usr/lib/python/idlelib/{ChangeLog,{NEWS,README,TODO}.txt}
     rm $PKG/usr/lib/python/ctypes/macholib/README.ctypes
 
-    mv $PKG/usr/include/python2.7/pyconfig{,-64}.h
-    install -m 0644 $SRC/pyconfig.h $PKG/usr/include/python2.7/
+    #mv $PKG/usr/include/python2.7/pyconfig{,-64}.h
+    #install -m 0644 $SRC/pyconfig.h $PKG/usr/include/python2.7/
 }

@@ -1,15 +1,18 @@
 # Description: Native asynchronous I/O (AIO) support library
 # URL:         http://lse.sourceforge.net/io/aio.html
-# Maintainer:  Juergen Daubert, jue at crux dot nu
+# Maintainer:  cruxppc at gmail dot com
 
 name=libaio
 version=0.3.112
 release=1
-source=(http://http.debian.net/debian/pool/main/liba/$name/${name}_${version}.orig.tar.xz)
+source=(http://http.debian.net/debian/pool/main/liba/$name/${name}_${version}.orig.tar.xz
+    stack_chk_hack_fix.patch)
 
 build() {
     cd $name-$version
 
+# PPC fix
+    patch -p1 -i $SRC/stack_chk_hack_fix.patch
     make
     make prefix=$PKG/usr install
 

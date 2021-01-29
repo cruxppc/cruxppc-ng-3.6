@@ -1,0 +1,31 @@
+# Description: ArcticFox Browser.
+# URL: https://github.com/wicknix/Arctic-Fox/
+# Maintainer: cruxppc at gmail
+# Depends on: autoconf-2.13 ccache gcc6
+# Optional: ffmpeg
+# ffmpeg provides (very sluggish) youtube support.
+# set PATH=/usr/local/bin:$PATH during build for gcc6.
+
+name=arcticfox
+version=27.11.0
+release=1
+source=(https://codeload.github.com/wicknix/Arctic-Fox/tar.gz/v${version}
+    mozcfg-ppc64linux
+    mozconfig)
+
+build() {
+        tar xf v${version}
+	cd Arctic-Fox-${version}
+	case $(uname -m) in
+		ppc64) cp $SRC/mozcfg-ppc64linux .mozconfig ;;
+		ppc) cp $SRC/mozconfig .mozconfig ;;
+	esac
+	./mach build
+	./mach package
+
+        install -d $PKG/usr/lib
+        tar xfp obj-*-dbg/dist/arcticfox-${version}.linux-powerpc*.tar.bz2 -C $PKG/usr/lib
+
+        install -d $PKG/usr/bin
+        ln -sf /usr/lib/arcticfox/arcticfox ${PKG}/usr/bin/arcticfox
+}

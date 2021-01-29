@@ -1,19 +1,31 @@
 # Description: The Rust language with Cargo included.
 # URL: https://www.rust-lang.org/
-# Maintainer: Danny Rawlins, crux at romster dot me
+# Maintainer: cruxppc at gmail dot com
 # Depends on: llvm
-# Optional: sccache ccache
+# Optional: sccache
 
 name=rust
-version=1.49.0
-_date=2020-11-19
-_rustc=1.48.0
-_llvm=11.0.0
+version=1.48.0
+_date=2020-10-08
+_rustc=1.47.0
+_cargo=0.48.0
+_llvm=11.0.1
 release=1
-source=(https://static.rust-lang.org/dist/${name}c-$version-src.tar.xz
-	https://static.rust-lang.org/dist/$_date/rust-std-$_rustc-x86_64-unknown-linux-gnu.tar.xz
-	https://static.rust-lang.org/dist/$_date/rustc-$_rustc-x86_64-unknown-linux-gnu.tar.xz
-	https://github.com/llvm/llvm-project/releases/download/llvmorg-$_llvm/compiler-rt-$_llvm.src.tar.xz)
+
+	case $(uname -m) in
+		ppc) ARCH=powerpc ;;
+		ppc64) ARCH=powerpc64 ;;
+		*) echo unknown arch!; exit 1 ;;
+	esac
+
+source=(
+	https://static.rust-lang.org/dist/${name}c-$version-src.tar.xz
+	https://static.rust-lang.org/dist/$_date/rust-std-$_rustc-$ARCH-unknown-linux-gnu.tar.xz
+	https://static.rust-lang.org/dist/$_date/rustc-$_rustc-$ARCH-unknown-linux-gnu.tar.xz
+	https://static.rust-lang.org/dist/$_date/cargo-$_cargo-$ARCH-unknown-linux-gnu.tar.xz
+	https://github.com/llvm/llvm-project/releases/download/llvmorg-$_llvm/compiler-rt-$_llvm.src.tar.xz
+	0040-rls-atomics.patch
+)
 
 unpack_source() {
 	for file in ${source[@]}; do
@@ -33,10 +45,12 @@ unpack_source() {
 
 build() {
 	cd "${name}c-$version-src"
+	patch -p1 -i $SRC/0040-rls-atomics.patch
 
 	local ERROR
 	local DATE="$(awk '/^date: / { print $2 }' src/stage0.txt)"
 	local RUSTC="$(awk '/^rustc: / { print $2 }' src/stage0.txt)"
+	local CARGO="$(awk '/^cargo: / { print $2 }' src/stage0.txt)"
 	if [ "$DATE" != "$_date" ]; then
 		printf "\e[031mError: _date $_date != $DATE\033[0m\n"
 		ERROR=1
@@ -45,14 +59,17 @@ build() {
 		printf "\e[031mError: _rustc $_rustc != $RUSTC\033[0m\n"
 		ERROR=1
 	fi
+	if [ "$CARGO" != "$_cargo" ]; then
+		printf "\e[031mError: _cargo $_cargo != $CARGO\033[0m\n"
+		ERROR=1
+	fi
 	[ $ERROR ] && exit 1
-	unset DATE RUSTC ERROR
+	unset DATE RUSTC CARGO ERROR
 
 cat <<- EOF > $SRC/config.toml
 	[llvm]
 	ninja = true
 	link-shared = true
-	@CCACHE@
 
 	[install]
 	prefix = "/usr"
@@ -60,9 +77,11 @@ cat <<- EOF > $SRC/config.toml
 	[rust]
 	channel = "stable"
 	rpath = false
+	codegen-units-std = 1
+	debuginfo-level-std = 2
 
 	[build]
-	target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
+	target = ["$ARCH-unknown-linux-gnu"]
 	tools = ["cargo", "rls", "clippy", "miri", "rustfmt", "analysis", "src"]
 	docs = false
 	extended = true
@@ -73,7 +92,7 @@ cat <<- EOF > $SRC/config.toml
 	@CARGO@
 	@RUST@
 
-	[target.x86_64-unknown-linux-gnu]
+	[target.$ARCH-unknown-linux-gnu]
 	llvm-config = "/usr/bin/llvm-config"
 EOF
 
@@ -88,12 +107,6 @@ EOF
 		fi
 	else
 		sed -e 's|@CARGO@||' -e 's|@RUST@||' -i $SRC/config.toml
-	fi
-
-	if [ -e '/usr/bin/ccache' ]; then
-		sed -e 's|@CCACHE@|ccache = "/usr/bin/ccache"|' -i $SRC/config.toml
-	else
-		sed -e 's|@CCACHE@||' -i $SRC/config.toml
 	fi
 
 	cat $SRC/config.toml
@@ -130,5 +143,5 @@ EOF
 	done < <(find "$PKG/usr/lib/rustlib"  -path '*/analysis/*.json' -print0)
 
 	install -d $PKG/etc/revdep.d
-	echo "/usr/lib/rustlib/i686-unknown-linux-gnu/lib" > $PKG/etc/revdep.d/$name
+	#echo "/usr/lib/rustlib/i686-unknown-linux-gnu/lib" > $PKG/etc/revdep.d/rust
 }

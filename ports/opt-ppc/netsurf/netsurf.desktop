@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=3.10
+Name=NetSurf
+Comment=A minimalist web browser
+Icon=web-browser
+Categories=Internet
+Exec=netsurf-gtk3

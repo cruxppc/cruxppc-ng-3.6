@@ -1,0 +1,69 @@
+# Description: The Mozilla internet suite.
+# URL:         https://www.seamonkey-project.org/
+# Maintainer:  TBA
+# Depends on:  alsa-lib nss libidl gtk gtk3 unzip zip libevent libvpx icu hunspell autoconf-2.13 xorg-libxt
+# Optional:    ffmpeg gvfs
+
+name=seamonkey
+version=2.49.5
+release=1
+source=(https://archive.mozilla.org/pub/$name/releases/$version/source/$name-$version.source.tar.xz
+    sysctl.patch
+    remove_crmf.patch)
+
+build() {
+	cd $name-$version
+	patch -p1 -i $SRC/remove_crmf.patch
+	patch -p1 -i $SRC/sysctl.patch
+
+cat <<- EOF > .mozconfig
+	ac_add_options --enable-application=suite
+	ac_add_options --prefix=/usr
+
+	ac_add_options --enable-optimize
+	ac_add_options --disable-gold
+	ac_add_options --enable-strip
+	ac_add_options --enable-install-strip
+	ac_add_options --enable-default-toolkit=cairo-gtk3
+	mk_add_options MOZ_MAKE_FLAGS="$MAKEFLAGS -s"
+
+	ac_add_options --with-system-jpeg
+	ac_add_options --with-system-zlib
+	ac_add_options --with-system-png
+	ac_add_options --with-system-libvpx
+	ac_add_options --with-system-icu
+	ac_add_options --with-system-bz2
+	ac_add_options --with-system-nspr
+	ac_add_options --with-system-libevent
+	ac_add_options --with-system-nss
+	ac_add_options --enable-system-ffi
+	ac_add_options --enable-system-pixman
+	ac_add_options --enable-system-sqlite
+	ac_add_options --enable-system-cairo
+	ac_add_options --enable-system-hunspell
+	ac_add_options --enable-alsa
+
+	ac_add_options --with-pthreads
+	ac_add_options --enable-official-branding
+	ac_add_options --with-distribution-id=nu.crux
+
+	ac_add_options --enable-extensions=default
+	ac_add_options --enable-url-classifier
+	ac_add_options --enable-gio
+	ac_add_options --enable-elf-hack
+
+	ac_add_options --disable-tests
+	ac_add_options --disable-dbus
+	ac_add_options --disable-gconf
+	ac_add_options --disable-debug
+	ac_add_options --disable-updater
+	ac_add_options --disable-gnomeui
+	ac_add_options --disable-crashreporter
+	ac_add_options --disable-safe-browsing
+	ac_add_options --disable-necko-wifi
+	ac_add_options --disable-pulseaudio
+EOF
+
+	make -f client.mk build
+	make -f client.mk DESTDIR=$PKG INSTALL_SDK= install
+}

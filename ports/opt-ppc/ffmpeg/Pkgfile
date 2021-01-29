@@ -1,8 +1,8 @@
 # Description: Complete solution to record, convert and stream audio and video.
 # URL: http://ffmpeg.org/
-# Maintainer: Danny Rawlins, crux at romster dot me
+# Maintainer: cruxppc at gmail com
 # Depends on: yasm
-# Optional: alsa-lib cuda dav1d fdk-aac ffnvcodec-headers gnutls gsm jack jack-audio-connection-kit lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus pulseaudio x264 x265
+# Optional: alsa-lib fdk-aac ffnvcodec-headers gnutls lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus x264 x265 pulseaudio gsm jack jack-audio-connection-kit
 
 name=ffmpeg
 version=4.3.1
@@ -17,9 +17,7 @@ build() {
 	#https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6621
 	patch -p1 -i $SRC/CVE-2018-6621.patch
 
-[ -e '/usr/lib/pkgconfig/ffnvcodec.pc' ] && PKGMK_FFMPEG+=' --enable-nvdec --enable-nvenc'
-[ -e '/usr/include/AMF/core/VulkanAMF.h' ] && PKGMK_FFMPEG+=' --enable-amf'
-[ -e '/usr/bin/clang' ] && [ -e '/usr/lib/pkgconfig/cuda.pc' ] && PKGMK_FFMPEG+=' --enable-cuda-llvm'
+#[ -e '/usr/lib/pkgconfig/ffnvcodec.pc' ] && PKGMK_FFMPEG+=' --enable-nvdec --enable-nvenc'
 [ -e '/usr/lib/pkgconfig/libwebp.pc' ] && PKGMK_FFMPEG+=' --enable-libwebp'
 [ -e '/usr/lib/pkgconfig/vdpau.pc' ] && PKGMK_FFMPEG+=' --enable-vdpau'
 [ -e '/usr/lib/pkgconfig/freetype2.pc' ] && PKGMK_FFMPEG+=' --enable-libfreetype'
@@ -35,7 +33,6 @@ build() {
 [ -e '/usr/lib/pkgconfig/theora.pc' ] && PKGMK_FFMPEG+=' --enable-libtheora'
 [ -e '/usr/lib/pkgconfig/libpulse.pc' ] && PKGMK_FFMPEG+=' --enable-libpulse'
 [ -e '/usr/lib/pkgconfig/fdk-aac.pc' ] && PKGMK_FFMPEG+=' --enable-libfdk-aac --enable-nonfree'
-[ -e '/usr/lib/pkgconfig/dav1d.pc' ] && PKGMK_FFMPEG+=' --enable-libdav1d'
 
 	if [ -e '/usr/lib/pkgconfig/gnutls.pc' ]; then
 		PKGMK_FFMPEG+=' --enable-gnutls'
@@ -56,7 +53,8 @@ build() {
 		--enable-postproc \
 		--enable-pthreads \
 		--enable-swresample \
-		--enable-avresample
+		--disable-altivec \
+		--enable-avresample 
 
 	make
 	make DESTDIR=$PKG install install-man

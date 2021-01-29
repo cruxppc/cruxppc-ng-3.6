@@ -1,0 +1,21 @@
+# Description: userspace utility for testing the memory subsystem
+# URL: http://pyropus.ca/software/memtester/
+# Maintainer: cruxppc at gmail dot com
+# Depends on:
+
+name=memtester
+version=4.5.0
+release=1
+source=(http://pyropus.ca/software/$name/old-versions/$name-$version.tar.gz)
+
+build () {
+	cd $name-$version
+	
+	sed -i "s|-O2|$CFLAGS|g" conf-cc
+	
+	make
+	mkdir -p $PKG/{usr/bin,usr/man/man8}
+	
+	install -D -m 755 $name $PKG/usr/bin
+	install -D -m 644 $name.8 $PKG/usr/man/man8/$name.8
+}

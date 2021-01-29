@@ -1,0 +1,12 @@
+diff -Naur a/src/Makefile b/src/Makefile
+--- a/src/Makefile	2018-10-22 18:55:23.000000000 +0000
++++ b/src/Makefile	2019-08-31 19:13:07.592804494 +0000
+@@ -55,7 +55,7 @@
+ 	$(RANLIB) libaio.a
+ 
+ $(libname): $(libaio_sobjs) libaio.map
+-	$(CC) $(SO_CFLAGS) -Wl,--version-script=libaio.map -Wl,-soname=$(soname) -o $@ $(libaio_sobjs) $(LINK_FLAGS)
++	$(CC) $(SO_CFLAGS) -Wl,--version-script=libaio.map -Wl,-soname=$(soname) -o $@ $(libaio_sobjs) /usr/lib/libc_nonshared.a $(LINK_FLAGS)
+ 
+ install: $(all_targets)
+ 	install -D -m 644 libaio.h $(includedir)/libaio.h

@@ -1,0 +1,14 @@
+diff -Naur a/mozilla/security/manager/ssl/moz.build b/mozilla/security/manager/ssl/moz.build
+--- a/mozilla/security/manager/ssl/moz.build	2019-05-06 17:30:52.000000000 +0000
++++ b/mozilla/security/manager/ssl/moz.build	2020-10-16 06:25:08.635784290 +0000
+@@ -184,10 +184,6 @@
+ 
+ DEFINES['CERT_AddTempCertToPerm'] = '__CERT_AddTempCertToPerm'
+ 
+-USE_LIBS += [
+-    'crmf',
+-]
+-
+ include('/ipc/chromium/chromium-config.mozbuild')
+ 
+ if CONFIG['GNU_CXX']:

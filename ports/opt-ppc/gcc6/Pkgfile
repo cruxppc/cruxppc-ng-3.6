@@ -1,0 +1,49 @@
+# Description: The GNU Compiler Collection
+# URL:         http://gcc.gnu.org
+# Maintainer:  cruxppc at gmail
+# Depends on:  zlib libmpc
+
+name=gcc6
+version=6.5.0
+release=1
+source=(ftp://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.tar.xz \
+	gcc-nocheck-fixincludes.patch )
+
+
+build() {
+    patch -d gcc-$version -p1 -i $SRC/gcc-nocheck-fixincludes.patch
+    #patch -d gcc-$version -p1 -i $SRC/gcc-4.7.3-multilib-dirs.patch
+
+    mkdir build
+    cd build
+    ../gcc-$version/configure --prefix=/usr/local \
+                                --program-suffix="-6.5.0" \
+                                --libexecdir=/usr/local/lib \
+                                --enable-languages=c,c++ \
+                                --enable-threads=posix \
+                                --enable-__cxa_atexit \
+                                --enable-clocale=gnu \
+                                --enable-shared \
+                                --disable-nls \
+                                --with-x=no \
+                                --with-system-zlib \
+                                --disable-multilib \
+                                --disable-bootstrap \
+                                --with-pkgversion="CRUX-PPC"
+    #make bootstrap
+    make
+    make -j1 DESTDIR=$PKG install
+
+    #install -d $PKG/lib
+    #ln -sf ../usr/local/bin/cpp-6.5.0 $PKG/lib/cpp-6.5.0
+    ln -sf gcc-6.5.0 $PKG/usr/local/bin/cc-6.5.0
+    ln -sf g++-6.5.0 $PKG/usr/local/bin/c++-6.5.0
+
+    mv $PKG/usr/local/lib/gcc/*/$version/include-fixed/{limits.h,syslimits.h} $PKG/usr/local/lib/gcc/*/$version/include/
+    rm -f $PKG/usr/local/lib{,32}/{libiberty.a,libstdc++.so.6.0.21-gdb.py}
+    rm -r $PKG/usr/local/share/{info,gcc-$version} 
+    rm -r $PKG/usr/local/bin/*-linux-gnu-*
+    rm -r $PKG/usr/local/lib/gcc/*/$version/{install-tools,include-fixed} 
+
+    sed -i "s|-L$SRC[^ ]* ||g" $PKG/usr/local/lib*/{libstdc++.la,libsupc++.la}
+}

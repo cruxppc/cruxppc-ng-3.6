@@ -1,6 +1,6 @@
 # Description: clang compiler
 # URL:         https://clang.llvm.org/
-# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Maintainer:  cruxppc at gmail dot com
 # Depends on:  compiler-rt llvm
 
 name=clang
@@ -17,7 +17,7 @@ build() {
 		-D CMAKE_BUILD_TYPE=Release \
 		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
 		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
-		-D LLVM_TARGETS_TO_BUILD='X86;AMDGPU;BPF;NVPTX' \
+		-D LLVM_TARGETS_TO_BUILD='X86;AMDGPU;BPF;NVPTX;PowerPC' \
 		-D LLVM_INCLUDE_TESTS=0 \
 		-D LLVM_PARALLEL_COMPILE_JOBS="${JOBS:-1}" \
 		-Wno-dev

@@ -1,7 +1,7 @@
-# Description: Exif and Iptc metadata manipulation library and tools.
-# URL: https://www.exiv2.org/
-# Maintainer: Tim Biermann, tbier at posteo dot de
-# Depends on: cmake
+# Description:	Exif and Iptc metadata manipulation library and tools.
+# URL:		https://www.exiv2.org/
+# Maintainer:	cruxppc at gmail dot com
+# Depends on:	cmake
 
 name=exiv2
 version=0.27.3
@@ -9,16 +9,16 @@ release=1
 source=(https://github.com/Exiv2/exiv2/archive/v$version/$name-$version.tar.gz)
 
 build() {
-  [[ -e /usr/bin/ninja ]] && PKGMK_EXIV2+=' -G Ninja'
+        sed -i $name-$version/cmake/compilerFlags.cmake -e 's/-fcf-protection//'
 
-  export CXXFLAGS+=" -Wno-deprecated-declarations"
+	export CXXFLAGS+=" -Wno-deprecated-declarations"
 
-  cmake -S $name-$version -B build $PKGMK_EXIV2 \
-    -D CMAKE_BUILD_TYPE=Release \
-    -D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
-    -D CMAKE_INSTALL_PREFIX=/usr \
-    -D CMAKE_INSTALL_LIBDIR=lib
+	cmake -S $name-$version -B build \
+		-D CMAKE_BUILD_TYPE=Release \
+		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_INSTALL_LIBDIR=lib
 
-  cmake --build build
-  DESTDIR=$PKG cmake --install build
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
 }

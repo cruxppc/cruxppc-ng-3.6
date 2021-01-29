@@ -1,7 +1,7 @@
 # Description: Mozilla's JavaScript engine
 # URL:         https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey
-# Maintainer:  Juergen Daubert, jue at crux dot nu
-# Depends on:  autoconf-2.13 readline zlib nspr python3 rust
+# Maintainer:  cruxppc at gmail dot com
+# Depends on:  autoconf-2.13 readline zlib nspr python3 rust icu
 
 name=mozjs78
 version=78.6.1
@@ -21,6 +21,7 @@ build() {
 		--disable-optimize \
 		--enable-readline \
 		--with-intl-api \
+		--with-system-icu \
 		--with-system-nspr \
 		--with-system-zlib
 

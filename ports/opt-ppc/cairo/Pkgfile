@@ -1,26 +1,29 @@
 # Description: A 2D graphics library with support for multiple output devices
-# URL:         https://www.cairographics.org/
-# Maintainer:  CRUX System Team, core-ports at crux dot nu
-# Depends on:  fontconfig, xorg-libxext, xorg-libxrender, xorg-libpixman, xorg-xcb-util, glib
+# URL: https://www.cairographics.org/
+# Maintainer: Fredrik Rinnestam, fredrik at crux dot nu
+# Depends on: fontconfig, xorg-libxext, xorg-libxrender, xorg-libpixman, xorg-xcb-util, glib
 
 name=cairo
-version=1.17.4
-release=1
-source=(https://cairographics.org/snapshots/$name-$version.tar.xz
-	xlib-xcb.diff fix-library-versioning.diff)
+version=1.16.0
+release=2
+source=(https://cairographics.org/releases/cairo-$version.tar.xz
+	cairo-xlib-endianness.patch
+	cairo-get_bitmap_surface-bsc1036789-CVE-2017-7475.diff \
+	CVE-2018-19876.patch)
 
 build() {
-	patch -p1 -d $name-$version -i $SRC/fix-library-versioning.diff
-	patch -p1 -d $name-$version -i $SRC/xlib-xcb.diff
+        cd $name-$version
+        patch -p1 -i $SRC/cairo-xlib-endianness.patch
+        patch -p1 -i $SRC/cairo-get_bitmap_surface-bsc1036789-CVE-2017-7475.diff
+	patch -p1 -i $SRC/CVE-2018-19876.patch
 
-	meson setup build $name-$version \
-		--prefix=/usr \
-		--buildtype=plain \
-		-D spectre=disabled \
-		-D tee=enabled \
-		-D tests=disabled
-	meson compile -C build
-	DESTDIR=$PKG meson install -C build
-
-	chmod +x $PKG/usr/bin/cairo-trace
+        ./configure --prefix=/usr \
+                --enable-xcb=yes \
+                --enable-ps \
+                --enable-pdf \
+                --disable-gtk-doc \
+                --enable-tee=yes
+        make
+        make DESTDIR=$PKG install
+        rm -rf $PKG/usr/share
 }

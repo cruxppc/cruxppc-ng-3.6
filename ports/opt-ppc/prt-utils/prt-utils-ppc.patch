@@ -1,0 +1,14 @@
+diff -Naur a/revdep/elf.cpp b/revdep/elf.cpp
+--- a/revdep/elf.cpp	2019-06-29 11:42:24.000000000 +0000
++++ b/revdep/elf.cpp	2019-08-30 21:58:09.525695492 +0000
+@@ -60,6 +60,10 @@
+ 		case EM_ARM:    break;
+ #elif defined(__aarch64__)
+ 		case EM_AARCH64:	break;
++#elif defined(__powerpc__)
++		case EM_PPC:    break;
++#elif defined(__powerpc64__)
++		case EM_PPC64:  break;
+ #else
+ #error "unsupported architecture"
+ #endif

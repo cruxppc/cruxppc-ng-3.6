@@ -1,0 +1,18 @@
+# Description: Lightweight and fast web browser.
+# URL:         https://www.netsurf-browser.org/
+# Maintainer: cruxppc at gmail dot com
+# Depends on:  libidn libmng gtk p5-html-parser
+
+name=netsurf
+version=3.10
+release=1
+source=(http://download.netsurf-browser.org/netsurf/releases/source-full/netsurf-all-$version.tar.gz 
+    netsurf.desktop )
+
+build() {
+	cd $name-all-$version
+	make TARGET=gtk3 PREFIX=/usr NETSURF_USE_VIDEO=NO
+	make TARGET=gtk3 PREFIX=/usr "DESTDIR=$PKG" install
+	install -D -m644 $SRC/netsurf.desktop $PKG/usr/share/applications/netsurf.desktop
+	( cd "$PKG/usr/bin" && ln -s netsurf-gtk3 netsurf )
+}

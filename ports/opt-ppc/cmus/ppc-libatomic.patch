@@ -1,0 +1,29 @@
+From 9a56c86a663e53195a32b7908cf2bd4349bad5c3 Mon Sep 17 00:00:00 2001
+From: Luis Ressel <aranea@aixah.de>
+Date: Fri, 29 Mar 2019 17:16:16 +0100
+Subject: [PATCH] Link against libatomic on ppc32.  DO NOT UPSTREAM.
+
+Assuming that we'll always need libatomic on ppc32, but never elsewhere
+is hideous and broken, but gcc is making it a huge pain to handle this
+properly.
+---
+ configure | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/configure b/configure
+index e76acdd..2cd5d45 100755
+--- a/configure
++++ b/configure
+@@ -98,6 +98,9 @@ check_compat()
+ 		CONFIG_CYGWIN=y
+ 		makefile_vars CONFIG_CYGWIN
+ 	esac
++
++	test ppc = "$(uname -m)" && try_link -latomic && COMPAT_LIBS="$COMPAT_LIBS -latomic"
++
+ 	makefile_vars COMPAT_LIBS
+ }
+ 
+-- 
+2.21.0
+
