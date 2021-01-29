@@ -1,0 +1,26 @@
+# Description: A 2D graphics library with support for multiple output devices
+# URL:         https://www.cairographics.org/
+# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Depends on:  fontconfig, xorg-libxext, xorg-libxrender, xorg-libpixman, xorg-xcb-util, glib
+
+name=cairo
+version=1.17.4
+release=1
+source=(https://cairographics.org/snapshots/$name-$version.tar.xz
+	xlib-xcb.diff fix-library-versioning.diff)
+
+build() {
+	patch -p1 -d $name-$version -i $SRC/fix-library-versioning.diff
+	patch -p1 -d $name-$version -i $SRC/xlib-xcb.diff
+
+	meson setup build $name-$version \
+		--prefix=/usr \
+		--buildtype=plain \
+		-D spectre=disabled \
+		-D tee=enabled \
+		-D tests=disabled
+	meson compile -C build
+	DESTDIR=$PKG meson install -C build
+
+	chmod +x $PKG/usr/bin/cairo-trace
+}
