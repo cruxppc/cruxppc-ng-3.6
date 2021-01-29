@@ -1,0 +1,16 @@
+# Description: nuoveXT 2.2 Icon Theme for LXDE
+# URL: http://lxde.org/
+# Maintainer: Emmett1, emmett1.2miligrams at gmail.com
+# Depends on: gtk
+
+name=lxde-icon-theme
+version=0.5.1
+release=1
+source=(https://downloads.sourceforge.net/lxde/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

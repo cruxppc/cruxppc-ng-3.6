@@ -1,0 +1,12 @@
+# Description: Meta port for lxde desktop
+# URL: http://lxde.org/
+# Maintainer: Emmett1, emmett1.2miligrams at gmail.com
+# Depends on: lxmenu-data libfm-extra menu-cache libfm pcmanfm lxpanel lxappearance lxsession lxde-common gpicview lxappearance-obconf lxinput lxrandr lxtask lxterminal
+
+name=lxde
+version=1.0
+release=1
+
+build() {
+	mkdir -p $PKG/etc
+}
