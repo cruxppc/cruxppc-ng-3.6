@@ -19,7 +19,7 @@ build() {
   SPQR_CONFIG=-DHAVE_TBB
   MY_METIS_LIB=/usr/lib/libmetis.so"
 
-  make $PKGMK_SUITESPARSE
+  LDFLAGS="-latomic" make $PKGMK_SUITESPARSE
 
   install -dm755 $PKG/usr/{include,lib}
 

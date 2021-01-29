@@ -1,17 +1,16 @@
 # URL: http://gcc.gnu.org/fortran
 # Description: Fortran (f95) add-on for GNU GCC compiler.
-# Maintainer: Danny Rawlins, crux at romster dot me
+# Maintainer: cruxppc at gmail dot com
 # Depends on: libmpfr
 
 name=gcc-fortran
-version=10.2.0
+version=9.3.0
 release=1
 source=(ftp://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.tar.xz
-	gcc-nocheck-fixincludes.patch gcc-4.7.3-multilib-dirs.patch)
+	gcc-nocheck-fixincludes.patch)
 
 build() {
 	patch -d gcc-$version -p 1 -i $SRC/gcc-nocheck-fixincludes.patch
-	patch -d gcc-$version -p 1 -i $SRC/gcc-4.7.3-multilib-dirs.patch
 
 	# Do not run fixincludes
 	sed -i -e 's|\./fixinc\.sh|-c true|' gcc-$version/gcc/Makefile.in
@@ -30,9 +29,9 @@ build() {
 		--disable-nls \
 		--with-x=no \
 		--with-system-zlib \
-		--enable-multilib \
+		--disable-multilib \
 		--disable-sjlj-exceptions \
-		--with-pkgversion="CRUX-x86_64-multilib"
+		--with-pkgversion="CRUX-PPC"
 
 	if [ -n "$(pkginfo -i | grep '^ccache ')" ]; then
 		make STAGE_CC_WRAPPER='/usr/bin/ccache' BOOT_CFLAGS="$CFLAGS" bootstrap
@@ -46,10 +45,10 @@ build() {
 	ln -fs gfortran $PKG/usr/bin/f95
 	ln -fs gfortran $PKG/usr/bin/g77
 
-	for D in lib{,32}; do
-		install -d -m 0755 $PKG/usr/share/gdb/auto-load/usr/${D}
-		mv $PKG/usr/${D}/libstdc++.so.*-gdb.py $PKG/usr/share/gdb/auto-load/usr/${D}
-	done
+	#for D in lib{,32}; do
+	#	install -d -m 0755 $PKG/usr/share/gdb/auto-load/usr/${D}
+	#	mv $PKG/usr/${D}/libstdc++.so.*-gdb.py $PKG/usr/share/gdb/auto-load/usr/${D}
+	#done
 
 	# remove files already on the system out of the port
 	for i in $(pkginfo -l gcc | sed -e "s|^|/|") $(pkginfo -l binutils | sed -e "s|^|/|"); do
@@ -65,12 +64,12 @@ build() {
 	done
 
 	rm $PKG/usr/bin/*-linux-gnu-*
-	rm -r $PKG/usr/share/{info,gcc-$version}
-	rm -r $PKG/usr/lib/gcc/*/$version/{install-tools,include-fixed}
+	rm -fr $PKG/usr/share/info
+	rm -fr $PKG/usr/lib/gcc/*/$version/{install-tools,include-fixed}
 
 	# Remove empty directories
 	find $PKG -depth -empty -exec rm -r {} \;
 
 	# remove build paths from *.la files
-	sed -i -e "s|-L$SRC[^ ]* ||g" $PKG/usr/lib{,32}/libgfortran.la
+	sed -i -e "s|-L$SRC[^ ]* ||g" $PKG/usr/lib/libgfortran.la
 }

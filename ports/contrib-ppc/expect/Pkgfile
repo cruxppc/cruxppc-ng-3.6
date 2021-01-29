@@ -1,0 +1,21 @@
+# Description: Expect
+# URL:         
+# Maintainer:  
+# Arch Maintainer: TBA
+# Depends on:  tcl
+
+name=expect
+version=5.45.4
+release=1
+source=(https://downloads.sourceforge.net/expect/expect${version}.tar.gz)
+
+build() {
+    cd expect$version
+    ./configure --prefix=/usr \
+                --with-tcl=/usr/lib \
+                --with-tclinclude=/usr/include
+    make
+    #make test
+    make SCRIPTS="" DESTDIR=$PKG install
+    rm -r $PKG/usr/share
+}

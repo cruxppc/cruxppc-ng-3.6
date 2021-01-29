@@ -1,87 +1,86 @@
-# Description: The Mozilla Firefox browser with Alsa support
+# Description: The Mozilla Firefox browser
 # URL: https://www.mozilla.com/firefox/
-# Maintainer: Danny Rawlins, crux at romster dot me
-# Depends on: alsa-lib autoconf-2.13 cbindgen clang dbus-glib gtk libidl libnotify libxkbcommon lld nodejs nss unzip xorg-libxt yasm zip python
-# Optional: sccache
+# Maintainer: cruxppc at gmail dot com
+# Depends on: nss, unzip, autoconf-2.13, zip, libidl, gtk, gtk3, python, alsa-lib, xorg-libxt, yasm, mesa, icu, gcc6
+# Requires /usr/local/bin first in PATH to use gcc6  for compilation.
 
 name=firefox
-version=85.0
+version=52.9.0esr
 release=1
 source=(https://ftp.mozilla.org/pub/firefox/releases/$version/source/firefox-$version.source.tar.xz
-	firefox.desktop
-	0001-Use-remoting-name-for-GDK-application-names.patch)
+        firefox-install-dir.patch firefox.desktop)
+
 build() {
-	cd firefox-$version
+  cd $name-$version
 
-	# https://bugzilla.mozilla.org/show_bug.cgi?id=1530052
-	patch -p1 -i $SRC/0001-Use-remoting-name-for-GDK-application-names.patch
+  export CC="gcc-6.5.0 -flax-vector-conversions -O3 -falign-loops=16 -falign-functions=16 -falign-labels=16 -falign-jumps=16 -fno-schedule-insns"
+  export CXX="g++-6.5.0 -flax-vector-conversions -fpermissive -O3 -falign-loops=16 -falign-functions=16 -falign-labels=16 -falign-jumps=16 -fno-schedule-insns"
 
-	if [ $(/usr/bin/python -c "import sys; print sys.stdout.encoding") = 'UTF-8' ]; then
-		printf "\e[031mError: set an UTF-8 locale to compile this!\033[0m\n"
-		exit 1
-	fi
+  # Fix to avoid gcc6 compilations error at install stage
+  export CFLAGS="$CFLAGS -fno-schedule-insns"
+  export CXXFLAGS="$CFLAGS"
 
-	if [ -e '/usr/bin/ccache' ]; then
-		export OS_CCACHE_COMPILERCHECK="$(/usr/bin/clang -dumpversion | sed -z 's/\n/ /g'; crux | cut -d' ' -f3)"
-		export CCACHE_COMPILERCHECK="string:$OS_CCACHE_COMPILERCHECK"
-		PATH=$(echo ${PATH} | awk -v RS=: -v ORS=: '/ccache/ {next} {print}' | sed 's/:*$//')
-	fi	
+  # Fix python
+  sed -i 's@PYTHON ?= $(shell which python2.7 > /dev/null 2>&1 && echo python2.7 || echo python)@PYTHON := python -B@' \
+    client.mk
 
-	prt-get isinst sccache && export RUSTC_WRAPPER=/usr/bin/sccache
-	mkdir "$PKGMK_SOURCE_DIR/rust" || true
-	export CARGO_HOME="$PKGMK_SOURCE_DIR/rust"
+  sed -i '/^ftfntfmt.h/ i freetype/ftfntfmt.h' config/system-headers
+  # stupid workaround
+  sed -i '2,7d' js/src/configure
+  patch -p1 -i $SRC/firefox-install-dir.patch
 
-cat <<- EOF > .mozconfig
-	mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/firefox-shared
-	unset MOZ_TELEMETRY_REPORTING
-	ac_add_options --prefix=/usr
-	ac_add_options --enable-default-toolkit=cairo-gtk3
-	ac_add_options --enable-application=browser
-	ac_add_options --with-system-jpeg
-	ac_add_options --with-system-zlib
-	ac_add_options --with-system-png
-	ac_add_options --with-system-nspr
-	ac_add_options --with-system-nss
-	ac_add_options --enable-av1
-	ac_add_options --enable-system-ffi
-	ac_add_options --enable-system-pixman
-	ac_add_options --enable-alsa
-	ac_add_options --enable-optimize
-	ac_add_options --enable-release
-	ac_add_options --enable-rust-simd
-	ac_add_options --disable-debug-symbols
-	ac_add_options --disable-pulseaudio
-	ac_add_options --enable-official-branding
-	ac_add_options --with-distribution-id=nu.crux
-	ac_add_options --enable-extensions=default,-gnomevfs
-	ac_add_options --enable-linker=lld
-	ac_add_options --disable-tests
-	ac_add_options --disable-debug
-	ac_add_options --disable-updater
-	ac_add_options --disable-crashreporter
-	ac_add_options --disable-necko-wifi
-	ac_add_options --disable-elf-hack
+  cat <<- EOF > .mozconfig
+  mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/firefox-shared
+  mk_add_options MOZ_MAKE_FLAGS="$MAKEFLAGS -s"
+  ac_add_options --prefix=/usr
+  ac_add_options --enable-default-toolkit=cairo-gtk3
+  ac_add_options --with-system-jpeg
+  ac_add_options --with-system-zlib
+  ac_add_options --with-system-png
+  ac_add_options --with-system-nspr
+  ac_add_options --with-system-nss
+  ac_add_options --with-system-cairo
+  ac_add_options --enable-system-ffi
+  ac_add_options --enable-system-pixman
+  ac_add_options --enable-system-sqlite
+  ac_add_options --enable-alsa
+  ac_add_options --with-pthreads
+  ac_add_options --enable-official-branding
+  ac_add_options --with-distribution-id=nu.crux-ppc
+  ac_add_options --enable-extensions=default,-gnomevfs
+  ac_add_options --disable-tests
+  ac_add_options --disable-dbus
+  ac_add_options --disable-debug
+  ac_add_options --disable-updater
+  ac_add_options --disable-gnomeui
+  ac_add_options --disable-crashreporter
+  ac_add_options --disable-necko-wifi
+  ac_add_options --disable-pulseaudio
+  ac_add_options --disable-gconf
+  ac_add_options --disable-rust
+  ac_add_options --disable-optimize 
+  ac_add_options --disable-gold
+  ac_add_options --with-system-icu
 EOF
 
-	[[ -e '/usr/bin/ccache' ]] && echo 'ac_add_options --enable-ccache' >> .mozconfig
+  #ac_add_options --disable-startupcache
+# mozonfig optimizations
+#  for flag in $CFLAGS; do
+#    case $flag in
+#      -mfpu=neon*) echo "ac_add_options --with-fpu=neon" >> .mozconfig ;;
+#      -march=armv7ve) echo "ac_add_options --with-arch=armv7ve" >> .mozconfig ;;
+#    esac
+#  done
 
-	export CC=clang CXX=clang++ AR=llvm-ar NM=llvm-nm RANLIB=llvm-ranlib
-	export MOZ_MAKE_FLAGS="-j ${JOBS-1}"
-	export MOZBUILD_STATE_PATH="$PKGMK_SOURCE_DIR/.mozbuild"
-	export MOZ_NOSPAM=1
-	export MACH_USE_SYSTEM_PYTHON=1
+  make -f client.mk build
+  make -f client.mk DESTDIR=$PKG install
 
-	./mach build
-	#./mach build toolkit/library/rust
-	DESTDIR=$PKG ./mach install
+  mkdir -p $PKG/usr/share/pixmaps
+  ln -s /usr/lib/firefox/browser/chrome/icons/default/default48.png $PKG/usr/share/pixmaps/firefox_default48.png
+  install -D -m 0644 $SRC/firefox.desktop $PKG/usr/share/applications/firefox.desktop
+  # Remove crap
+  rm $PKG/usr/lib/firefox/browser/features/{firefox@getpocket.com.xpi,webcompat@mozilla.org.xpi}
 
-	install -d $PKG/usr/share/pixmaps
-	ln -s /usr/lib/firefox/browser/chrome/icons/default/default48.png $PKG/usr/share/pixmaps/firefox_default48.png
-	install -D -m 0644 $SRC/firefox.desktop $PKG/usr/share/applications/firefox.desktop
-	# Remove crap
-	rm -r $PKG/usr/lib/firefox/browser/features
-	rm $PKG/usr/lib/firefox/removed-files
-
-	install -d $PKG/etc/revdep.d
-	echo "/usr/lib/firefox" > $PKG/etc/revdep.d/firefox
+  mkdir -p $PKG/etc/revdep.d
+  echo "/usr/lib/firefox" > $PKG/etc/revdep.d/firefox
 }
