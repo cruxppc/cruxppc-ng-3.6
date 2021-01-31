@@ -1,22 +1,28 @@
 Note: This document is revised from time to time.   If you are reading
 this from the install iso, be aware that there may be a newer
-version of this document in www.github.com/cruxppc/cruxppc-ng-3.5/iso/doc.
+version of this document in www.github.com/cruxppc/cruxppc-ng-3.6/iso/doc.
 
-Release Notes for CRUX PPC 3.5
-12/02/2020
+Release Notes for CRUX PPC 3.6
+02/01/2021
 
-   This page discusses the relevant changes introduced in CRUX PPC 3.5.
+   This page discusses the relevant changes introduced in CRUX PPC 3.6.
 
-   This is the CRUX PPC 3.5 release.   Changes since
- the prior (beta) release include several additional packages on the
- install iso, version updates and bug fixes for various packages.
+   This is the CRUX PPC 3.6 alpha release.   This alpha release seems
+   generally functional but only minimal testing has been performed.
+   A subsequent Beta release, followed by a final release is expected.
+   Final release as time permits but hopefully by mid-April 2021.
 
    
   Supported machines:
 
    Apple 32bit "NewWorld" G4 and (in theory) G3 machines are supported.  In 
-   practice however, most of building and testing of CRUX PPC 3.5 is 
+   practice however, most of building and testing of CRUX PPC 3.6 is 
    performed on G4 machines, and G3 is only minimally tested.
+
+   PowerMac G5 64bit PowerPC machines are supported.
+
+   CRUX PPC does not support multi-lib.   CRUX PPC 64bit is pure 64bit
+   and does not support for 32bit libraries.   
   
    This release works best on G4 machines with Radeon graphics.   It can
    be installed and used on G3 machines and/or non-Radeon graphics
@@ -28,27 +34,27 @@ Release Notes for CRUX PPC 3.5
    may be problematic.
   
    Older G3 machines with ATI Rage graphics cards don't start a GUI desktop but
-   otherwise function as expected.
+   otherwise function as expected.   
   
    A minimum of 256Meg RAM and a few Gig of disk space is required to 
-   install CRUX PPC 3.5.   Even 128Meg RAM might work but after install,
+   install CRUX PPC 3.6.   Even 128Meg RAM might work but after install,
    the user may want to build additional packages and lower RAM machines
    may not work well when building additional packages.
  
-   Non supported machines: 64bit PowerPC.
+   Non supported machines: Non-Apple PowerPC.
 
   Toolchain updates
 
-   CRUX PPC 3.5 includes glibc 2.28, gcc 8.4.0 and binutils 2.32.
+   CRUX PPC 3.6 includes glibc 2.32, gcc 9.3.0 and binutils 2.35.1
 
   Kernel
 
-   Linux-4.19.160
+   Linux-5.4.72
 
   Important changes
 
-   CRUX PPC 3.5 is a new port of CRUX to the PowerPC.  There is no support
-   for upgrading from any earlier CRUX PPC releases to 3.5.  Likewise, 
+   CRUX PPC 3.6 is a new port of CRUX 3.6 to the PowerPC.  There is no support
+   for upgrading from any earlier CRUX PPC releases to 3.6.  Likewise, 
    future CRUX PPC releases will not likely support upgrading from this
    release, so make notes of any local configuration changes made so
    that your changes can be remade when installing later CEUX PPC releases.
@@ -96,7 +102,7 @@ Release Notes for CRUX PPC 3.5
    X windows do not work on the imac G3 machines (ATI Rage graphics).
    X seems to be running but screen is blank.   A fix is not known
    yet but an xorg.conf or possibly a kernel change may be what is 
-   needed.
+   needed.  In this alpha release, the ATI drive is not even present.
 
    When starting the LXDE desktop, an error box pops up with 
    a "cannot connect" type of error message.  Simply close the
@@ -118,13 +124,6 @@ Release Notes for CRUX PPC 3.5
    browsers but even they can be sluggish or not work properly with
    some websites.   
 
-   Two ports (dhcpcd and libffi) are down reved for CRUXPPC.   The
-   most recent dhcpcd release series (9.3.x) has issues that have 
-   to be worked through and so dhcpcd is downreved to 9.2.0 (which
-   works well).   libffi 3.3 has problems building on powerpc.   There
-   is a patch that makes it build but I'm concerned the patch is
-   not actually the proper fix so libffi is downreved to 3.2.1.
-
    fakeroot is completely non functional on ppc.   It hangs and you have
    to kill it from another window.   It appears to be something 
    recently broken and looks like it is known to the developers.
@@ -139,12 +138,6 @@ Release Notes for CRUX PPC 3.5
    All of the applicable core packages, most of the opt and xorg packages
    have been built on powerpc but only a subset of contrib packages have been 
    built with CRUX PPC.
-
-   Several opt packages fail to build: squid, lld, imlib2 and a few
-   others.
-
-   Several contrib packages fail to build: openblas, suitesparse and
-   most likely numerous others as well. 
 
    When using CRUX PPC on G3 hardware a few packages may need to be
    rebuilt natively on the G3 machine in order to function properly.

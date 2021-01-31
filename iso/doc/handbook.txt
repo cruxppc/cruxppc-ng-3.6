@@ -1,7 +1,7 @@
 
 Note: This document is revised from time to time.   If you are reading
 this from the install iso, be aware that there may be a newer
-version of this document in www.github.com/cruxppc/cruxppc-ng-3.5/iso/doc.
+version of this document in www.github.com/cruxppc/cruxppc-ng-3.6/iso/doc.
 
 Additionally, you may find materials on the www.github.com/cruxppc website
 that supplement the information in this handbook.   This handbook is a 
@@ -9,8 +9,8 @@ concise description of installation and configuration.  The supplemental
 materials provide additional information that may helpful.
 
 
-HANDBOOK FOR CRUX PPC 3.5
-12/01/2020
+HANDBOOK FOR CRUX PPC 3.6   (preliminary WIP)
+02/01/2021
 
    1. Preface
 
@@ -104,11 +104,11 @@ HANDBOOK FOR CRUX PPC 3.5
          2. Installation
          3. Configuration
 
-                        CRUX PPC Handbook - release 3.5
+                        CRUX PPC Handbook - release 3.6
 
    Copyright (c) 2001-2004 Per Liden
    Copyright (c) 2004-2005 Giulivo Navigante
-   Copyright (c) 2005-2020 The CRUX PPC team
+   Copyright (c) 2005-2021 The CRUX PPC team
 
    This handbook covers the installation, configuration and administration of
    CRUX PPC  and  most in  general  of  the CRUX  distribution.  For  further
@@ -201,7 +201,7 @@ Installing CRUX PPC
    oriented for Apple NewWorld (G3, G4, 32 bit only).   
 
    A minimum of 256Meg of RAM is needed to boot the install CD and
-   install CRUX PPC 3.5.   However, the CRUX user may find the time needed
+   install CRUX PPC 3.6.   However, the CRUX user may find the time needed
    to compile additional CRUX packages on lower end machines to be quite
    lengthy.
 
@@ -217,11 +217,11 @@ Installing CRUX PPC
    on your system could in some way damage existing data on the system.  To
    ensure that you don't lose anything of importance, back it up first.
 
-   1.   Download   the   CRUX    PPC   ISO   image   (crux-ppc-3.5.iso    or
+   1.   Download   the   CRUX    PPC   ISO   image   (crux-ppc-3.6.iso    or
    similar naming). To  ensure  that  the download  was  successful  you
    should examine its checksum using md5sum.
-   Compare   the   output   with    the   file   crux-ppc-3.5.iso.md5    (or
-   crux-ppc64-3.5.iso.md5), which can be found in the same directory as  the
+   Compare   the   output   with    the   file   crux-ppc-3.6.iso.md5    (or
+   crux-ppc64-3.6.iso.md5), which can be found in the same directory as  the
    ISO image on the  download site. If the  checksums match the download  was
    successful and you can continue with burning the ISO image on a CD.
 
@@ -490,14 +490,14 @@ Installing CRUX PPC
 
   Upgrading From CD-ROM
 
-   Upgrading from a previous crux ppc to crux ppc 3.5 is not supported.  
+   Upgrading from a previous crux ppc to crux ppc 3.6 is not supported.  
    You may try it if you wish but it is not likely to work.   
 
-   1.   Download   the   CRUX    PPC   ISO   image   (crux-ppc-3.5.iso    or
-   crux-ppc64-3.5.iso). To  ensure  that  the download  was  successful  you
+   1.   Download   the   CRUX    PPC   ISO   image   (crux-ppc-3.6.iso    or
+   crux-ppc64-3.6.iso). To  ensure  that  the download  was  successful  you
    should examine its checksum using md5sum.
-   Compare   the   output   with    the   file   crux-ppc-3.5.iso.md5    (or
-   crux-ppc64-3.5.iso.md5), which can be found in the same directory as  the
+   Compare   the   output   with    the   file   crux-ppc-3.6.iso.md5    (or
+   crux-ppc64-3.6.iso.md5), which can be found in the same directory as  the
    ISO image on the  download site. If the  checksums match the download  was
    successful and you can continue with burning the ISO image on a CD.
 
@@ -1139,22 +1139,22 @@ The Ports System
    repository and  download  new and  updated  ports. The  output  from  this
    execution is something like this:
 
-   Updating file list from cruxppc.org::ports/core/3.5/
+   Updating file list from cruxppc.org::ports/core/3.6/
    Updating collection core
    ...
-   Updating file list from cruxppc.org::ports/opt/3.5/
+   Updating file list from cruxppc.org::ports/opt/3.6/
    Updating collection opt
    ...
-   Updating file list from cruxppc.org::ports/xorg/3.5/
+   Updating file list from cruxppc.org::ports/xorg/3.6/
    Updating collection xorg
    ...
-   Updating file list from crux.nu::ports/crux-3.5/core/
+   Updating file list from crux.nu::ports/crux-3.6/core/
    Updating collection core
    ...
-   Updating file list from crux.nu::ports/crux-3.5/opt/
+   Updating file list from crux.nu::ports/crux-3.6/opt/
    Updating collection opt
    ...
-   Updating file list from crux.nu::ports/crux-3.5/xorg/
+   Updating file list from crux.nu::ports/crux-3.6/xorg/
    Updating collection xorg
    ...
    Finished successfully
@@ -1163,8 +1163,8 @@ The Ports System
 
    The user must manually install the -ppc portion of the ports tree as follows:
 
-# git clone https://www.github.com/cruxppc/cruxppc-ng-3.5
-# cd cruxppc-ng-3.5/ports
+# git clone https://www.github.com/cruxppc/cruxppc-ng-3.6
+# cd cruxppc-ng-3.6/ports
 # cp -r * /usr/ports
 
     Listing Local Ports
@@ -1225,7 +1225,7 @@ The Ports System
 
    $ ports -d
    Collection      Name     Port      Installed
-   x86/core        glibc    2.6.1-2   3.5-1
+   x86/core        glibc    2.6.1-2   3.6-1
    x86/opt         gtk      2.12.9-1  2.12.18-1
 
    If no version differences were found, i.e. the system is in sync with  the
