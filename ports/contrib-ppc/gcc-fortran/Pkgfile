@@ -71,5 +71,5 @@ build() {
 	find $PKG -depth -empty -exec rm -r {} \;
 
 	# remove build paths from *.la files
-	sed -i -e "s|-L$SRC[^ ]* ||g" $PKG/usr/lib/libgfortran.la
+	sed -i -e "s|-L$SRC[^ ]* ||g" $PKG/usr/lib*/libgfortran.la
 }
