@@ -27,7 +27,11 @@ build() {
 
     #make depend
     make
-    #make -j1 test
+
+# Note Running the test requires an additional perl module which can be added with:
+# cpan -i Test::Builder::TodoDiag
+    # make -j1 test
+
     make MANSUFFIX=ssl DESTDIR=$PKG install_sw install_ssldirs install_man_docs
 
     find $PKG -name "*fips*" -delete
