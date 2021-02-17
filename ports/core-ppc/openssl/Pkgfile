@@ -1,39 +1,37 @@
 # Description: Secure Sockets Layer and Transport Layer Security tools
-# URL:         https://www.openssl.org/
+# URL: https://www.openssl.org/
 # Maintainer:  cruxppc at gmail dot com
 
 name=openssl
-version=1.1.1i
+version=1.1.1j
 release=1
 source=(https://www.openssl.org/source/$name-$version.tar.gz \
-        mksslcert.sh)
+	mksslcert.sh)
 
 build() {
-    cd $name-$version
+	cd $name-$version
+	export MAKEFLAGS="$MAKEFLAGS -j1"
 
-    export MAKEFLAGS="$MAKEFLAGS -j1"
+	#./config \
+	#	--prefix=/usr \
+	#	--libdir=lib \
+	#	--openssldir=/etc/ssl \
+	#	shared \
+	#	enable-ec_nistp_64_gcc_128
+	./Configure linux-ppc`echo $HOSTTYPE|sed 's|[a-z]*||'` --prefix=/usr \
+		--libdir=lib --openssldir=/etc/ssl shared
 
-    #./config --prefix=/usr \
-    #         --libdir=lib \
-    #         --openssldir=/etc/ssl \
-    #         shared \
-    #         enable-ec_nistp_64_gcc_128
+	sed -i "s|-O3|$CFLAGS|" Makefile
 
-    ./Configure linux-ppc`echo $HOSTTYPE|sed 's|[a-z]*||'` --prefix=/usr \
-        --libdir=lib --openssldir=/etc/ssl shared
-
-
-    sed -i "s|-O3|$CFLAGS|" Makefile
-
-    #make depend
-    make
+	#make depend
+	make
 
 # Note Running the test requires an additional perl module which can be added with:
 # cpan -i Test::Builder::TodoDiag
-    # make -j1 test
+	# make -j1 test
 
-    make MANSUFFIX=ssl DESTDIR=$PKG install_sw install_ssldirs install_man_docs
+	make MANSUFFIX=ssl DESTDIR=$PKG install_sw install_ssldirs install_man_docs
 
-    find $PKG -name "*fips*" -delete
-    install -D -m 755 $SRC/mksslcert.sh $PKG/usr/bin/mksslcert
+	find $PKG -name "*fips*" -delete
+	install -D -m 755 $SRC/mksslcert.sh $PKG/usr/bin/mksslcert
 }
