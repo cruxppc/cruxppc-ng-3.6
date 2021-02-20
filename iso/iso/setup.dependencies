@@ -222,7 +222,6 @@ rpcbind: libtirpc rpcbind
 rpcsvc-proto: rpcsvc-proto 
 shared-mime-info: glib libxml2 itstool shared-mime-info
 smartmontools: smartmontools
-spice-protocol: meson ninja spice-protocol
 talloc: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 talloc 
 u-boot-tools: openssl u-boot-tools
 unzip: unzip 
