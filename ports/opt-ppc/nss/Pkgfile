@@ -1,19 +1,19 @@
 # Description: Mozilla Network Security Services (NSS)
-# URL:         https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS
+# URL: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS
 # Maintainer:  cruxppc at gmail dot com
-# Depends on:  nspr sqlite3
+# Depends on: nspr sqlite3
 
 name=nss
-version=3.61
+version=3.62
 release=1
 source=(https://ftp.mozilla.org/pub/security/nss/releases/NSS_${version//./_}_RTM/src/$name-$version.tar.gz \
-        nss-3.54-standalone-2.patch \
-        nss-config.in nss.pc.in nss-softokn.pc.in nss-util.pc.in)
+	nss-3.54-standalone-2.patch \
+	nss-config.in nss.pc.in nss-softokn.pc.in nss-util.pc.in)
 
 build() {
 	cd $name-$version/
 
-	patch -Np1 -i ../nss-3.54-standalone-2.patch
+	patch -Np1 -i $SRC/nss-3.54-standalone-2.patch
 
 	export NSPR_INCLUDE_DIR=/usr/include/nspr
 	export NSPR_LIB_DIR=/usr/lib
