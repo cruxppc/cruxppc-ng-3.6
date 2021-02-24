@@ -1,22 +1,22 @@
 # Description: SQL database server, drop-in replacement for MySQL
-# URL:         https://mariadb.org/
-# Maintainer:  cruxppc at gmail dot com
-# Depends on:  ncurses zlib openssl cmake libaio linux-pam libpcre2
+# URL: https://mariadb.org/
+# Maintainer: cruxppc at gmail dot com
+# Depends on: ncurses zlib openssl cmake libaio linux-pam libpcre2
 
 name=mariadb
-version=10.5.8
+version=10.5.9
 release=1
 source=(https://downloads.mariadb.com/MariaDB//$name-$version/source/$name-$version.tar.gz 
-        mariadb.rc mariadb.pam
-        ppchax.patch
-        pre-install)
+	mariadb.rc mariadb.pam
+	ppchax.patch
+	pre-install)
 
 build() {
         (cd $name-$version; patch -p1 -i $SRC/ppchax.patch)
 	cmake -S $name-$version -B build \
 		-D CMAKE_BUILD_TYPE=Release \
-		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS -DNDEBUG" \
-		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS -DNDEBUG" \
+		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
 		-D INSTALL_LAYOUT=RPM \
 		-D INSTALL_LIBDIR=lib \
 		-D INSTALL_PLUGINDIR=lib/mysql/plugin \
