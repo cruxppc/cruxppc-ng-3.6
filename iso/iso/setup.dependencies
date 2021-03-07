@@ -237,6 +237,7 @@ libepoxy: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libp
 libglvnd: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext libglvnd 
 libinput: kmod bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz mtdev eudev readline gdbm sqlite3 python3 python3-setuptools ninja xorg-libevdev meson libinput 
 libpthread-stubs: libpthread-stubs 
+libva: libva
 libvdpau: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-libxext libvdpau 
 mesa: bzip2 xz zlib expat ncurses libffi libnsl libtirpc mpdecimal xorg-libpciaccess xorg-xorgproto xorg-util-macros openssl attr lzo elfutils zstd libxml2 readline xorg-libxau xorg-libxdmcp xorg-xtrans xorg-libxshmfence acl curl gdbm sqlite3 libarchive python3 cmake python3-setuptools ninja xorg-xcb-proto meson python3-markupsafe llvm xorg-libxcb libdrm python3-mako xorg-libx11 xorg-libxext xorg-libxfixes xorg-libxrender libglvnd libvdpau xorg-libxv xorg-libxxf86vm xorg-libxdamage xorg-libxrandr xorg-libxvmc mesa 
 mtdev: mtdev 
