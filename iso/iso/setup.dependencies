@@ -339,13 +339,26 @@ xorg-xtrans: xorg-util-macros xorg-xtrans
 xorg-xvinfo: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros xorg-libxau xorg-libxdmcp readline xorg-xtrans gdbm sqlite3 python3 xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxv xorg-xvinfo 
 xorg-xwininfo: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-xwininfo 
 consolekit2: eudev linux-pam polkit consolekit2
+dav1d: meson ninja vulkan-loader dav1d
+fdk-aac:fdk-aac
+ffmpeg: alsa-lib dav1d fdk-aac ffnvcodec-headers jack lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus pulseaudio x264 x265 yasm ffmpeg
+ffnvcodec-headers: git ffnvcodec-headers
+flac: libogg flac
 gdk-pixbuf-xlib: gdk-pixbuf xorg-libx11 gdk-pixbuf-xlib
 gpicview: gtk gpicview
+jack: dbus libsamplerate python3 jack
 keybinder: gtk gobject-introspection pygtk keybinder
+lame: ncurses lame
+libass: fribidi harfbuzz libpng libass
 libcanberra: alsa-lib gtk gtk3 libvorbis libcanberra
 libfm: gtk menu-cache lxmenu-data libexif vala libfm
 libfm-extra: glib libfm-extra
 libglade-compat: libglade pango-compat libglade-compat
+libsamplerate: libsndfile libsamplerate
+libsdl2: alsa-lib mesa libsdl2
+libsndfile: alsa-lib flac libvorbis opus python3 libsndfile
+libtheora: libvorbis libtheora
+libwebp: libpng libtiff libwebp
 lsb-release: lsb-release
 lxappearance-obconf: lxappearance openbox lxappearance-obconf
 lxde: lxmenu-data libfm-extra menu-cache libfm pcmanfm lxpanel lxappearance lxsession lxde-common gpicview lxappearance-obconf lxinput lxrandr lxtask lxterminal lxde
@@ -360,7 +373,13 @@ lxtask: gtk lxtask
 lxterminal: vte lxterminal
 menu-cache: libfm-extra menu-cache
 notification-daemon: gtk3 libcanberra notification-daemon
+opus:opus
 pcmanfm: libfm adwaita-icon-theme pcmanfm
+pulseaudio: dbus intltool libsndfile meson ninja pulseaudio
 pygtk: libglade-compat python-cairo python-gobject-compat pygtk
 python-gobject-compat: glib python-gobject-compat
 vala: glib vala
+vulkan-headers: cmake ninja vulkan-headers
+vulkan-loader: vulkan-headers xorg-libxrandr vulkan-loader
+x264: yasm x264
+x265: cmake x265
