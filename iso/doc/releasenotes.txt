@@ -3,14 +3,17 @@ this from the install iso, be aware that there may be a newer
 version of this document in www.github.com/cruxppc/cruxppc-ng-3.6/iso/doc.
 
 Release Notes for CRUX PPC 3.6
-02/01/2021
+03/10/2021
 
    This page discusses the relevant changes introduced in CRUX PPC 3.6.
 
-   This is the CRUX PPC 3.6 alpha release.   This alpha release seems
+   This is the CRUX PPC 3.6 beta release.   This beta release seems
    generally functional but only minimal testing has been performed.
-   A subsequent Beta release, followed by a final release is expected.
-   Final release as time permits but hopefully by mid-April 2021.
+   Final release is as time permits but hopefully by mid-April 2021.
+
+   Changes since the alpha release include package updates, testing,
+   addition of ffmpeg and supporting packages to provide some level of
+   video support.
 
    
   Supported machines:
@@ -73,7 +76,7 @@ Release Notes for CRUX PPC 3.6
    cause the install to fail and can be ignored.  
 
    CRUX PPC does not provide .signature checking on the ppc specific packages.
-   In this release, md5sums checking is provided.
+   Nor in this release is md5sums checking provided.
 
    It is not uncommon for the footprints to mismatch when building on powerpc.
    Generally a footprint mismatch is benign but may halt package building tools.
@@ -102,7 +105,7 @@ Release Notes for CRUX PPC 3.6
    X windows do not work on the imac G3 machines (ATI Rage graphics).
    X seems to be running but screen is blank.   A fix is not known
    yet but an xorg.conf or possibly a kernel change may be what is 
-   needed.  In this alpha release, the ATI drive is not even present.
+   needed.  In this beta release, the ATI driver is not even present.
 
    When starting the LXDE desktop, an error box pops up with 
    a "cannot connect" type of error message.  Simply close the
