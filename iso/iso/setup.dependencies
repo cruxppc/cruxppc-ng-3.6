@@ -340,7 +340,7 @@ xorg-xvinfo: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal
 xorg-xwininfo: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz xorg-util-macros kmod xorg-libxau xorg-libxdmcp readline file xorg-xtrans eudev gdbm sqlite3 xorg-libice util-linux python3 xorg-libsm xorg-xcb-proto xorg-libxcb xorg-libx11 xorg-libxext xorg-libxt xorg-libxmu xorg-xwininfo 
 consolekit2: eudev linux-pam polkit consolekit2
 dav1d: meson ninja vulkan-loader dav1d
-fdk-aac:fdk-aac
+fdk-aac: fdk-aac
 ffmpeg: alsa-lib dav1d fdk-aac ffnvcodec-headers jack lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus pulseaudio x264 x265 yasm ffmpeg
 ffnvcodec-headers: git ffnvcodec-headers
 flac: libogg flac
@@ -373,7 +373,7 @@ lxtask: gtk lxtask
 lxterminal: vte lxterminal
 menu-cache: libfm-extra menu-cache
 notification-daemon: gtk3 libcanberra notification-daemon
-opus:opus
+opus: opus
 pcmanfm: libfm adwaita-icon-theme pcmanfm
 pulseaudio: dbus intltool libsndfile meson ninja pulseaudio
 pygtk: libglade-compat python-cairo python-gobject-compat pygtk
