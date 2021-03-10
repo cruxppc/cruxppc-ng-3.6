@@ -12,4 +12,6 @@ yaboot Raw 'unix' 'boot' "bootstrap"
 EOF
 #
 rm -f cruxppc3.6.iso
-genisoimage -r -V "CRUXPPC_3.6_PRE-ALPHA__$(date +%Y%m%d)" -iso-level 4 -chrp-boot -hfs -part -probe -no-desktop -hfs-bless $ROOTFS_DIR/ppc/mac -map $ROOTFS_DIR/boot/map.hfs -b ppc/mac/yaboot -no-emul-boot -hide-rr-moved -o cruxppc3.6.iso $ROOTFS_DIR
+genisoimage -r -V "CRUXPPC_3.6_BETA__$(date +%Y%m%d)" -iso-level 4 -chrp-boot -hfs -part -probe -no-desktop -hfs-bless $ROOTFS_DIR/ppc/mac -map $ROOTFS_DIR/boot/map.hfs -b ppc/mac/yaboot -no-emul-boot -hide-rr-moved -o cruxppc3.6.iso $ROOTFS_DIR
+
+# wodim *.iso
