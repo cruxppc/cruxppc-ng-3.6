@@ -109,6 +109,7 @@ zlib: zlib
 zstd: zlib xz zstd 
 adwaita-icon-theme: librsvg adwaita-icon-theme
 alsa-lib: alsa-lib 
+alsa-utils: gettext alsa-lib dialog alsa-utils
 apr: util-linux expat db gdbm apr
 arcticfox: arcticfox 
 at-spi2-atk: libpcre kmod zlib ncurses bzip2 xz expat libffi libnsl libtirpc mpdecimal db xorg-xorgproto xorg-util-macros eudev file readline libxml2 dbus xorg-libxau xorg-libxdmcp xorg-xtrans util-linux gdbm sqlite3 perl python3 p5-xml-parser python3-setuptools ninja xorg-xcb-proto intltool meson xorg-libxcb glib xorg-libx11 gobject-introspection xorg-libxext xorg-libxfixes atk xorg-libxi xorg-libxtst at-spi2-core at-spi2-atk 
