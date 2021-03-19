@@ -4,10 +4,9 @@
 # Depends on: cmake
 
 name=x265
-version=3.4
+version=3.5
 release=1
-source=(#https://bitbucket.org/multicoreware/$name/downloads/${name}_$version.tar.gz
-	https://crux.ster.zone/downloads/$name/${name}_$version.tar.gz)
+source=(https://bitbucket.org/multicoreware/${name}_git/downloads/${name}_$version.tar.gz)
 
 build() {
 	[[ -e '/usr/bin/ninja' ]] && PKGMK_X265+=' -G Ninja'
