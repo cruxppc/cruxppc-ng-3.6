@@ -12,7 +12,8 @@ build() {
 	cd $name-$version
 
 	case $(uname -m) in
-		ppc) export CONFIG_FLAGS="--disable-altivec --disable-vsx"
+		ppc64) export CONFIG_FLAGS="--enable-altivec --disable-vsx" ;;
+		ppc) export CONFIG_FLAGS="--disable-altivec --disable-vsx" ;;
 	esac
 	./configure --prefix=/usr $CONFIG_FLAGS
 
