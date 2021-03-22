@@ -4,10 +4,10 @@
 
 name=glibc
 version=2.32
-release=2
+release=3
 source=(https://ftp.gnu.org/gnu/glibc/glibc-$version.tar.xz \
 	https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.4.72.tar.xz \
-	glibc-$version-2.patch \
+	glibc-$version-3.patch \
 	hosts resolv.conf nsswitch.conf host.conf ld.so.conf)
 
 build() {
@@ -18,11 +18,12 @@ build() {
 	make INSTALL_HDR_PATH=$PKG/usr headers_install
 	chown root:root $PKG/usr
 
-	patch -p1 -d $SRC/$name-${version:0:4} -i $SRC/$name-$version-2.patch
+	patch -p1 -d $SRC/$name-${version:0:4} -i $SRC/$name-$version-3.patch
 
 	mkdir $SRC/build
 	cd $SRC/build
-	../$name-${version}/configure --prefix=/usr \
+	../$name-${version}/configure \
+		--prefix=/usr \
 		--libexecdir=/usr/lib \
 		--with-headers=$PKG/usr/include \
 		--enable-kernel=3.2 \
