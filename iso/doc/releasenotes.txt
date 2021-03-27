@@ -3,17 +3,14 @@ this from the install iso, be aware that there may be a newer
 version of this document in www.github.com/cruxppc/cruxppc-ng-3.6/iso/doc.
 
 Release Notes for CRUX PPC 3.6
-03/10/2021
+03/28/2021
 
    This page discusses the relevant changes introduced in CRUX PPC 3.6.
 
-   This is the CRUX PPC 3.6 beta release.   This beta release seems
-   generally functional but only minimal testing has been performed.
-   Final release is as time permits but hopefully by mid-April 2021.
+   This is the CRUX PPC 3.6 release.   
 
-   Changes since the alpha release include package updates, testing,
-   addition of ffmpeg and supporting packages to provide some level of
-   video support.
+   Changes since the previous release include package updates and
+   kernel configuration changes (primarly for audio support).
 
    
   Supported machines:
@@ -22,12 +19,12 @@ Release Notes for CRUX PPC 3.6
    practice however, most of building and testing of CRUX PPC 3.6 is 
    performed on G4 machines, and G3 is only minimally tested.
 
-   PowerMac G5 64bit PowerPC machines are supported.
+   PowerMac G5 64bit PowerPC machines are also supported.
 
    CRUX PPC does not support multi-lib.   CRUX PPC 64bit is pure 64bit
    and does not support for 32bit libraries.   
   
-   This release works best on G4 machines with Radeon graphics.   It can
+   The 32bit release works best on G4 machines with Radeon graphics.   It can
    be installed and used on G3 machines and/or non-Radeon graphics
    machines but there are some additional difficulties with the latter
    machines.
@@ -126,13 +123,6 @@ Release Notes for CRUX PPC 3.6
    machine.   netsurf and arcticfox seem like the best of the available
    browsers but even they can be sluggish or not work properly with
    some websites.   
-
-   fakeroot is completely non functional on ppc.   It hangs and you have
-   to kill it from another window.   It appears to be something 
-   recently broken and looks like it is known to the developers.
-   So, I expect it to be fixed in the next fakeroot update.   
-   If you need to use fakeroot, back it down to a previous version
-   and it will probably work.
 
    On G3 ibook, the console window switch key sequences (alt-f1,f2,etc) 
    don't work.   X-windows and/or ssh sessions an be used if more

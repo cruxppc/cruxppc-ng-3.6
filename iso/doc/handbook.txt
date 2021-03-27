@@ -10,7 +10,7 @@ materials provide additional information that may helpful.
 
 
 HANDBOOK FOR CRUX PPC 3.6   (preliminary WIP)
-02/01/2021
+03/28/2021
 
    1. Preface
 
@@ -323,6 +323,11 @@ Installing CRUX PPC
    Selecting individual packages within collections is not recommended but if
    you choose to do so, spend some time after installation verifying that 
    all expected dependencies are installed.
+
+   Note that 'lxde' is a bit of a misnomer.   Selecting 'lxde' will install
+   an LXDE desktop and also additional packages to support video (ffmpeg and
+   friends...).   Arcticfox will then play youtube videos although not HD
+   and even lower resolution videos don't play very well.
 
    Once it has installed the selected packages, the setup script will display
    an installation log. Make sure the last line in the log says "0 error(s)".
