@@ -122,6 +122,7 @@ btrfs-progs: lzo zlib xz zstd btrfs-progs
 cairo: zlib expat xorg-xorgproto bzip2 ncurses libffi libnsl libtirpc mpdecimal xz xorg-util-macros xorg-libpixman libpcre kmod libpng file xorg-libxau xorg-libxdmcp readline xorg-xtrans eudev freetype gdbm sqlite3 util-linux fontconfig python3 xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxrender cairo 
 cdrkit: zlib openssl xz bzip2 attr lzo expat ncurses linux-pam file zstd acl libcap curl libarchive cmake cdrkit 
 cmake: openssl zlib xz bzip2 attr lzo expat ncurses zstd acl curl libarchive cmake 
+cmus: ncurses cmus 
 cryptsetup: kmod zlib ncurses bzip2 xz openssl attr lzo expat eudev file readline zstd acl util-linux curl gettext libarchive libdevmapper popt cmake json-c cryptsetup 
 dbus-glib: expat libpcre kmod zlib ncurses bzip2 xz libffi libnsl libtirpc mpdecimal dbus eudev file readline util-linux gdbm sqlite3 python3 python3-setuptools ninja meson glib dbus-glib 
 dbus: expat dbus 
