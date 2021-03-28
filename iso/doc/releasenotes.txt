@@ -3,7 +3,7 @@ this from the install iso, be aware that there may be a newer
 version of this document in www.github.com/cruxppc/cruxppc-ng-3.6/iso/doc.
 
 Release Notes for CRUX PPC 3.6
-03/28/2021
+03/29/2021
 
    This page discusses the relevant changes introduced in CRUX PPC 3.6.
 
@@ -19,7 +19,7 @@ Release Notes for CRUX PPC 3.6
    practice however, most of building and testing of CRUX PPC 3.6 is 
    performed on G4 machines, and G3 is only minimally tested.
 
-   PowerMac G5 64bit PowerPC machines are also supported.
+   PowerMac G5 64bit PowerPC machines are also supported.   
 
    CRUX PPC does not support multi-lib.   CRUX PPC 64bit is pure 64bit
    and does not support for 32bit libraries.   
@@ -45,7 +45,7 @@ Release Notes for CRUX PPC 3.6
 
   Toolchain updates
 
-   CRUX PPC 3.6 includes glibc 2.32, gcc 9.3.0 and binutils 2.35.1
+   CRUX PPC 3.6 includes glibc 2.32, gcc 9.3.0 and binutils 2.35.2
 
   Kernel
 
@@ -66,7 +66,7 @@ Release Notes for CRUX PPC 3.6
    aware that Linux does not provide the firmware update tools and so you may
    wish to update the firmware before wiping out MACOS.
 
-  Known issues
+  Known issues and usage notes
 
 
    A few warnings will be displayed during boot of the install CD.   These do not
@@ -89,7 +89,7 @@ Release Notes for CRUX PPC 3.6
    directory with any changes.
 
    On some monitors, the left most characters are not visible.  In most
-   cases, this can be resolved by adjusting settings on the monitor
+   cases, this can be resolved by resetting to default on the monitor
    controls.  However this does not always work.   Until this
    is solved, a workaround is to install the xorg server packages and then
    run 'startx'.  The xorg server provides a rudimentary set of windows
@@ -102,7 +102,9 @@ Release Notes for CRUX PPC 3.6
    X windows do not work on the imac G3 machines (ATI Rage graphics).
    X seems to be running but screen is blank.   A fix is not known
    yet but an xorg.conf or possibly a kernel change may be what is 
-   needed.  In this beta release, the ATI driver is not even present.
+   needed.  The ATI driver is not even present on the install CD.   If 
+   you want to try it, find the package for it under xorg-ppc and
+   build and install it.
 
    When starting the LXDE desktop, an error box pops up with 
    a "cannot connect" type of error message.  Simply close the
@@ -112,7 +114,8 @@ Release Notes for CRUX PPC 3.6
 
    On G3 machines, netsurf seems to occasionally lock the screen for
    some seconds (maybe 10 seconds or so).   Then it becomes responsive
-   again.
+   again.   In general, performance on a G3 is not very good although
+   it will run if you are patient.
 
    The midori browser does not seem to function properly with https
    connections (on ppc only, works fine on x86..).  Until this is solved, 
@@ -122,7 +125,7 @@ Release Notes for CRUX PPC 3.6
    None of the browsers perform really well.  Not even on a fast G4
    machine.   netsurf and arcticfox seem like the best of the available
    browsers but even they can be sluggish or not work properly with
-   some websites.   
+   some websites.   seamonkey builds but seems to be broken for now.
 
    On G3 ibook, the console window switch key sequences (alt-f1,f2,etc) 
    don't work.   X-windows and/or ssh sessions an be used if more
@@ -137,7 +140,25 @@ Release Notes for CRUX PPC 3.6
    If a package causes illegal instruction exceptions, it may need
    to be rebuilt on the G3 machine to function properly.   
 
-   
+   CRUX PPC 3.6 provides gcc 9.3.0 rather than the more recent 
+   gcc 10.2.0.   The build of nss (on 32bit at least) failed with
+   an illegal instruction with 10.2.0.   So, gcc was backed down to 9.3.0.   
+
+   Several other packages (e.g. cairo) are downreved compared to 
+   mainline CRUX.   This is due to build and or runtime isses on 
+   PPC with the later package versions.   As fixes and updates are found
+   for PPC, some of these packages will be brought up to current 
+   versions.
+
+   On some machines (e.g. ibook g4) volume defaults to off.   Use 
+   alsamixer to set volume levels as desired on all machines.
+
+   ibook g4 won't restart the screen from screensaver.   The machine is 
+   alive but the screen stays blank.   No workaround yet other than 
+   shutdown the machine rather than let it sit idle.
+
+   The ibook mouse seems flakey.   An external mouse may be preferable.
+
 
   Tips
 
