@@ -1,10 +1,10 @@
 # Description: A collection of sparse matrix libraries
 # URL: http://faculty.cse.tamu.edu/davis/suitesparse.html
-# Maintainer: Tim Biermann, tbier at posteo dot de
+# Maintainer: cruxppc at gmail dot com 
 # Depends on: chrpath intel-tbb lapack metis
 
 name=suitesparse
-version=5.8.1
+version=5.9.0
 release=1
 source=(https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/v$version/$name-$version.tar.gz
   suitesparse-no-demo.patch)
