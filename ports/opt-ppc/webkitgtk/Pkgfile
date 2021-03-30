@@ -2,10 +2,10 @@
 # URL: https://www.webkitgtk.org/
 # Maintainer: cruxppc at gmail dot com
 # Depends on: gst-plugins-base gtk gtk3 harfbuzz-icu hyphen libseccomp libsecret libsoup libwebp libxslt ruby woff2 xorg-libxt
-# Optional: enchant libnotify geoclue openjpeg2 xdg-dbus-proxy bubblewrap
+# Optional: enchant libnotify geoclue openjpeg2 xdg-dbus-proxy bubblewrap wpebackend-fdo libmanette
 
 name=webkitgtk
-version=2.30.6
+version=2.32.0
 release=1
 source=(https://webkitgtk.org/releases/$name-$version.tar.xz)
 
@@ -19,6 +19,8 @@ build() {
 	prt-get isinst geoclue && PKGMK_WEBKITGTK+=' -DENABLE_GEOLOCATION=ON' || PKGMK_WEBKITGTK+=' -DENABLE_GEOLOCATION=OFF'
 	prt-get isinst bubblewrap && prt-get isinst xdg-dbus-proxy && PKGMK_WEBKITGTK+=' -DENABLE_BUBBLEWRAP_SANDBOX=ON' \
 	|| PKGMK_WEBKITGTK+=' -DENABLE_BUBBLEWRAP_SANDBOX=OFF'
+	prt-get isinst wpebackend-fdo || PKGMK_WEBKITGTK+=' -DUSE_WPE_RENDERER=OFF'
+	prt-get isinst libmanette || PKGMK_WEBKITGTK+=' -DENABLE_GAMEPAD=OFF'
 
 	cmake -S $name-$version -B build -G Ninja ${PKGMK_WEBKITGTK} \
 		-D CMAKE_INSTALL_PREFIX:PATH=/usr \
