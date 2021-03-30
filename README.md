@@ -1,6 +1,6 @@
 # cruxppc-ng-3.6
 
-01Feb2021
+29Mar2021
 
 ## CRUX 3.6 port to powerpc
 
@@ -17,6 +17,8 @@ development team.   If you are using CRUX-PPC and run into problems, please DO N
   CRUX provides a minimal starting root filesystem and the user then builds and adds additional packages as they desire.   CRUX is a build it yourself and 
   figure it out yourself kind of distribution.   CRUX users will need to be experienced with the command line, manually editing configuration files,
   building packages, etc.   If you desire point and click system maintenance, CRUX is not what you are looking for.
+  
+  If you like (or can at least tolerate) Linux From Scratch or Gentoo types of distros, you may find CRUX PPC appealing.
 
   CRUX-PPC 3.6 goal is to supports 32bit PowerPC G3 and G4 and 64bit G5 machines. 
 
@@ -24,7 +26,7 @@ development team.   If you are using CRUX-PPC and run into problems, please DO N
   new port of CRUX-3.6 to the PowerPC.  Although similarities exist and pieces from the previous CRUX-PPC may be reused in this project, this is a
   fresh port of CRUX to the PowerPC and backwards compatibility with the previous CRUX PPC is not a goal of this project.
 
-  crux ppc 3.6 is a work in progress.  It still has a lot of rough edges.
+  crux ppc 3.6 is somewhat a work in progress.  It still has some rough edges.
 If you are already familiar with CRUX or manual installation and configuration
 of a Linux sytem, then you should be able to work through the rough spots.
 As time passes, the rough edges will be smoothed out but as of right now,
@@ -80,9 +82,9 @@ image(s) and some pre-built 'extra' packages that may be particularly useful.
 
 
   The handbook provides details of the CRUXPPC install process.  Essentially,
-  download the CD iso file, burn a CD and boot it with the normal 'c' key boot.
+  download the CD iso file, burn a CD (not DVD) and boot it with the normal 'c' key boot.
 
-  The user will may need to install a number of additional packages beyond what
+  The user may need to install a number of additional packages beyond what
   is provided by the install CD to have a crux system that meets their needs.
 
   Selected prebuilt packages from "opt", "xorg" and maybe "contrib" 
@@ -91,6 +93,6 @@ image(s) and some pre-built 'extra' packages that may be particularly useful.
   and are provided to help speed up the creation of the final CRUX PPC system.
 
   A more detailed description of installing and configuring CRUX PPC can be
-  found in the handbook and release notes.
-
+  found in the handbook and release notes.     These documents live in iso/docs in 
+  this repository.
 
