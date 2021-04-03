@@ -37,7 +37,7 @@ build() {
 		-D USE_LD_GOLD=OFF \
 		-Wno-dev
 
-	cmake --build build
+	cmake --build build -j 1
 	DESTDIR=$PKG cmake --install build
 
 	rm -r $PKG/usr/share/locale
