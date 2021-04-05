@@ -4,9 +4,9 @@
 # Depends on: fontconfig, xorg-libxext, xorg-libxrender, xorg-libpixman, xorg-xcb-util, glib
 
 name=cairo
-version=1.16.0
+version=1.17.4
 release=2
-source=(https://cairographics.org/releases/cairo-$version.tar.xz
+source=(https://cairographics.org/snapshots/cairo-$version.tar.xz
 	cairo-xlib-endianness.patch
 	cairo-get_bitmap_surface-bsc1036789-CVE-2017-7475.diff \
 	CVE-2018-19876.patch)
@@ -15,7 +15,7 @@ build() {
         cd $name-$version
         patch -p1 -i $SRC/cairo-xlib-endianness.patch
         patch -p1 -i $SRC/cairo-get_bitmap_surface-bsc1036789-CVE-2017-7475.diff
-	patch -p1 -i $SRC/CVE-2018-19876.patch
+#	patch -p1 -i $SRC/CVE-2018-19876.patch
 
         ./configure --prefix=/usr \
                 --enable-xcb=yes \
