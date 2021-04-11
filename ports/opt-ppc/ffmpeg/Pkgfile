@@ -57,6 +57,7 @@ build() {
 		--enable-pthreads \
 		--enable-swresample \
 		--disable-altivec \
+		--extra-ldflags="-latomic" \
 		--enable-avresample
 
 	make
