@@ -1,23 +1,22 @@
 # Description: POSIX.1e capabilities library
-# URL:         https://sites.google.com/site/fullycapable/
+# URL: https://sites.google.com/site/fullycapable/
 # Maintainer:  cruxppc at gmail dot com
-# Depends on:  attr linux-pam
+# Depends on: attr linux-pam
 
 name=libcap
-version=2.49
+version=2.51
 release=1
 source=(https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz)
 
-build () {
+build() {
 	cd $name-$version
 
-	sed -i "/^CFLAGS/s/-O2/$CFLAGS/" Make.Rules
+	sed "/^CFLAGS/s/-O2/$CFLAGS/" -i Make.Rules
 
 	make install \
 		GOLANG=no \
 		RAISE_SETFCAP=no \
 		PKGCONFIGDIR=/usr/lib/pkgconfig \
-		lib=lib \
 		DESTDIR=$PKG
 
 	install -d $PKG/usr/lib
