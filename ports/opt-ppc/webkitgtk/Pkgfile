@@ -5,7 +5,7 @@
 # Optional: enchant libnotify geoclue openjpeg2 xdg-dbus-proxy bubblewrap wpebackend-fdo libmanette
 
 name=webkitgtk
-version=2.32.0
+version=2.32.2
 release=1
 source=(https://webkitgtk.org/releases/$name-$version.tar.xz)
 

@@ -4,7 +4,7 @@
 # Depends on: openssl
 
 name=u-boot-tools
-version=2021.01
+version=2021.07
 release=1
 source=(ftp://ftp.denx.de/pub/u-boot/u-boot-$version.tar.bz2)
 
