@@ -4,7 +4,7 @@
 
 name=filesystem
 version=3.6
-release=1
+release=2
 source=(issue motd shells group passwd shadow securetty fstab mime.types)
 
 build() {
@@ -77,4 +77,14 @@ echo "CRUX-PPC version $version"
 # End of file
 EOF
     chmod 755 $PKG/usr/bin/crux
+
+# /etc/os-release
+cat > $PKG/etc/os-release << EOF
+NAME=CRUX-PPC
+VERSION="$version"
+ID=crux
+PRETTY_NAME="CRUX-PPC"
+HOME_URL="https://www.github.com/cruxppc/cruxppc-ng-3.6"
+BUG_REPORT_URL="https://www.github.com/cruxppc/cruxppc-ng-3.6"
+EOF
 }
