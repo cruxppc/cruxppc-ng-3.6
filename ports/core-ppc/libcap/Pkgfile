@@ -17,6 +17,7 @@ build() {
 		GOLANG=no \
 		RAISE_SETFCAP=no \
 		PKGCONFIGDIR=/usr/lib/pkgconfig \
+		lib=lib \
 		DESTDIR=$PKG
 
 	install -d $PKG/usr/lib
