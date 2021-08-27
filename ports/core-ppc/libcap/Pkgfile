@@ -4,7 +4,7 @@
 # Depends on: attr linux-pam
 
 name=libcap
-version=2.53
+version=2.54
 release=1
 source=(https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz)
 
