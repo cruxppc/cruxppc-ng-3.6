@@ -7,7 +7,7 @@
 # set PATH=/usr/local/bin:$PATH during build for gcc6.
 
 name=arcticfox
-version=27.11.0
+version=27.12.0
 release=1
 source=(https://codeload.github.com/wicknix/Arctic-Fox/tar.gz/v${version}
     mozcfg-ppc64linux
