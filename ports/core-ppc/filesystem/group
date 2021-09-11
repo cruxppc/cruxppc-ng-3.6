@@ -37,5 +37,6 @@ nsd:x:42:
 polkitd:x:41:
 postdrop:x:102:
 pulse:x:40:
+pulse-access:x:103:
 squid:x:39:
 unbound:x:38:
