@@ -7,7 +7,7 @@ SSD=/sbin/start-stop-daemon
 PROG=/usr/sbin/mysqld
 NAME=mysqld
 PID=/var/run/mysqld/mysqld.pid
-OPTS="--pid-file=$PID"
+OPTS="--pid-file=$PID --user=mysql"
 
 case $1 in
 start)
