@@ -5,12 +5,18 @@
 
 name=flac
 version=1.3.3
-release=1
-source=(https://downloads.xiph.org/releases/flac/$name-$version.tar.xz)
+release=2
+source=(https://downloads.xiph.org/releases/flac/$name-$version.tar.xz
+	2e7931c.patch
+	ced7f68.patch)
 
 build() {
 	cd $name-$version
 
+	patch -p1 -i $SRC/2e7931c.patch # CVE-2020-0499
+	patch -p1 -i $SRC/ced7f68.patch # overflow checks
+
+	./configure --prefix=/usr
 	case $(uname -m) in
 		ppc64) export CONFIG_FLAGS="--enable-altivec --disable-vsx" ;;
 		ppc) export CONFIG_FLAGS="--disable-altivec --disable-vsx" ;;
