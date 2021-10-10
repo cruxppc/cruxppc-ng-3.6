@@ -4,7 +4,7 @@
 # Depends on: libmpfr
 
 name=gcc-fortran
-version=9.3.0
+version=9.4.0
 release=1
 source=(ftp://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.tar.xz
 	gcc-nocheck-fixincludes.patch)
@@ -30,13 +30,14 @@ build() {
 		--with-x=no \
 		--with-system-zlib \
 		--disable-multilib \
+		--disable-bootstrap \
 		--disable-sjlj-exceptions \
 		--with-pkgversion="CRUX-PPC"
 
 	if [ -n "$(pkginfo -i | grep '^ccache ')" ]; then
-		make STAGE_CC_WRAPPER='/usr/bin/ccache' BOOT_CFLAGS="$CFLAGS" bootstrap
+		make STAGE_CC_WRAPPER='/usr/bin/ccache' BOOT_CFLAGS="$CFLAGS" 
 	else
-		make BOOT_CFLAGS="$CFLAGS" bootstrap
+		make BOOT_CFLAGS="$CFLAGS" 
 	fi
 
 	make -j 1 DESTDIR=$PKG install
