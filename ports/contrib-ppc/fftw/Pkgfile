@@ -1,12 +1,12 @@
 # Description: C subroutine library for computing discrete Fourier transform.
-# URL: http://www.fftw.org/
+# URL: https://www.fftw.org/
 # Maintainer: cruxppc at gmail dot com
 # Depends on: gcc-fortran
 
 name=fftw
-version=3.3.9
+version=3.3.10
 release=1
-source=(http://www.fftw.org/$name-$version.tar.gz)
+source=(https://www.fftw.org/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version
