@@ -1,13 +1,13 @@
 # Description: Small, efficient and fast rendering engine for Web Browsers.
 # URL: https://www.webkitgtk.org/
 # Maintainer: cruxppc at gmail dot com
-# Depends on: gst-plugins-base gtk gtk3 harfbuzz-icu hyphen libseccomp libsecret libsoup libwebp libxslt ruby woff2 xorg-libxt
+# Depends on: gst-plugins-base gtk gtk3 icu harfbuzz hyphen libseccomp libsecret libsoup3 libwebp libxslt ruby woff2 xorg-libxt
 # Optional: enchant libnotify geoclue openjpeg2 xdg-dbus-proxy bubblewrap wpebackend-fdo libmanette
 
 name=webkitgtk
-version=2.32.2
+version=2.34.0
 release=1
-source=(https://webkitgtk.org/releases/$name-$version.tar.xz)
+source=(https://webkitgtk.org/releases/webkitgtk-$version.tar.xz)
 
 build() {
 	# Make sure we do not have ccache masquerade directory in PATH.
@@ -17,12 +17,12 @@ build() {
 	prt-get isinst enchant || PKGMK_WEBKITGTK+=' -DENABLE_SPELLCHECK=OFF'
 	prt-get isinst libnotify && PKGMK_WEBKITGTK+=' -DUSE_LIBNOTIFY=ON' || PKGMK_WEBKITGTK+=' -DUSE_LIBNOTIFY=OFF'
 	prt-get isinst geoclue && PKGMK_WEBKITGTK+=' -DENABLE_GEOLOCATION=ON' || PKGMK_WEBKITGTK+=' -DENABLE_GEOLOCATION=OFF'
-	prt-get isinst bubblewrap && prt-get isinst xdg-dbus-proxy && PKGMK_WEBKITGTK+=' -DENABLE_BUBBLEWRAP_SANDBOX=ON' \
+	prt-get isinst bubblewrap xdg-dbus-proxy && PKGMK_WEBKITGTK+=' -DENABLE_BUBBLEWRAP_SANDBOX=ON' \
 	|| PKGMK_WEBKITGTK+=' -DENABLE_BUBBLEWRAP_SANDBOX=OFF'
 	prt-get isinst wpebackend-fdo || PKGMK_WEBKITGTK+=' -DUSE_WPE_RENDERER=OFF'
 	prt-get isinst libmanette || PKGMK_WEBKITGTK+=' -DENABLE_GAMEPAD=OFF'
 
-	cmake -S $name-$version -B build -G Ninja ${PKGMK_WEBKITGTK} \
+	cmake -S webkitgtk-$version -B build -G Ninja ${PKGMK_WEBKITGTK} \
 		-D CMAKE_INSTALL_PREFIX:PATH=/usr \
 		-D CMAKE_INSTALL_LIBDIR:PATH=/usr/lib \
 		-D CMAKE_INSTALL_LIBEXECDIR:PATH=/usr/lib \
