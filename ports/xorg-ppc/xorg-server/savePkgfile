@@ -1,0 +1,38 @@
+# Description: X Window System server
+# URL: http://xorg.freedesktop.org
+# Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
+# Depends on: libepoxy nettle xorg-bdftopcf xorg-font-util xorg-libdmx xorg-libxaw xorg-libxcomposite xorg-libxcursor xorg-libxfont2 xorg-libxft xorg-libxinerama xorg-libxres xorg-libxtst xorg-libxxf86dga xorg-mkfontscale xorg-xcb-util-keysyms xorg-xkbcomp
+
+name=xorg-server
+version=1.20.13
+release=4
+source=(https://www.x.org/releases/individual/xserver/$name-$version.tar.xz
+	0001-v2-FS-58644.patch xserver-autobind-hotplug.patch
+	0002-fix-libshadow-2.patch)
+
+build() {
+	# https://bugs.freedesktop.org/show_bug.cgi?id=106588
+	patch -Np1 -d $SRC/$name-$version -i $SRC/0001-v2-FS-58644.patch
+	patch -Np1 -d $SRC/$name-$version -i $SRC/0002-fix-libshadow-2.patch
+	patch -Np1 -d $SRC/$name-$version -i $SRC/xserver-autobind-hotplug.patch
+
+	meson setup $name-$version build \
+		--prefix=/usr \
+		--libexecdir=/usr/lib/$name \
+		--localstatedir=/var \
+		--buildtype=plain \
+		--wrap-mode nodownload \
+		-D b_lto=true \
+		-D b_pie=true \
+		-D os_vendor="CRUX" \
+		-D xkb_dir=/usr/share/X11/xkb \
+		-D xkb_output_dir=/var/lib/xkb \
+		-D suid_wrapper=true \
+		-D xorg=true
+	meson compile -C build
+	DESTDIR=$PKG meson install -C build
+
+	ln -s Xorg $PKG/usr/bin/X
+	install -m 755 -d $PKG/etc/X11/xorg.conf.d
+	echo "needs_root_rights = yes" >> $PKG/etc/X11/Xwrapper.config
+}
