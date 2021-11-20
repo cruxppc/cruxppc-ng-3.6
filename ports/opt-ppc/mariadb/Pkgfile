@@ -4,7 +4,7 @@
 # Depends on: ncurses zlib openssl cmake libaio linux-pam libpcre2
 
 name=mariadb
-version=10.6.4
+version=10.6.5
 release=3
 source=(https://downloads.mariadb.com/MariaDB//$name-$version/source/$name-$version.tar.gz 
 	mariadb.rc mariadb.pam

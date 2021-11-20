@@ -7,12 +7,12 @@
 # This is experimental and not recommended except for testing purposes.
 
 name=arcticfox-bin
-version=27.11.0
+version=27.12.0
 release=1
-source=(arcticfox-27.11.0.ubu12deb8-linux-powerpc.deb)
+source=(arcticfox-27.12.0.linux-powerpc.deb)
 
 build() {
-        ar x arcticfox-27.11.0.ubu12deb8-linux-powerpc.deb
+        ar x arcticfox-27.12.0.linux-powerpc.deb
         tar xvfp data.tar.gz -C $PKG
 
         install -d -m 755 ${PKG}/usr/bin
