@@ -4,11 +4,22 @@
 # Depends on:  libpng
 
 name=freetype
-version=2.11.0
+version=2.11.1
 release=1
-source=(http://download.savannah.gnu.org/releases/$name/$name-$version.tar.xz)
+
+source=(https://download.savannah.gnu.org/releases/freetype/freetype-$version.tar.xz
+	freetype2.sh
+	0001-Enable-table-validation-modules.patch
+	0002-Enable-subpixel-rendering.patch
+	0003-Enable-infinality-subpixel-hinting.patch
+	0004-Enable-long-PCF-family-names.patch)
 
 build() {
+	patch -Np1 -d $name-$version -i $SRC/0001-Enable-table-validation-modules.patch
+	patch -Np1 -d $name-$version -i $SRC/0002-Enable-subpixel-rendering.patch
+	patch -Np1 -d $name-$version -i $SRC/0003-Enable-infinality-subpixel-hinting.patch
+	patch -Np1 -d $name-$version -i $SRC/0004-Enable-long-PCF-family-names.patch
+
 	cd $name-$version
 
 	./configure \
@@ -19,4 +30,6 @@ build() {
 
 	make
 	make DESTDIR=$PKG install
+
+	install -Dt $PKG/etc/profile.d -m644 $SRC/freetype2.sh
 }
