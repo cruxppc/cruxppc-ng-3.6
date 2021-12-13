@@ -3,14 +3,14 @@ this from the install iso, be aware that there may be a newer
 version of this document in www.github.com/cruxppc/cruxppc-ng-3.6/iso/doc.
 
 Release Notes for CRUX PPC 3.6
-03/29/2021
+12/04/2021
 
    This page discusses the relevant changes introduced in CRUX PPC 3.6.
 
    This is the CRUX PPC 3.6 release.   
 
-   Changes since the previous release include package updates and
-   kernel configuration changes (primarly for audio support).
+   In this release, various packages have been updated to their most 
+   recent versions.   No functional changes have been made.
 
    
   Supported machines:
@@ -45,7 +45,7 @@ Release Notes for CRUX PPC 3.6
 
   Toolchain updates
 
-   CRUX PPC 3.6 includes glibc 2.32, gcc 9.3.0 and binutils 2.35.2
+   CRUX PPC 3.6 includes glibc 2.32, gcc 9.4.0 and binutils 2.35.2
 
   Kernel
 
@@ -140,9 +140,9 @@ Release Notes for CRUX PPC 3.6
    If a package causes illegal instruction exceptions, it may need
    to be rebuilt on the G3 machine to function properly.   
 
-   CRUX PPC 3.6 provides gcc 9.3.0 rather than the more recent 
+   CRUX PPC 3.6 provides gcc 9.4.0 rather than the more recent 
    gcc 10.2.0.   The build of nss (on 32bit at least) failed with
-   an illegal instruction with 10.2.0.   So, gcc was backed down to 9.3.0.   
+   an illegal instruction with 10.2.0.   So, gcc was backed down to 9.4.0.   
 
    Several other packages (e.g. cairo) are downreved compared to 
    mainline CRUX.   This is due to build and or runtime isses on 

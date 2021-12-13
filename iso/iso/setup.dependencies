@@ -227,7 +227,6 @@ smartmontools: smartmontools
 talloc: bzip2 expat ncurses libffi libnsl libtirpc mpdecimal zlib xz readline gdbm sqlite3 python3 talloc 
 u-boot-tools: openssl u-boot-tools
 unzip: unzip 
-vte: gtk util-linux vte
 wireless-tools: wireless-tools 
 wpa_supplicant: openssl ncurses libnl expat readline dbus wpa_supplicant 
 xterm: kmod zlib ncurses bzip2 xz xorg-xorgproto expat libffi libnsl libtirpc mpdecimal xorg-util-macros xorg-font-alias xorg-libpixman libpcre xorg-font-util eudev file libpng readline xorg-libxau xorg-libxdmcp xorg-libfontenc xorg-xtrans freetype util-linux gdbm sqlite3 xorg-libice fontconfig xorg-libxfont python3 xorg-libsm xorg-xcb-proto python3-setuptools ninja xorg-libxcb meson xorg-libx11 xorg-xcb-util glib xorg-libxext xorg-libxt xorg-libxrender xorg-mkfontscale gobject-introspection xorg-libxmu xorg-libxpm cairo xorg-libxaw harfbuzz xorg-bdftopcf xorg-font-misc-misc xterm 
@@ -381,6 +380,7 @@ pulseaudio: dbus intltool libsndfile meson ninja pulseaudio
 pygtk: libglade-compat python-cairo python-gobject-compat pygtk
 python-gobject-compat: glib python-gobject-compat
 vala: glib vala
+vte: gtk util-linux vte
 vulkan-headers: cmake ninja vulkan-headers
 vulkan-loader: vulkan-headers xorg-libxrandr vulkan-loader
 x264: yasm x264
