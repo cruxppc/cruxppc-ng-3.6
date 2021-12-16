@@ -4,7 +4,7 @@
 # Depends on: expect
 
 name=dejagnu
-version=1.6.2
+version=1.6.3
 release=1
 source=(https://ftp.gnu.org/gnu/dejagnu/dejagnu-${version}.tar.gz)
 
