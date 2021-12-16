@@ -6,15 +6,27 @@
 
 name=qt5
 version=5.15.2
-release=1
+release=2
 source=(https://download.qt.io/official_releases/qt/${version::4}/$version/single/qt-everywhere-src-$version.tar.xz
 	qt5-cflags.patch
-	qt5-logo.png)
+	qt5-logo.png
+	qtbase-everywhere-src-5.11.1-python3.patch
+	qtbase-everywhere-src-5.14.2-no_relocatable.patch
+	qtbase-everywhere-src-5.15.2-libglvnd.patch
+	qtbase-filechooser-portal-send-window-id-in-hex.patch
+	qtbase-use-wayland-on-gnome.patch
+	qt-everywhere-src-5.15.2-CVE-2021-3481-1.patch)
 
 build() {
 	cd qt-everywhere-src-$version
 
 	patch -d qtbase -p1 -i $SRC/qt5-cflags.patch
+	patch -d qtbase -p1 -i $SRC/qtbase-everywhere-src-5.11.1-python3.patch
+	patch -d qtbase -p1 -i $SRC/qtbase-everywhere-src-5.14.2-no_relocatable.patch
+	patch -d qtbase -p1 -i $SRC/qtbase-everywhere-src-5.15.2-libglvnd.patch
+	patch -d qtbase -p1 -i $SRC/qtbase-filechooser-portal-send-window-id-in-hex.patch
+	patch -d qtbase -p1 -i $SRC/qtbase-use-wayland-on-gnome.patch
+	patch -p1 -i $SRC/qt-everywhere-src-5.15.2-CVE-2021-3481-1.patch
 
 	export PYTHON='/usr/bin/python3'
 	mkdir $SRC/bin
@@ -25,7 +37,13 @@ build() {
 	export LD_LIBRARY_PATH="$QTDIR/qtbase/lib:$QTDIR/qttools/lib:$LD_LIBRARY_PATH"
 	export QT_PLUGIN_PATH="$QTDIR/qtbase/plugins"
 
-	prt-get isinst ccache && PKGMK_QT5+=' -ccache' && PATH="$(echo ${PATH} | awk -v RS=: -v ORS=: '/ccache/ {next} {print}' | sed 's/:*$//')"
+	prt-get isinst ccache && PKGMK_QT5+=' -ccache' && \
+		PATH="$(echo ${PATH} | awk -v RS=: -v ORS=: '/ccache/ {next} {print}' | sed 's/:*$//')"
+
+	sed -i '/utility/a #include <limits>'     qtbase/src/corelib/global/qglobal.h
+	sed -i '/string/a #include <limits>'      qtbase/src/corelib/global/qfloat16.h
+	sed -i '/qbytearray/a #include <limits>'  qtbase/src/corelib/text/qbytearraymatcher.h
+	sed -i '/type_traits/a #include <limits>' qtdeclarative/src/qmldebug/qqmlprofilerevent_p.h
 
 	./configure $PKGMK_QT5 \
 		-prefix /usr/ \
@@ -50,7 +68,6 @@ build() {
 		-opengl desktop \
 		-opensource \
 		-openssl-linked \
-		-optimized-qmake \
 		-release \
 		-shared \
 		-plugin-sql-sqlite \
@@ -65,7 +82,7 @@ build() {
 	# Fix paths
 	find "$PKG/usr/lib" -type f -name '*.prl' \
 		-exec sed -e '/^QMAKE_PRL_BUILD_DIR/d' -i {} \;
-        
+
 	sed -e "s|$PWD/qtbase|/usr/lib/qt5|g" \
 		-i $PKG/usr/lib/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri
 
