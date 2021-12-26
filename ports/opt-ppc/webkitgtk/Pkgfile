@@ -1,15 +1,18 @@
 # Description: Small, efficient and fast rendering engine for Web Browsers.
 # URL: https://www.webkitgtk.org/
 # Maintainer: cruxppc at gmail dot com
-# Depends on: gst-plugins-base gtk gtk3 icu harfbuzz hyphen libseccomp libsecret libsoup3 libwebp libxslt ruby woff2 xorg-libxt
+# Depends on: gst-plugins-base gtk gtk3 hyphen icu lcms2 libseccomp libsecret libsoup3 libwebp libxslt ruby woff2 xorg-libxt
 # Optional: enchant libnotify geoclue openjpeg2 xdg-dbus-proxy bubblewrap wpebackend-fdo libmanette
 
 name=webkitgtk
-version=2.34.2
+version=2.34.3
 release=1
 source=(https://webkitgtk.org/releases/webkitgtk-$version.tar.xz)
 
 build() {
+	# fail the build if dependencies are not met
+	ls /usr/include/harfbuzz/hb-icu.h || (printf '\e[1;31m%-6s\e[m\n' "you need to install icu, then rebuild harfbuzz for webkitgtk to work, quitting.." ; exit 1)
+
 	# Make sure we do not have ccache masquerade directory in PATH.
 	[ -e '/usr/bin/ccache' ] && PATH="$(echo ${PATH} | awk -v RS=: -v ORS=: '/ccache/ {next} {print}' | sed 's/:*$//')"
 
