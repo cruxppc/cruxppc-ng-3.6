@@ -4,7 +4,7 @@
 # Depends on: nspr sqlite3
 
 name=nss
-version=3.73.1
+version=3.74
 release=1
 source=(https://ftp.mozilla.org/pub/security/nss/releases/NSS_${version//./_}_RTM/src/$name-$version.tar.gz \
 	nss-3.54-standalone-2.patch \
@@ -26,6 +26,10 @@ build() {
 	export NSS_DISABLE_GTESTS=1
 	case $(uname -m) in
 		ppc64) export USE_64=1 ;;
+		ppc) 
+			export NSS_DISABLE_ALTIVEC=1
+			export NSS_DISABLE_CRYPTO_VSX=1
+		;;
 	esac
 
 	make -C nss
