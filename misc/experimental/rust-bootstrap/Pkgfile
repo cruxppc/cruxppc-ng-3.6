@@ -1,0 +1,22 @@
+# Description: The Rust language with Cargo included.
+# URL: https://www.rust-lang.org/
+# Maintainer: Danny Rawlins, crux at romster dot me
+# Depends on: compiler-rt
+# Optional: sccache ccache
+
+name=rust-bootstrap
+version=1.57.0
+release=1
+source=(https://static.rust-lang.org/dist/rustc-${version}-powerpc-unknown-linux-gnu.tar.xz
+       https://static.rust-lang.org/dist/rust-std-${version}-powerpc-unknown-linux-gnu.tar.xz
+       )
+
+build() {
+date
+	for d in *; do
+		cd $d
+		./install.sh --prefix=/usr --destdir="${PKG}"
+		cd ..
+	done
+#	rm -f ${PKG}/usr/lib/rustlib/powerpc-unknown-linux-gnu/bin/rust-ll*
+}
