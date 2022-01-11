@@ -1,0 +1,25 @@
+# Description: Bootstrap powerpc[64] binaries of Rust package manager
+# URL: https://www.rust-lang.org/
+# Maintainer: cruxppc at gmail dot com
+
+case $(uname -m) in
+	ppc) ARCH=powerpc ;;
+	ppc64) ARCH=powerpc64 ;;
+	*) echo unknown arch!; exit 1 ;;
+esac
+
+name=rust-bootstrap
+version=1.57.0
+release=1
+source=(https://static.rust-lang.org/dist/rustc-${version}-$ARCH-unknown-linux-gnu.tar.xz
+       https://static.rust-lang.org/dist/rust-std-${version}-$ARCH-unknown-linux-gnu.tar.xz
+       )
+
+build() {
+	for d in *; do
+		cd $d
+		./install.sh --prefix=/usr --destdir="${PKG}"
+		cd ..
+	done
+#	rm -f ${PKG}/usr/lib/rustlib/powerpc-unknown-linux-gnu/bin/rust-ll*
+}
