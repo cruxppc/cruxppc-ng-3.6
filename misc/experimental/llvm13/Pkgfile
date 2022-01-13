@@ -1,0 +1,51 @@
+# Description: LLVM compiler backend
+# URL: https://llvm.org/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: cmake libffi libxml2 ninja python3-setuptools
+# Optional: lld
+
+name=llvm
+version=13.0.0
+release=1
+source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/llvm-$version.src.tar.xz
+	llvm-config.h)
+
+build() {
+	cmake -S $name-$version.src -B build -G Ninja \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_BUILD_TYPE=Release \
+		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-D LLVM_TARGETS_TO_BUILD='X86;AMDGPU;BPF;NVPTX;WebAssembly,PowerPC' \
+		-D LLVM_BINUTILS_INCDIR=/usr/include \
+		-D LLVM_BUILD_LLVM_DYLIB=ON \
+		-D LLVM_LINK_LLVM_DYLIB=ON \
+		-D LLVM_PARALLEL_COMPILE_JOBS="${JOBS:-1}" \
+		-D LLVM_INCLUDE_EXAMPLES=OFF \
+		-D LLVM_INCLUDE_TESTS=OFF \
+		-D LLVM_ENABLE_FFI=ON \
+		-D LLVM_ENABLE_RTTI=ON \
+		-D LLVM_ENABLE_OCAMLDOC=OFF \
+		-D LLVM_INSTALL_UTILS=ON \
+		-D LLVM_ENABLE_LIBCXX=OFF \
+		-D LLVM_ENABLE_LLD="$(prt-get isinst lld >/dev/null && echo ON || echo OFF)" \
+		-D LLVM_OPTIMIZED_TABLEGEN=ON \
+		-Wno-dev
+
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+
+	# multilib stub
+#	mv $PKG/usr/include/llvm/Config/llvm-config{,-64}.h
+#	install -m 0644 $SRC/llvm-config.h $PKG/usr/include/llvm/Config/
+
+	install -d $PKG/usr/lib/bfd-plugins
+	ln -s ../LLVMgold.so $PKG/usr/lib/bfd-plugins/
+	ln -s ../libLTO.so $PKG/usr/lib/bfd-plugins/
+
+	/usr/bin/python3 $name-$version.src/utils/lit/setup.py build
+	/usr/bin/python3 $name-$version.src/utils/lit/setup.py install --prefix=/usr --root=$PKG
+	/usr/bin/python3 -m compileall -d $name-$version.src/utils/lit $PKG
+	/usr/bin/python3 -O -m compileall -d $name-$version.src/utils/lit $PKG
+	/usr/bin/python3 -OO -m compileall -d $name-$version.src/utils/lit $PKG
+}
