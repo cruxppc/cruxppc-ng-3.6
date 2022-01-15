@@ -1,0 +1,1416 @@
+=======> WARNING: Signature file not found, falling back to old md5sum checking.
+=======> Building '/root/rust58_ppc32/rust#1.57.0-1.pkg.tar.xz'.
+Copying /sources/rustc-1.58.0-src.tar.xz
+Unpacking /sources/compiler-rt-12.0.1.src.tar.xz
++ build
++ cd rustc-1.57.0-src
++ patch -p1 -i /root/rust58_ppc32/work/src/0001-Fix-LLVM-build.patch
+can't find file to patch at input line 14
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|From 4443eca0d6b3ba599832b2f73a5350fdd0c90d10 Mon Sep 17 00:00:00 2001
+|From: Samuel Holland <samuel@sholland.org>
+|Date: Fri, 8 Sep 2017 00:04:29 -0500
+|Subject: [PATCH 01/15] Fix LLVM build
+|
+|---
+| src/bootstrap/lib.rs | 3 ++-
+| 1 file changed, 2 insertions(+), 1 deletion(-)
+|
+|diff --git a/src/bootstrap/lib.rs b/src/bootstrap/lib.rs
+|index a476d25f..c7e63990 100644
+|--- a/src/bootstrap/lib.rs
+|+++ b/src/bootstrap/lib.rs
+--------------------------
+File to patch: 
+Skip this patch? [y] 
+Skipping patch.
+1 out of 1 hunk ignored
+=======> ERROR: Building '/root/rust58_ppc32/rust#1.57.0-1.pkg.tar.xz' failed.
+=======> WARNING: Signature file not found, falling back to old md5sum checking.
+=======> Building '/root/rust58_ppc32/rust#1.57.0-1.pkg.tar.xz'.
+Copying /sources/rustc-1.58.0-src.tar.xz
+Unpacking /sources/compiler-rt-12.0.1.src.tar.xz
++ build
++ cd rustc-1.57.0-src
++ patch -p1 -i /root/rust58_ppc32/work/src/0003-move-debugger-scripts-to-usr-share-rust.patch
+can't find file to patch at input line 17
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|From f9a680688a685ec47ee5ec001574d9b91b4ba35e Mon Sep 17 00:00:00 2001
+|From: Daniel Kolesa <daniel@octaforge.org>
+|Date: Mon, 20 Dec 2021 00:45:35 +0100
+|Subject: [PATCH 3/9] move debugger scripts to /usr/share/rust
+|
+|---
+| src/bootstrap/dist.rs | 2 +-
+| src/etc/rust-gdb      | 2 +-
+| src/etc/rust-gdbgui   | 2 +-
+| src/etc/rust-lldb     | 4 ++--
+| 4 files changed, 5 insertions(+), 5 deletions(-)
+|
+|diff --git a/src/bootstrap/dist.rs b/src/bootstrap/dist.rs
+|index d4875cfe1..e8b61b8a2 100644
+|--- a/src/bootstrap/dist.rs
+|+++ b/src/bootstrap/dist.rs
+--------------------------
+File to patch: 
+Skip this patch? [y] 
+Skipping patch.
+1 out of 1 hunk ignored
+can't find file to patch at input line 30
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|diff --git a/src/etc/rust-gdb b/src/etc/rust-gdb
+|index b950cea79..559bfe3f1 100755
+|--- a/src/etc/rust-gdb
+|+++ b/src/etc/rust-gdb
+--------------------------
+File to patch: 
+Skip this patch? [y] 
+Skipping patch.
+1 out of 1 hunk ignored
+can't find file to patch at input line 43
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|diff --git a/src/etc/rust-gdbgui b/src/etc/rust-gdbgui
+|index 9744913b6..8722acdcc 100755
+|--- a/src/etc/rust-gdbgui
+|+++ b/src/etc/rust-gdbgui
+--------------------------
+File to patch: 
+Skip this patch? [y] 
+Skipping patch.
+1 out of 1 hunk ignored
+can't find file to patch at input line 56
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|diff --git a/src/etc/rust-lldb b/src/etc/rust-lldb
+|index bce72f1ba..8abb01245 100755
+|--- a/src/etc/rust-lldb
+|+++ b/src/etc/rust-lldb
+--------------------------
+File to patch: 
+Skip this patch? [y] 
+Skipping patch.
+1 out of 1 hunk ignored
+=======> ERROR: Building '/root/rust58_ppc32/rust#1.57.0-1.pkg.tar.xz' failed.
+=======> WARNING: Signature file not found, falling back to old md5sum checking.
+=======> Building '/root/rust58_ppc32/rust#1.58.0-1.pkg.tar.xz'.
+Unpacking /sources/rustc-1.58.0-src.tar.xz
+Unpacking /sources/compiler-rt-12.0.1.src.tar.xz
++ build
++ cd rustc-1.58.0-src
++ patch -p1 -i /root/rust58_ppc32/work/src/0040-rls-atomics.patch
+patching file src/tools/rls/rls/src/cmd.rs
+Hunk #2 succeeded at 316 (offset 3 lines).
+patching file src/tools/rls/rls/src/server/io.rs
+Hunk #1 succeeded at 5 (offset -2 lines).
+Hunk #2 succeeded at 169 (offset -2 lines).
+Hunk #3 succeeded at 192 (offset -2 lines).
++ patch -p1 -i /root/rust58_ppc32/work/src/0001-Fix-LLVM-build.patch
+patching file src/bootstrap/lib.rs
+Hunk #1 succeeded at 953 (offset 185 lines).
++ patch -p1 -i /root/rust58_ppc32/work/src/0003-move-debugger-scripts-to-usr-share-rust.patch
+patching file src/bootstrap/dist.rs
+Hunk #1 succeeded at 497 (offset -2 lines).
+patching file src/etc/rust-gdb
+patching file src/etc/rust-gdbgui
+patching file src/etc/rust-lldb
++ patch -p1 -i /root/rust58_ppc32/work/src/0004-fix-shebang-on-install-template.sh.patch
+patching file src/tools/rust-installer/install-template.sh
++ patch -p1 -i /root/rust58_ppc32/work/src/0005-Prefer-libgcc_eh-over-libunwind-on-musl.patch
+patching file library/unwind/src/lib.rs
++ patch -p1 -i /root/rust58_ppc32/work/src/0006-do-not-install-libunwind-source-removed.patch
+patching file src/bootstrap/dist.rs
+Hunk #1 succeeded at 847 (offset -2 lines).
++ patch -p1 -i /root/rust58_ppc32/work/src/0007-fix-rustdoc-when-cross-compiling.patch
+patching file src/bootstrap/bin/rustdoc.rs
++ patch -p1 -i /root/rust58_ppc32/work/src/0008-link-stage-2-tools-dynamically-to-libstd.patch
+patching file src/bootstrap/builder.rs
+Hunk #1 succeeded at 1539 (offset 19 lines).
++ patch -p1 -i /root/rust58_ppc32/work/src/0015-Use-ELFv2-ABI-on-all-powerpc64-targets.patch
+patching file compiler/rustc_target/src/abi/call/powerpc64.rs
+Hunk #1 succeeded at 119 with fuzz 2.
+patching file compiler/rustc_target/src/spec/powerpc64_unknown_linux_gnu.rs
+Hunk #2 succeeded at 7 with fuzz 1.
++ patch -p1 -i /root/rust58_ppc32/work/src/fix-ppc32.patch
+patching file src/bootstrap/builder.rs
+Hunk #1 succeeded at 1318 (offset 19 lines).
++ patch -p1 -i /root/rust58_ppc32/work/src/ld-library-path.patch
+patching file src/bootstrap/bootstrap.py
+Hunk #1 succeeded at 945 (offset 21 lines).
++ patch -p1 -i /root/rust58_ppc32/work/src/native-sysroot.patch
+patching file src/bootstrap/builder.rs
+Hunk #1 succeeded at 1185 (offset 19 lines).
+patching file src/bootstrap/config.rs
+Hunk #1 succeeded at 295 (offset 3 lines).
+Hunk #2 succeeded at 533 (offset 7 lines).
+Hunk #3 succeeded at 945 with fuzz 2 (offset 34 lines).
+patching file src/bootstrap/lib.rs
+Hunk #1 succeeded at 1075 with fuzz 1 (offset 19 lines).
++ patch -p1 -i /root/rust58_ppc32/work/src/need-ssp-nonshared-and-execinfo.patch
+patching file library/std/src/sys/unix/mod.rs
+Hunk #1 succeeded at 264 with fuzz 2 (offset 52 lines).
++ patch -p1 -i /root/rust58_ppc32/work/src/libexec.patch
+patching file src/bootstrap/dist.rs
+Hunk #1 succeeded at 1002 (offset 22 lines).
+patching file src/tools/cargo/src/cargo/ops/registry/auth.rs
++ cat
++ '[' -e /usr/bin/rustc ']'
+++ /usr/bin/ldd /usr/bin/rustc
+++ egrep '.*libLLVM.*.so => not found'
++ '[' -z '' ']'
++ sed -e 's|@CARGO@|cargo = "/usr/bin/cargo"|' -e 's|@RUST@|rustc = "/usr/bin/rustc"|' -i /root/rust58_ppc32/work/src/config.toml
++ '[' -e /usr/bin/ccache ']'
++ sed -e 's|@CCACHE@||' -i /root/rust58_ppc32/work/src/config.toml
++ mv /root/rust58_ppc32/work/src/config.toml /root/rust58_ppc32/work/src/origconfig.toml
++ cp /root/rust58_ppc32/work/src/voidconfig.toml /root/rust58_ppc32/work/src/config.toml
++ cat /root/rust58_ppc32/work/src/config.toml
+changelog-seen = 2
+[llvm]
+ninja = false
+link-shared = true
+[build]
+build = "powerpc-unknown-linux-gnu"
+host = [ "powerpc-unknown-linux-gnu" ]
+target = [ "powerpc-unknown-linux-gnu" ]
+cargo = "/usr/bin/cargo"
+rustc = "/usr/bin/rustc"
+submodules = false
+python = "python3"
+locked-deps = true
+vendor = true
+full-bootstrap = false
+local-rebuild = false
+extended = true
+tools = ["cargo", "src"]
+docs = true
+[install]
+prefix = "/usr"
+[rust]
+optimize = true
+debug = false
+codegen-units = 1
+codegen-units-std = 1
+debuginfo-level = 0
+debuginfo-level-rustc = 0
+debuginfo-level-tests = 0
+incremental = false
+parallel-compiler = false
+channel = "stable"
+rpath = false
+verbose-tests = true
+dist-src = false
+jemalloc = false
+llvm-libunwind = "no"
+codegen-tests = false
+[dist]
+src-tarball = false
+[target.powerpc-unknown-linux-gnu]
+llvm-config = "/usr/bin/llvm-config"
+crt-static = false
+cc = "cc"
+cxx = "g++"
+ar = "ar"
+linker = "cc"
++ sed -i 's/\("files":{\)[^}]*/\1/' vendor/libc/.cargo-checksum.json
++ sed -i 's/\("files":{\)[^}]*/\1/' vendor/typenum/.cargo-checksum.json
++ sed -i 's/\("files":{\)[^}]*/\1/' vendor/cc/.cargo-checksum.json
++ sed -i 's/\("files":{\)[^}]*/\1/' vendor/rustc-ap-rustc_target/.cargo-checksum.json
++ sed -i 's/\("files":{\)[^}]*/\1/' vendor/target-lexicon/.cargo-checksum.json
++ sed -i 's/\("files":{\)[^}]*/\1/' vendor/tikv-jemallocator/.cargo-checksum.json
++ mkdir /sources/rust
+mkdir: cannot create directory '/sources/rust': File exists
++ true
++ export CARGO_HOME=/sources/rust
++ CARGO_HOME=/sources/rust
++ '[' -e /usr/bin/sccache ']'
++ export RUST_BACKTRACE=1
++ RUST_BACKTRACE=1
++ export RUST_COMPILER_RT_ROOT=/root/rust58_ppc32/work/src/compiler-rt-12.0.1.src
++ RUST_COMPILER_RT_ROOT=/root/rust58_ppc32/work/src/compiler-rt-12.0.1.src
++ export RUSTFLAGS=
++ RUSTFLAGS=
++ /usr/bin/python3 ./x.py build --config=/root/rust58_ppc32/work/src/config.toml -j 1
+   Compiling proc-macro2 v1.0.30
+   Compiling unicode-xid v0.2.2
+   Compiling syn v1.0.80
+   Compiling memchr v2.4.1
+   Compiling autocfg v1.0.0
+   Compiling version_check v0.9.3
+   Compiling lazy_static v1.4.0
+   Compiling serde_derive v1.0.125
+   Compiling cfg-if v1.0.0
+   Compiling libc v0.2.106
+   Compiling log v0.4.14
+   Compiling serde v1.0.125
+   Compiling regex-automata v0.1.10
+   Compiling ryu v1.0.5
+   Compiling regex-syntax v0.6.25
+   Compiling serde_json v1.0.59
+   Compiling fnv v1.0.7
+   Compiling same-file v1.0.6
+   Compiling unicode-width v0.1.8
+   Compiling bootstrap v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/bootstrap)
+   Compiling itoa v0.4.6
+   Compiling cc v1.0.69
+   Compiling once_cell v1.7.2
+   Compiling build_helper v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/build_helper)
+   Compiling crossbeam-utils v0.8.3
+   Compiling num-traits v0.2.12
+   Compiling thread_local v1.0.1
+   Compiling proc-macro-error-attr v1.0.4
+   Compiling proc-macro-error v1.0.4
+   Compiling walkdir v2.3.1
+   Compiling getopts v0.2.21
+   Compiling cmake v0.1.44
+   Compiling quote v1.0.7
+   Compiling aho-corasick v0.7.18
+   Compiling bstr v0.2.13
+   Compiling filetime v0.2.14
+   Compiling num_cpus v1.13.0
+   Compiling time v0.1.43
+   Compiling regex v1.5.4
+   Compiling opener v0.5.0
+   Compiling globset v0.4.5
+   Compiling ignore v0.4.17
+   Compiling merge_derive v0.1.0
+   Compiling merge v0.1.0
+   Compiling toml v0.5.7
+    Finished dev [unoptimized] target(s) in 10m 48s
+Building stage0 std artifacts (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+   Compiling cc v1.0.69
+   Compiling core v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/core)
+   Compiling libc v0.2.106
+   Compiling memchr v2.4.1
+   Compiling std v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/std)
+   Compiling compiler_builtins v0.1.53
+   Compiling unwind v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/unwind)
+   Compiling rustc-std-workspace-core v1.99.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/rustc-std-workspace-core)
+   Compiling alloc v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/alloc)
+   Compiling cfg-if v0.1.10
+   Compiling adler v0.2.3
+   Compiling rustc-demangle v0.1.21
+   Compiling rustc-std-workspace-alloc v1.99.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/rustc-std-workspace-alloc)
+   Compiling panic_abort v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/panic_abort)
+   Compiling gimli v0.25.0
+   Compiling hashbrown v0.11.0
+   Compiling object v0.26.2
+   Compiling std_detect v0.1.5 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/stdarch/crates/std_detect)
+   Compiling miniz_oxide v0.4.0
+   Compiling panic_unwind v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/panic_unwind)
+   Compiling addr2line v0.16.0
+   Compiling rustc-std-workspace-std v1.99.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/rustc-std-workspace-std)
+   Compiling proc_macro v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/proc_macro)
+   Compiling unicode-width v0.1.8
+   Compiling getopts v0.2.21
+   Compiling test v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/test)
+    Finished release [optimized] target(s) in 18m 33s
+Copying stage0 std from stage0 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+Building stage0 compiler artifacts (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+   Compiling autocfg v1.0.0
+   Compiling libc v0.2.106
+   Compiling proc-macro2 v1.0.30
+   Compiling unicode-xid v0.2.2
+   Compiling syn v1.0.80
+   Compiling cfg-if v0.1.10
+   Compiling lazy_static v1.4.0
+   Compiling cfg-if v1.0.0
+   Compiling scopeguard v1.1.0
+   Compiling log v0.4.14
+   Compiling smallvec v1.7.0
+   Compiling cc v1.0.69
+   Compiling instant v0.1.6
+   Compiling hashbrown v0.11.0
+   Compiling getrandom v0.2.0
+   Compiling maybe-uninit v2.0.0
+   Compiling bitflags v1.2.1
+   Compiling version_check v0.9.3
+   Compiling pin-project-lite v0.2.4
+   Compiling typenum v1.12.0
+   Compiling ppv-lite86 v0.2.8
+   Compiling either v1.6.0
+   Compiling rustc-hash v1.1.0
+   Compiling rustc-rayon-core v0.3.1
+   Compiling arrayvec v0.7.0
+   Compiling remove_dir_all v0.5.3
+   Compiling rustc_graphviz v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_graphviz)
+   Compiling opaque-debug v0.3.0
+   Compiling stable_deref_trait v1.2.0
+   Compiling unicode-width v0.1.8
+   Compiling unic-common v0.9.0
+   Compiling unic-char-range v0.9.0
+   Compiling scoped-tls v1.0.0
+   Compiling termcolor v1.1.2
+   Compiling serde_derive v1.0.125
+   Compiling serde v1.0.125
+   Compiling annotate-snippets v0.8.0
+   Compiling rustc_fs_util v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_fs_util)
+   Compiling datafrog v2.0.1
+   Compiling memchr v2.4.1
+   Compiling tinyvec v0.3.4
+   Compiling regex-syntax v0.6.25
+   Compiling ryu v1.0.5
+   Compiling serde_json v1.0.59
+   Compiling itoa v0.4.6
+   Compiling getrandom v0.1.14
+   Compiling snap v1.0.1
+   Compiling ansi_term v0.12.1
+   Compiling fixedbitset v0.2.0
+   Compiling unicode-script v0.5.3
+   Compiling crc32fast v1.2.0
+   Compiling build_helper v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/build_helper)
+   Compiling if_chain v1.0.0
+   Compiling rustc-demangle v0.1.21
+   Compiling punycode v0.4.1
+   Compiling pathdiff v0.2.0
+   Compiling rustc_error_codes v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_error_codes)
+   Compiling indexmap v1.7.0
+   Compiling crossbeam-utils v0.7.2
+   Compiling memoffset v0.5.5
+   Compiling crossbeam-epoch v0.8.2
+   Compiling num-traits v0.2.12
+   Compiling num-integer v0.1.43
+   Compiling tracing-core v0.1.21
+   Compiling thread_local v1.0.1
+   Compiling sharded-slab v0.1.1
+   Compiling odht v0.3.1
+   Compiling lock_api v0.4.1
+   Compiling psm v0.1.16
+   Compiling stacker v0.1.14
+   Compiling generic-array v0.14.4
+   Compiling itertools v0.9.0
+   Compiling getopts v0.2.21
+   Compiling unic-ucd-version v0.9.0
+   Compiling unic-char-property v0.9.0
+   Compiling unicode-normalization v0.1.13
+   Compiling regex-automata v0.1.10
+   Compiling rustc_llvm v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_llvm)
+   Compiling unic-emoji-char v0.9.0
+   Compiling unicode-security v0.0.5
+   Compiling matchers v0.0.1
+   Compiling parking_lot_core v0.8.3
+   Compiling num_cpus v1.13.0
+   Compiling memmap2 v0.2.1
+   Compiling jobserver v0.1.24
+   Compiling atty v0.2.14
+   Compiling termize v0.1.1
+   Compiling quote v1.0.7
+   Compiling ena v0.14.0
+   Compiling polonius-engine v0.13.0
+   Compiling tracing-log v0.1.2
+   Compiling rustc_apfloat v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_apfloat)
+   Compiling rustc_lexer v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_lexer)
+   Compiling aho-corasick v0.7.18
+   Compiling rustc_serialize v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_serialize)
+   Compiling petgraph v0.5.1
+   Compiling object v0.26.2
+   Compiling crossbeam-queue v0.2.3
+   Compiling parking_lot v0.11.1
+   Compiling rand_core v0.6.2
+   Compiling rand_core v0.5.1
+   Compiling cstr v0.2.8
+   Compiling digest v0.9.0
+   Compiling block-buffer v0.9.0
+   Compiling regex v1.5.4
+   Compiling crossbeam-deque v0.7.4
+   Compiling chrono v0.4.19
+   Compiling measureme v10.0.0
+   Compiling rand_chacha v0.3.0
+   Compiling rand_xoshiro v0.6.0
+   Compiling rand_chacha v0.2.2
+   Compiling synstructure v0.12.4
+   Compiling tracing-attributes v0.1.17
+   Compiling md-5 v0.9.1
+   Compiling sha-1 v0.9.1
+   Compiling sha2 v0.9.1
+   Compiling rand v0.8.4
+   Compiling rand v0.7.3
+   Compiling rustc_macros v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_macros)
+   Compiling chalk-derive v0.55.0
+   Compiling tracing v0.1.28
+   Compiling rustc-rayon v0.3.1
+   Compiling tempfile v3.2.0
+   Compiling rustc_index v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_index)
+   Compiling chalk-ir v0.55.0
+   Compiling gsgdt v0.1.2
+   Compiling tracing-serde v0.1.2
+   Compiling rls-span v0.5.3
+   Compiling rustc_data_structures v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_data_structures)
+   Compiling tracing-subscriber v0.2.16
+   Compiling rls-data v0.19.1
+   Compiling rustc_arena v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_arena)
+   Compiling rustc_type_ir v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_type_ir)
+   Compiling tracing-tree v0.1.9
+   Compiling rustc_span v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_span)
+   Compiling chalk-solve v0.55.0
+   Compiling rustc_ast v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ast)
+   Compiling rustc_target v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_target)
+   Compiling rustc_feature v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_feature)
+   Compiling rustc_parse_format v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_parse_format)
+   Compiling chalk-engine v0.55.0
+   Compiling rustc_ast_pretty v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ast_pretty)
+   Compiling rustc_lint_defs v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_lint_defs)
+   Compiling rustc_hir v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_hir)
+   Compiling rustc_errors v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_errors)
+   Compiling rustc_hir_pretty v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_hir_pretty)
+   Compiling rustc_session v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_session)
+   Compiling rustc_attr v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_attr)
+   Compiling rustc_query_system v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_query_system)
+   Compiling rustc_parse v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_parse)
+   Compiling rustc_middle v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_middle)
+   Compiling rustc_ast_lowering v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ast_lowering)
+   Compiling rustc_ast_passes v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ast_passes)
+   Compiling rustc_infer v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_infer)
+   Compiling rustc_mir_dataflow v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_mir_dataflow)
+   Compiling rustc_incremental v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_incremental)
+   Compiling rustc_symbol_mangling v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_symbol_mangling)
+   Compiling rustc_passes v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_passes)
+   Compiling rustc_query_impl v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_query_impl)
+   Compiling rustc_monomorphize v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_monomorphize)
+   Compiling rustc_save_analysis v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_save_analysis)
+   Compiling rustc_expand v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_expand)
+   Compiling rustc_trait_selection v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_trait_selection)
+   Compiling rustc_metadata v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_metadata)
+   Compiling rustc_builtin_macros v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_builtin_macros)
+   Compiling rustc_lint v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_lint)
+   Compiling rustc_const_eval v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_const_eval)
+   Compiling rustc_ty_utils v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ty_utils)
+   Compiling rustc_traits v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_traits)
+   Compiling rustc_mir_build v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_mir_build)
+   Compiling rustc_codegen_ssa v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_codegen_ssa)
+   Compiling rustc_resolve v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_resolve)
+   Compiling rustc_plugin_impl v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_plugin_impl)
+   Compiling rustc_mir_transform v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_mir_transform)
+   Compiling rustc_typeck v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_typeck)
+   Compiling rustc_borrowck v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_borrowck)
+   Compiling rustc_codegen_llvm v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_codegen_llvm)
+   Compiling rustc_privacy v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_privacy)
+   Compiling rustc_interface v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_interface)
+   Compiling rustc_driver v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_driver)
+   Compiling rustc-main v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc)
+    Finished release [optimized] target(s) in 511m 24s
+Copying stage0 rustc from stage0 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+Assembling stage1 compiler (powerpc-unknown-linux-gnu)
+Building stage1 std artifacts (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+   Compiling cc v1.0.69
+   Compiling core v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/core)
+   Compiling libc v0.2.106
+   Compiling memchr v2.4.1
+   Compiling std v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/std)
+   Compiling compiler_builtins v0.1.53
+   Compiling unwind v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/unwind)
+   Compiling rustc-std-workspace-core v1.99.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/rustc-std-workspace-core)
+   Compiling alloc v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/alloc)
+   Compiling cfg-if v0.1.10
+   Compiling adler v0.2.3
+   Compiling rustc-demangle v0.1.21
+   Compiling rustc-std-workspace-alloc v1.99.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/rustc-std-workspace-alloc)
+   Compiling panic_abort v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/panic_abort)
+   Compiling gimli v0.25.0
+   Compiling hashbrown v0.11.0
+   Compiling std_detect v0.1.5 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/stdarch/crates/std_detect)
+   Compiling miniz_oxide v0.4.0
+   Compiling object v0.26.2
+   Compiling panic_unwind v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/panic_unwind)
+   Compiling addr2line v0.16.0
+   Compiling rustc-std-workspace-std v1.99.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/rustc-std-workspace-std)
+   Compiling proc_macro v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/proc_macro)
+   Compiling unicode-width v0.1.8
+   Compiling getopts v0.2.21
+   Compiling test v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/test)
+    Finished release [optimized] target(s) in 15m 02s
+Copying stage1 std from stage1 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+Building stage1 compiler artifacts (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+   Compiling autocfg v1.0.0
+   Compiling libc v0.2.106
+   Compiling proc-macro2 v1.0.30
+   Compiling unicode-xid v0.2.2
+   Compiling syn v1.0.80
+   Compiling cfg-if v0.1.10
+   Compiling lazy_static v1.4.0
+   Compiling cfg-if v1.0.0
+   Compiling scopeguard v1.1.0
+   Compiling log v0.4.14
+   Compiling smallvec v1.7.0
+   Compiling cc v1.0.69
+   Compiling maybe-uninit v2.0.0
+   Compiling getrandom v0.2.0
+   Compiling hashbrown v0.11.0
+   Compiling instant v0.1.6
+   Compiling bitflags v1.2.1
+   Compiling typenum v1.12.0
+   Compiling version_check v0.9.3
+   Compiling pin-project-lite v0.2.4
+   Compiling ppv-lite86 v0.2.8
+   Compiling either v1.6.0
+   Compiling rustc-hash v1.1.0
+   Compiling rustc-rayon-core v0.3.1
+   Compiling arrayvec v0.7.0
+   Compiling remove_dir_all v0.5.3
+   Compiling opaque-debug v0.3.0
+   Compiling stable_deref_trait v1.2.0
+   Compiling rustc_graphviz v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_graphviz)
+   Compiling unicode-width v0.1.8
+   Compiling unic-char-range v0.9.0
+   Compiling scoped-tls v1.0.0
+   Compiling unic-common v0.9.0
+   Compiling termcolor v1.1.2
+   Compiling serde_derive v1.0.125
+   Compiling serde v1.0.125
+   Compiling annotate-snippets v0.8.0
+   Compiling rustc_fs_util v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_fs_util)
+   Compiling datafrog v2.0.1
+   Compiling memchr v2.4.1
+   Compiling tinyvec v0.3.4
+   Compiling regex-syntax v0.6.25
+   Compiling ryu v1.0.5
+   Compiling serde_json v1.0.59
+   Compiling itoa v0.4.6
+   Compiling getrandom v0.1.14
+   Compiling snap v1.0.1
+   Compiling ansi_term v0.12.1
+   Compiling crc32fast v1.2.0
+   Compiling fixedbitset v0.2.0
+   Compiling unicode-script v0.5.3
+   Compiling build_helper v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/build_helper)
+   Compiling if_chain v1.0.0
+   Compiling rustc-demangle v0.1.21
+   Compiling punycode v0.4.1
+   Compiling pathdiff v0.2.0
+   Compiling rustc_error_codes v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_error_codes)
+   Compiling indexmap v1.7.0
+   Compiling crossbeam-utils v0.7.2
+   Compiling memoffset v0.5.5
+   Compiling crossbeam-epoch v0.8.2
+   Compiling num-traits v0.2.12
+   Compiling num-integer v0.1.43
+   Compiling tracing-core v0.1.21
+   Compiling sharded-slab v0.1.1
+   Compiling thread_local v1.0.1
+   Compiling odht v0.3.1
+   Compiling lock_api v0.4.1
+   Compiling psm v0.1.16
+   Compiling stacker v0.1.14
+   Compiling generic-array v0.14.4
+   Compiling itertools v0.9.0
+   Compiling getopts v0.2.21
+   Compiling unic-char-property v0.9.0
+   Compiling unic-ucd-version v0.9.0
+   Compiling unicode-normalization v0.1.13
+   Compiling regex-automata v0.1.10
+   Compiling rustc_llvm v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_llvm)
+   Compiling unic-emoji-char v0.9.0
+   Compiling unicode-security v0.0.5
+   Compiling matchers v0.0.1
+   Compiling parking_lot_core v0.8.3
+   Compiling num_cpus v1.13.0
+   Compiling jobserver v0.1.24
+   Compiling memmap2 v0.2.1
+   Compiling atty v0.2.14
+   Compiling termize v0.1.1
+   Compiling quote v1.0.7
+   Compiling ena v0.14.0
+   Compiling polonius-engine v0.13.0
+   Compiling tracing-log v0.1.2
+   Compiling rustc_apfloat v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_apfloat)
+   Compiling rustc_lexer v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_lexer)
+   Compiling aho-corasick v0.7.18
+   Compiling rustc_serialize v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_serialize)
+   Compiling petgraph v0.5.1
+   Compiling object v0.26.2
+   Compiling crossbeam-queue v0.2.3
+   Compiling parking_lot v0.11.1
+   Compiling rand_core v0.6.2
+   Compiling rand_core v0.5.1
+   Compiling cstr v0.2.8
+   Compiling block-buffer v0.9.0
+   Compiling digest v0.9.0
+   Compiling regex v1.5.4
+   Compiling crossbeam-deque v0.7.4
+   Compiling chrono v0.4.19
+   Compiling measureme v10.0.0
+   Compiling rand_chacha v0.3.0
+   Compiling rand_xoshiro v0.6.0
+   Compiling rand_chacha v0.2.2
+   Compiling synstructure v0.12.4
+   Compiling tracing-attributes v0.1.17
+   Compiling md-5 v0.9.1
+   Compiling sha-1 v0.9.1
+   Compiling sha2 v0.9.1
+   Compiling rand v0.8.4
+   Compiling rand v0.7.3
+   Compiling rustc_macros v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_macros)
+   Compiling chalk-derive v0.55.0
+   Compiling tracing v0.1.28
+   Compiling rustc-rayon v0.3.1
+   Compiling tempfile v3.2.0
+   Compiling rustc_index v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_index)
+   Compiling chalk-ir v0.55.0
+   Compiling gsgdt v0.1.2
+   Compiling tracing-serde v0.1.2
+   Compiling rls-span v0.5.3
+   Compiling rustc_data_structures v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_data_structures)
+   Compiling tracing-subscriber v0.2.16
+   Compiling rls-data v0.19.1
+   Compiling rustc_arena v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_arena)
+   Compiling rustc_type_ir v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_type_ir)
+   Compiling tracing-tree v0.1.9
+   Compiling rustc_span v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_span)
+   Compiling chalk-solve v0.55.0
+   Compiling rustc_ast v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ast)
+   Compiling rustc_target v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_target)
+   Compiling rustc_feature v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_feature)
+   Compiling rustc_parse_format v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_parse_format)
+   Compiling chalk-engine v0.55.0
+   Compiling rustc_ast_pretty v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ast_pretty)
+   Compiling rustc_lint_defs v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_lint_defs)
+   Compiling rustc_hir v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_hir)
+   Compiling rustc_errors v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_errors)
+   Compiling rustc_hir_pretty v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_hir_pretty)
+   Compiling rustc_session v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_session)
+   Compiling rustc_attr v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_attr)
+   Compiling rustc_query_system v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_query_system)
+   Compiling rustc_parse v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_parse)
+   Compiling rustc_middle v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_middle)
+   Compiling rustc_ast_lowering v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ast_lowering)
+   Compiling rustc_ast_passes v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ast_passes)
+   Compiling rustc_infer v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_infer)
+   Compiling rustc_mir_dataflow v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_mir_dataflow)
+   Compiling rustc_symbol_mangling v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_symbol_mangling)
+   Compiling rustc_incremental v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_incremental)
+   Compiling rustc_monomorphize v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_monomorphize)
+   Compiling rustc_query_impl v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_query_impl)
+   Compiling rustc_passes v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_passes)
+   Compiling rustc_save_analysis v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_save_analysis)
+   Compiling rustc_expand v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_expand)
+   Compiling rustc_trait_selection v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_trait_selection)
+   Compiling rustc_metadata v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_metadata)
+   Compiling rustc_builtin_macros v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_builtin_macros)
+   Compiling rustc_lint v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_lint)
+   Compiling rustc_ty_utils v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_ty_utils)
+   Compiling rustc_const_eval v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_const_eval)
+   Compiling rustc_traits v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_traits)
+   Compiling rustc_mir_build v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_mir_build)
+   Compiling rustc_codegen_ssa v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_codegen_ssa)
+   Compiling rustc_resolve v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_resolve)
+   Compiling rustc_plugin_impl v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_plugin_impl)
+   Compiling rustc_typeck v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_typeck)
+   Compiling rustc_mir_transform v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_mir_transform)
+   Compiling rustc_borrowck v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_borrowck)
+   Compiling rustc_codegen_llvm v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_codegen_llvm)
+   Compiling rustc_privacy v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_privacy)
+   Compiling rustc_interface v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_interface)
+   Compiling rustc_driver v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_driver)
+   Compiling rustc-main v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc)
+    Finished release [optimized] target(s) in 372m 16s
+Copying stage1 rustc from stage1 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+Building stage1 tool cargo (powerpc-unknown-linux-gnu)
+   Compiling libc v0.2.106
+   Compiling pkg-config v0.3.18
+   Compiling autocfg v1.0.0
+   Compiling proc-macro2 v1.0.30
+   Compiling syn v1.0.80
+   Compiling unicode-xid v0.2.2
+   Compiling cfg-if v1.0.0
+   Compiling serde_derive v1.0.125
+   Compiling serde v1.0.125
+   Compiling cfg-if v0.1.10
+   Compiling memchr v2.4.1
+   Compiling log v0.4.14
+   Compiling matches v0.1.8
+   Compiling bitflags v1.2.1
+   Compiling crc32fast v1.2.0
+   Compiling tinyvec v0.3.4
+   Compiling lazy_static v1.4.0
+   Compiling getrandom v0.2.0
+   Compiling percent-encoding v2.1.0
+   Compiling ryu v1.0.5
+   Compiling getrandom v0.1.14
+   Compiling serde_json v1.0.59
+   Compiling typenum v1.12.0
+   Compiling anyhow v1.0.34
+   Compiling regex-automata v0.1.10
+   Compiling ppv-lite86 v0.2.8
+   Compiling curl v0.4.41
+   Compiling foreign-types-shared v0.1.1
+   Compiling openssl-probe v0.1.2
+   Compiling itoa v0.4.6
+   Compiling openssl v0.10.35
+   Compiling regex-syntax v0.6.25
+   Compiling same-file v1.0.6
+   Compiling byteorder v1.3.4
+   Compiling version_check v0.9.3
+   Compiling once_cell v1.7.2
+   Compiling semver v1.0.3
+   Compiling remove_dir_all v0.5.3
+   Compiling utf8parse v0.1.1
+   Compiling fnv v1.0.7
+   Compiling hex v0.3.2
+   Compiling unicode-width v0.1.8
+   Compiling strsim v0.8.0
+   Compiling smallvec v1.7.0
+   Compiling termcolor v1.1.2
+   Compiling ansi_term v0.11.0
+   Compiling shell-escape v0.1.5
+   Compiling either v1.6.0
+   Compiling hex v0.4.2
+   Compiling vec_map v0.8.2
+   Compiling humantime v2.0.1
+   Compiling bytesize v1.0.1
+   Compiling glob v0.3.0
+   Compiling lazycell v1.3.0
+   Compiling home v0.5.3
+   Compiling crossbeam-utils v0.8.3
+   Compiling unicode-bidi v0.3.4
+   Compiling unicode-normalization v0.1.13
+   Compiling thread_local v1.0.1
+   Compiling form_urlencoded v1.0.1
+   Compiling foreign-types v0.3.2
+   Compiling walkdir v2.3.1
+   Compiling im-rc v15.0.0
+   Compiling vte v0.3.3
+   Compiling textwrap v0.11.0
+   Compiling itertools v0.10.1
+   Compiling idna v0.2.0
+   Compiling strip-ansi-escapes v0.1.0
+   Compiling jobserver v0.1.24
+   Compiling filetime v0.2.14
+   Compiling socket2 v0.4.1
+   Compiling atty v0.2.14
+   Compiling num_cpus v1.13.0
+   Compiling quote v1.0.7
+   Compiling aho-corasick v0.7.18
+   Compiling bstr v0.2.13
+   Compiling bitmaps v2.1.0
+   Compiling cc v1.0.69
+   Compiling tar v0.4.37
+   Compiling rand_core v0.6.2
+   Compiling rand_core v0.5.1
+   Compiling clap v2.33.3
+   Compiling regex v1.5.4
+   Compiling opener v0.5.0
+   Compiling sized-chunks v0.6.4
+   Compiling libz-sys v1.1.3
+   Compiling openssl-sys v0.9.65
+   Compiling libnghttp2-sys v0.1.4+1.41.0
+   Compiling curl-sys v0.4.51+curl-7.80.0
+   Compiling libssh2-sys v0.2.19
+   Compiling libgit2-sys v0.12.24+1.3.0
+   Compiling rand_chacha v0.3.0
+   Compiling rand_xoshiro v0.4.0
+   Compiling globset v0.4.5
+   Compiling env_logger v0.9.0
+   Compiling rand v0.8.4
+   Compiling ignore v0.4.17
+   Compiling tempfile v3.2.0
+   Compiling url v2.2.2
+   Compiling serde_ignored v0.1.2
+   Compiling cargo-platform v0.1.2 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/cargo-platform)
+   Compiling toml v0.5.7
+   Compiling os_info v3.0.7
+   Compiling flate2 v1.0.16
+   Compiling rustc-workspace-hack v1.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/rustc-workspace-hack)
+   Compiling rustfix v0.6.0
+   Compiling cargo v0.59.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo)
+   Compiling crypto-hash v0.3.4
+   Compiling cargo-util v0.1.1 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/cargo-util)
+   Compiling crates-io v0.33.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/crates-io)
+   Compiling git2 v0.13.23
+   Compiling git2-curl v0.14.1
+    Finished release [optimized] target(s) in 100m 27s
+Building stage1 tool cargo-credential-1password (powerpc-unknown-linux-gnu)
+   Compiling syn v1.0.80
+   Compiling serde_json v1.0.59
+   Compiling cargo-credential v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/credential/cargo-credential)
+   Compiling serde_derive v1.0.125
+   Compiling serde v1.0.125
+   Compiling cargo-credential-1password v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/credential/cargo-credential-1password)
+    Finished release [optimized] target(s) in 3m 59s
+Building rustdoc for stage1 (powerpc-unknown-linux-gnu)
+   Compiling autocfg v1.0.0
+   Compiling lazy_static v1.4.0
+   Compiling proc-macro2 v1.0.30
+   Compiling libc v0.2.106
+   Compiling unicode-xid v0.2.2
+   Compiling cfg-if v1.0.0
+   Compiling syn v1.0.80
+   Compiling memchr v2.4.1
+   Compiling cfg-if v0.1.10
+   Compiling regex-syntax v0.6.25
+   Compiling scopeguard v1.1.0
+   Compiling log v0.4.14
+   Compiling maybe-uninit v2.0.0
+   Compiling serde_derive v1.0.125
+   Compiling getrandom v0.2.0
+   Compiling bitflags v1.2.1
+   Compiling ucd-trie v0.1.3
+   Compiling serde v1.0.125
+   Compiling maplit v1.0.2
+   Compiling fnv v1.0.7
+   Compiling instant v0.1.6
+   Compiling same-file v1.0.6
+   Compiling version_check v0.9.3
+   Compiling ryu v1.0.5
+   Compiling rayon-core v1.7.1
+   Compiling smallvec v1.7.0
+   Compiling serde_json v1.0.59
+   Compiling pin-project-lite v0.2.4
+   Compiling ppv-lite86 v0.2.8
+   Compiling itoa v0.4.6
+   Compiling ansi_term v0.12.1
+   Compiling either v1.6.0
+   Compiling pulldown-cmark v0.8.0
+   Compiling termcolor v1.1.2
+   Compiling macro-utils v0.1.3
+   Compiling remove_dir_all v0.5.3
+   Compiling arrayvec v0.7.0
+   Compiling crossbeam-utils v0.7.2
+   Compiling memoffset v0.5.5
+   Compiling crossbeam-utils v0.8.3
+   Compiling crossbeam-epoch v0.8.2
+   Compiling rayon v1.3.1
+   Compiling thread_local v1.0.1
+   Compiling tracing-core v0.1.21
+   Compiling sharded-slab v0.1.1
+   Compiling regex-automata v0.1.10
+   Compiling lock_api v0.4.1
+   Compiling pest v2.1.3
+   Compiling walkdir v2.3.1
+   Compiling unicase v2.6.0
+   Compiling itertools v0.9.0
+   Compiling minifier v0.0.41
+   Compiling matchers v0.0.1
+   Compiling pest_meta v2.1.3
+   Compiling quote v1.0.7
+   Compiling parking_lot_core v0.8.3
+   Compiling num_cpus v1.13.0
+   Compiling atty v0.2.14
+   Compiling aho-corasick v0.7.18
+   Compiling bstr v0.2.13
+   Compiling tracing-log v0.1.2
+   Compiling crossbeam-queue v0.2.3
+   Compiling rand_core v0.6.2
+   Compiling parking_lot v0.11.1
+   Compiling regex v1.5.4
+   Compiling crossbeam-deque v0.7.4
+   Compiling pest_generator v2.1.3
+   Compiling tracing-attributes v0.1.17
+   Compiling rand_chacha v0.3.0
+   Compiling globset v0.4.5
+   Compiling pest_derive v2.1.0
+   Compiling tracing v0.1.28
+   Compiling rand v0.8.4
+   Compiling ignore v0.4.17
+   Compiling rustdoc-json-types v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/rustdoc-json-types)
+   Compiling tracing-subscriber v0.2.16
+   Compiling tempfile v3.2.0
+   Compiling globwalk v0.8.1
+   Compiling tracing-tree v0.1.9
+   Compiling tera v1.10.0
+   Compiling rustdoc v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/librustdoc)
+   Compiling rustdoc-tool v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/rustdoc)
+    Finished release [optimized] target(s) in 80m 57s
+Build completed successfully in 18:33:42
++ DESTDIR=/root/rust58_ppc32/work/pkg
++ /usr/bin/python3 ./x.py --config=/root/rust58_ppc32/work/src/config.toml install
+info: using vendored source, but .cargo/config is already present.
+      Reusing the current configuration file. But you may want to configure vendoring like this:
+[source.crates-io]
+replace-with = 'vendored-sources'
+registry = 'https://example.com'
+
+[source.vendored-sources]
+directory = '/root/rust58_ppc32/work/src/rustc-1.58.0-src/vendor'
+
+    Finished dev [unoptimized] target(s) in 3.17s
+Building stage0 std artifacts (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+    Finished release [optimized] target(s) in 3.02s
+Copying stage0 std from stage0 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+Building stage0 compiler artifacts (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+    Finished release [optimized] target(s) in 6.07s
+Copying stage0 rustc from stage0 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+Assembling stage1 compiler (powerpc-unknown-linux-gnu)
+Building stage1 std artifacts (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+    Finished release [optimized] target(s) in 2.45s
+Copying stage1 std from stage1 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+Building stage1 compiler artifacts (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+    Finished release [optimized] target(s) in 4.48s
+Copying stage1 rustc from stage1 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+Assembling stage2 compiler (powerpc-unknown-linux-gnu)
+Generating unstable book md files (powerpc-unknown-linux-gnu)
+Building stage0 tool unstable-book-gen (powerpc-unknown-linux-gnu)
+   Compiling proc-macro2 v1.0.30
+   Compiling unicode-xid v0.2.2
+   Compiling syn v1.0.80
+   Compiling serde_derive v1.0.125
+   Compiling autocfg v1.0.0
+   Compiling serde v1.0.125
+   Compiling ucd-trie v0.1.3
+   Compiling memchr v2.4.1
+   Compiling ryu v1.0.5
+   Compiling serde_json v1.0.59
+   Compiling itoa v0.4.6
+   Compiling regex-syntax v0.6.25
+   Compiling same-file v1.0.6
+   Compiling cfg-if v1.0.0
+   Compiling lazy_static v1.4.0
+   Compiling crossbeam-utils v0.8.3
+   Compiling num-traits v0.2.12
+   Compiling pest v2.1.3
+   Compiling walkdir v2.3.1
+   Compiling semver-parser v0.10.2
+   Compiling quote v1.0.7
+   Compiling aho-corasick v0.7.18
+   Compiling regex v1.5.4
+   Compiling semver v0.11.0
+   Compiling cargo_metadata v0.12.0
+   Compiling tidy v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/tidy)
+   Compiling unstable-book-gen v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/unstable-book-gen)
+    Finished release [optimized] target(s) in 10m 18s
+Building stage0 tool rustbook (powerpc-unknown-linux-gnu)
+   Compiling libc v0.2.106
+   Compiling serde v1.0.125
+   Compiling syn v1.0.80
+   Compiling getrandom v0.1.14
+   Compiling cfg-if v0.1.10
+   Compiling serde_json v1.0.59
+   Compiling ppv-lite86 v0.2.8
+   Compiling siphasher v0.3.3
+   Compiling log v0.4.14
+   Compiling new_debug_unreachable v1.0.4
+   Compiling itoa v0.4.6
+   Compiling mac v0.1.1
+   Compiling getrandom v0.2.0
+   Compiling precomputed-hash v0.1.1
+   Compiling utf-8 v0.7.5
+   Compiling matches v0.1.8
+   Compiling ucd-trie v0.1.3
+   Compiling version_check v0.9.3
+   Compiling unicode-width v0.1.8
+   Compiling tinyvec v0.3.4
+   Compiling bitflags v1.2.1
+   Compiling maplit v1.0.2
+   Compiling percent-encoding v2.1.0
+   Compiling unicode-segmentation v1.6.0
+   Compiling pulldown-cmark v0.7.2
+   Compiling anyhow v1.0.34
+   Compiling quick-error v1.2.3
+   Compiling strsim v0.8.0
+   Compiling ansi_term v0.11.0
+   Compiling quick-error v2.0.0
+   Compiling strum v0.18.0
+   Compiling vec_map v0.8.2
+   Compiling remove_dir_all v0.5.3
+   Compiling termcolor v1.1.2
+   Compiling shlex v1.0.0
+   Compiling open v1.4.0
+   Compiling ryu v1.0.5
+   Compiling phf_shared v0.8.0
+   Compiling num-traits v0.2.12
+   Compiling num-integer v0.1.43
+   Compiling futf v0.1.4
+   Compiling unicode-bidi v0.3.4
+   Compiling pest v2.1.3
+   Compiling textwrap v0.11.0
+   Compiling getopts v0.2.21
+   Compiling unicase v2.6.0
+   Compiling unicode-normalization v0.1.13
+   Compiling form_urlencoded v1.0.1
+   Compiling heck v0.3.1
+   Compiling humantime v1.3.0
+   Compiling phf v0.8.0
+   Compiling tendril v0.4.1
+   Compiling pest_meta v2.1.3
+   Compiling idna v0.2.0
+   Compiling string_cache v0.8.0
+   Compiling toml v0.5.7
+   Compiling time v0.1.43
+   Compiling atty v0.2.14
+   Compiling url v2.2.2
+   Compiling rand_core v0.5.1
+   Compiling rand_core v0.6.2
+   Compiling clap v2.33.3
+   Compiling pest_generator v2.1.3
+   Compiling rand_chacha v0.2.2
+   Compiling rand_pcg v0.2.1
+   Compiling rand_chacha v0.3.0
+   Compiling serde_derive v1.0.125
+   Compiling html5ever v0.25.1
+   Compiling strum_macros v0.18.0
+   Compiling env_logger v0.7.1
+   Compiling chrono v0.4.19
+   Compiling pest_derive v2.1.0
+   Compiling rand v0.7.3
+   Compiling rand v0.8.4
+   Compiling elasticlunr-rs v2.3.9
+   Compiling handlebars v4.1.0
+   Compiling phf_generator v0.8.0
+   Compiling tempfile v3.2.0
+   Compiling phf_codegen v0.8.0
+   Compiling string_cache_codegen v0.5.1
+   Compiling markup5ever v0.10.0
+   Compiling xml5ever v0.16.1
+   Compiling markup5ever_rcdom v0.1.0
+   Compiling ammonia v3.1.0
+   Compiling mdbook v0.4.12
+   Compiling rustbook v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/rustbook)
+    Finished release [optimized] target(s) in 25m 42s
+Rustbook (powerpc-unknown-linux-gnu) - unstable-book
+Rustbook (powerpc-unknown-linux-gnu) - book
+Rustbook (powerpc-unknown-linux-gnu) - book/first-edition
+[2022-01-15T11:47:30Z WARN  mdbook::renderer::html_handlebars::hbs_renderer] Previous versions of mdBook erroneously accepted `./src/theme` as an automatic theme directory
+[2022-01-15T11:47:30Z WARN  mdbook::renderer::html_handlebars::hbs_renderer] Please move your theme files to `./theme` for them to continue being used
+Rustbook (powerpc-unknown-linux-gnu) - book/second-edition
+[2022-01-15T11:47:31Z WARN  mdbook::renderer::html_handlebars::hbs_renderer] Previous versions of mdBook erroneously accepted `./src/theme` as an automatic theme directory
+[2022-01-15T11:47:31Z WARN  mdbook::renderer::html_handlebars::hbs_renderer] Please move your theme files to `./theme` for them to continue being used
+Rustbook (powerpc-unknown-linux-gnu) - book/2018-edition
+[2022-01-15T11:47:33Z WARN  mdbook::renderer::html_handlebars::hbs_renderer] Previous versions of mdBook erroneously accepted `./src/theme` as an automatic theme directory
+[2022-01-15T11:47:33Z WARN  mdbook::renderer::html_handlebars::hbs_renderer] Please move your theme files to `./theme` for them to continue being used
+Documenting standalone (powerpc-unknown-linux-gnu)
+Building rustdoc for stage2 (powerpc-unknown-linux-gnu)
+   Compiling libc v0.2.106
+   Compiling syn v1.0.80
+   Compiling scopeguard v1.1.0
+   Compiling maybe-uninit v2.0.0
+   Compiling ucd-trie v0.1.3
+   Compiling smallvec v1.7.0
+   Compiling rayon-core v1.7.1
+   Compiling maplit v1.0.2
+   Compiling instant v0.1.6
+   Compiling pin-project-lite v0.2.4
+   Compiling pulldown-cmark v0.8.0
+   Compiling ansi_term v0.12.1
+   Compiling macro-utils v0.1.3
+   Compiling arrayvec v0.7.0
+   Compiling crossbeam-utils v0.7.2
+   Compiling memoffset v0.5.5
+   Compiling crossbeam-utils v0.8.3
+   Compiling crossbeam-epoch v0.8.2
+   Compiling rayon v1.3.1
+   Compiling tracing-core v0.1.21
+   Compiling sharded-slab v0.1.1
+   Compiling regex-automata v0.1.10
+   Compiling lock_api v0.4.1
+   Compiling pest v2.1.3
+   Compiling unicase v2.6.0
+   Compiling itertools v0.9.0
+   Compiling minifier v0.0.41
+   Compiling matchers v0.0.1
+   Compiling pest_meta v2.1.3
+   Compiling bstr v0.2.13
+   Compiling tracing-log v0.1.2
+   Compiling getrandom v0.2.0
+   Compiling parking_lot_core v0.8.3
+   Compiling num_cpus v1.13.0
+   Compiling atty v0.2.14
+   Compiling crossbeam-queue v0.2.3
+   Compiling rand_core v0.6.2
+   Compiling parking_lot v0.11.1
+   Compiling crossbeam-deque v0.7.4
+   Compiling globset v0.4.5
+   Compiling rand_chacha v0.3.0
+   Compiling pest_generator v2.1.3
+   Compiling ignore v0.4.17
+   Compiling serde_derive v1.0.125
+   Compiling tracing-attributes v0.1.17
+   Compiling rand v0.8.4
+   Compiling pest_derive v2.1.0
+   Compiling globwalk v0.8.1
+   Compiling serde v1.0.125
+   Compiling tempfile v3.2.0
+   Compiling tracing v0.1.28
+   Compiling tracing-subscriber v0.2.16
+   Compiling tracing-tree v0.1.9
+   Compiling serde_json v1.0.59
+   Compiling rustdoc-json-types v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/rustdoc-json-types)
+   Compiling tera v1.10.0
+   Compiling rustdoc v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/librustdoc)
+   Compiling rustdoc-tool v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/rustdoc)
+    Finished release [optimized] target(s) in 39m 32s
+Documenting book redirect pages (powerpc-unknown-linux-gnu)
+Documenting stage2 std (powerpc-unknown-linux-gnu)
+Uplifting stage1 std (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+Copying stage2 std from stage1 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+ Documenting core v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/core)
+    Finished release [optimized] target(s) in 2m 24s
+   Compiling cc v1.0.69
+    Checking core v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/core)
+   Compiling compiler_builtins v0.1.53
+    Checking rustc-std-workspace-core v1.99.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/rustc-std-workspace-core)
+ Documenting alloc v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/alloc)
+    Finished release [optimized] target(s) in 1m 50s
+   Compiling libc v0.2.106
+   Compiling memchr v2.4.1
+   Compiling std v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/std)
+   Compiling unwind v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/unwind)
+    Checking alloc v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/alloc)
+    Checking cfg-if v0.1.10
+    Checking adler v0.2.3
+    Checking rustc-demangle v0.1.21
+    Checking rustc-std-workspace-alloc v1.99.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/rustc-std-workspace-alloc)
+    Checking panic_unwind v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/panic_unwind)
+    Checking panic_abort v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/panic_abort)
+    Checking gimli v0.25.0
+    Checking std_detect v0.1.5 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/stdarch/crates/std_detect)
+    Checking miniz_oxide v0.4.0
+    Checking hashbrown v0.11.0
+    Checking object v0.26.2
+    Checking addr2line v0.16.0
+ Documenting std v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/std)
+    Finished release [optimized] target(s) in 2m 10s
+    Checking std v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/std)
+ Documenting proc_macro v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/proc_macro)
+    Finished release [optimized] target(s) in 41.39s
+    Checking rustc-std-workspace-std v1.99.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/rustc-std-workspace-std)
+    Checking proc_macro v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/proc_macro)
+    Checking unicode-width v0.1.8
+    Checking getopts v0.2.21
+ Documenting test v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/library/test)
+    Finished release [optimized] target(s) in 20.67s
+Documenting error index (powerpc-unknown-linux-gnu)
+Building stage1 tool error_index_generator (powerpc-unknown-linux-gnu)
+   Compiling same-file v1.0.6
+   Compiling walkdir v2.3.1
+   Compiling error_index_generator v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/error_index_generator)
+    Finished release [optimized] target(s) in 1m 09s
+Rustbook (powerpc-unknown-linux-gnu) - nomicon
+Rustbook (powerpc-unknown-linux-gnu) - reference
+Rustbook (powerpc-unknown-linux-gnu) - rustdoc
+Rustbook (powerpc-unknown-linux-gnu) - rust-by-example
+Generating lint docs (powerpc-unknown-linux-gnu)
+Building stage0 tool lint-docs (powerpc-unknown-linux-gnu)
+   Compiling serde v1.0.125
+   Compiling serde_json v1.0.59
+   Compiling lint-docs v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/lint-docs)
+    Finished release [optimized] target(s) in 2m 10s
+warning: the code example in lint `named_asm_labels` in /root/rust58_ppc32/work/src/rustc-1.58.0-src/compiler/rustc_lint/src/builtin.rs failed to generate the expected output: did not find lint `named_asm_labels` in output of example, got:
+
+error[E0658]: inline assembly is not stable yet on this architecture
+ --> lint_example.rs:4:9
+  |
+4 |         asm!("foo: bar");
+  |         ^^^^^^^^^^^^^^^^
+  |
+  = note: see issue #72016 <https://github.com/rust-lang/rust/issues/72016> for more information
+  = help: add `#![feature(asm_experimental_arch)]` to the crate attributes to enable
+
+
+error: aborting due to previous error
+
+
+For more information about this error, try `rustc --explain E0658`.
+
+Rustbook (powerpc-unknown-linux-gnu) - rustc
+Rustbook (powerpc-unknown-linux-gnu) - cargo
+Rustbook (powerpc-unknown-linux-gnu) - embedded-book
+Rustbook (powerpc-unknown-linux-gnu) - edition-guide
+Building stage0 tool fabricate (powerpc-unknown-linux-gnu)
+   Compiling maybe-uninit v2.0.0
+   Compiling scopeguard v1.1.0
+   Compiling pkg-config v0.3.18
+   Compiling rayon-core v1.7.1
+   Compiling cc v1.0.69
+   Compiling crc32fast v1.2.0
+   Compiling adler v0.2.3
+   Compiling either v1.6.0
+   Compiling yaml-rust v0.3.5
+   Compiling crossbeam-utils v0.7.2
+   Compiling memoffset v0.5.5
+   Compiling crossbeam-epoch v0.8.2
+   Compiling rayon v1.3.1
+   Compiling miniz_oxide v0.4.0
+   Compiling lzma-sys v0.1.16
+   Compiling num_cpus v1.13.0
+   Compiling filetime v0.2.14
+   Compiling xattr v0.2.2
+   Compiling flate2 v1.0.16
+   Compiling crossbeam-queue v0.2.3
+   Compiling clap v2.33.3
+   Compiling tar v0.4.37
+   Compiling crossbeam-deque v0.7.4
+   Compiling xz2 v0.1.6
+   Compiling installer v0.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/rust-installer)
+    Finished release [optimized] target(s) in 6m 55s
+Dist rust-docs-1.58.0-powerpc-unknown-linux-gnu
+	finished in 432.455 seconds
+Install docs stage2 (Some(TargetSelection { triple: "powerpc-unknown-linux-gnu", file: None }))
+install: creating uninstall script at /root/rust58_ppc32/work/pkg/usr/lib/rustlib/uninstall.sh
+install: installing component 'rust-docs'
+
+    rust docs installed.
+
+Dist rust-std-1.58.0-powerpc-unknown-linux-gnu
+	finished in 110.259 seconds
+Install std stage2 (Some(TargetSelection { triple: "powerpc-unknown-linux-gnu", file: None }))
+install: creating uninstall script at /root/rust58_ppc32/work/pkg/usr/lib/rustlib/uninstall.sh
+install: installing component 'rust-std-powerpc-unknown-linux-gnu'
+
+    rust std installed.
+
+Uplifting stage1 rustc (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu)
+Copying stage2 rustc from stage1 (powerpc-unknown-linux-gnu -> powerpc-unknown-linux-gnu / powerpc-unknown-linux-gnu)
+Building stage2 tool cargo (powerpc-unknown-linux-gnu)
+   Compiling libc v0.2.106
+   Compiling pkg-config v0.3.18
+   Compiling autocfg v1.0.0
+   Compiling proc-macro2 v1.0.30
+   Compiling syn v1.0.80
+   Compiling unicode-xid v0.2.2
+   Compiling cfg-if v1.0.0
+   Compiling serde_derive v1.0.125
+   Compiling serde v1.0.125
+   Compiling cfg-if v0.1.10
+   Compiling memchr v2.4.1
+   Compiling log v0.4.14
+   Compiling crc32fast v1.2.0
+   Compiling bitflags v1.2.1
+   Compiling matches v0.1.8
+   Compiling lazy_static v1.4.0
+   Compiling getrandom v0.2.0
+   Compiling tinyvec v0.3.4
+   Compiling ryu v1.0.5
+   Compiling getrandom v0.1.14
+   Compiling percent-encoding v2.1.0
+   Compiling regex-automata v0.1.10
+   Compiling typenum v1.12.0
+   Compiling serde_json v1.0.59
+   Compiling anyhow v1.0.34
+   Compiling ppv-lite86 v0.2.8
+   Compiling openssl v0.10.35
+   Compiling itoa v0.4.6
+   Compiling regex-syntax v0.6.25
+   Compiling openssl-probe v0.1.2
+   Compiling foreign-types-shared v0.1.1
+   Compiling curl v0.4.41
+   Compiling once_cell v1.7.2
+   Compiling same-file v1.0.6
+   Compiling byteorder v1.3.4
+   Compiling version_check v0.9.3
+   Compiling semver v1.0.3
+   Compiling utf8parse v0.1.1
+   Compiling remove_dir_all v0.5.3
+   Compiling unicode-width v0.1.8
+   Compiling hex v0.3.2
+   Compiling fnv v1.0.7
+   Compiling termcolor v1.1.2
+   Compiling strsim v0.8.0
+   Compiling hex v0.4.2
+   Compiling either v1.6.0
+   Compiling shell-escape v0.1.5
+   Compiling smallvec v1.7.0
+   Compiling vec_map v0.8.2
+   Compiling ansi_term v0.11.0
+   Compiling humantime v2.0.1
+   Compiling glob v0.3.0
+   Compiling lazycell v1.3.0
+   Compiling bytesize v1.0.1
+   Compiling home v0.5.3
+   Compiling crossbeam-utils v0.8.3
+   Compiling unicode-bidi v0.3.4
+   Compiling thread_local v1.0.1
+   Compiling unicode-normalization v0.1.13
+   Compiling form_urlencoded v1.0.1
+   Compiling foreign-types v0.3.2
+   Compiling walkdir v2.3.1
+   Compiling im-rc v15.0.0
+   Compiling vte v0.3.3
+   Compiling textwrap v0.11.0
+   Compiling itertools v0.10.1
+   Compiling idna v0.2.0
+   Compiling strip-ansi-escapes v0.1.0
+   Compiling jobserver v0.1.24
+   Compiling filetime v0.2.14
+   Compiling socket2 v0.4.1
+   Compiling atty v0.2.14
+   Compiling num_cpus v1.13.0
+   Compiling quote v1.0.7
+   Compiling bstr v0.2.13
+   Compiling aho-corasick v0.7.18
+   Compiling bitmaps v2.1.0
+   Compiling cc v1.0.69
+   Compiling tar v0.4.37
+   Compiling rand_core v0.6.2
+   Compiling rand_core v0.5.1
+   Compiling clap v2.33.3
+   Compiling opener v0.5.0
+   Compiling regex v1.5.4
+   Compiling sized-chunks v0.6.4
+   Compiling libz-sys v1.1.3
+   Compiling openssl-sys v0.9.65
+   Compiling libnghttp2-sys v0.1.4+1.41.0
+   Compiling curl-sys v0.4.51+curl-7.80.0
+   Compiling libssh2-sys v0.2.19
+   Compiling libgit2-sys v0.12.24+1.3.0
+   Compiling rand_chacha v0.3.0
+   Compiling rand_xoshiro v0.4.0
+   Compiling globset v0.4.5
+   Compiling env_logger v0.9.0
+   Compiling rand v0.8.4
+   Compiling ignore v0.4.17
+   Compiling tempfile v3.2.0
+   Compiling url v2.2.2
+   Compiling os_info v3.0.7
+   Compiling cargo-platform v0.1.2 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/cargo-platform)
+   Compiling serde_ignored v0.1.2
+   Compiling toml v0.5.7
+   Compiling flate2 v1.0.16
+   Compiling rustfix v0.6.0
+   Compiling rustc-workspace-hack v1.0.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/rustc-workspace-hack)
+   Compiling cargo v0.59.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo)
+   Compiling crypto-hash v0.3.4
+   Compiling cargo-util v0.1.1 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/cargo-util)
+   Compiling crates-io v0.33.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/crates-io)
+   Compiling git2 v0.13.23
+   Compiling git2-curl v0.14.1
+    Finished release [optimized] target(s) in 76m 27s
+Building stage2 tool cargo-credential-1password (powerpc-unknown-linux-gnu)
+   Compiling syn v1.0.80
+   Compiling serde_json v1.0.59
+   Compiling cargo-credential v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/credential/cargo-credential)
+   Compiling serde_derive v1.0.125
+   Compiling serde v1.0.125
+   Compiling cargo-credential-1password v0.1.0 (/root/rust58_ppc32/work/src/rustc-1.58.0-src/src/tools/cargo/crates/credential/cargo-credential-1password)
+    Finished release [optimized] target(s) in 3m 12s
+Dist cargo-1.58.0-powerpc-unknown-linux-gnu
+	finished in 33.528 seconds
+Install cargo stage2 (Some(TargetSelection { triple: "powerpc-unknown-linux-gnu", file: None }))
+install: creating uninstall script at /root/rust58_ppc32/work/pkg/usr/lib/rustlib/uninstall.sh
+install: installing component 'cargo'
+
+    cargo installed.
+
+Dist rust-src-1.58.0
+	finished in 53.338 seconds
+Install src stage2 (None)
+install: creating uninstall script at /root/rust58_ppc32/work/pkg/usr/lib/rustlib/uninstall.sh
+install: installing component 'rust-src'
+
+    rust src installed.
+
+Dist rustc-1.58.0-powerpc-unknown-linux-gnu
+	finished in 96.993 seconds
+Install rustc stage2 (Some(TargetSelection { triple: "powerpc-unknown-linux-gnu", file: None }))
+install: creating uninstall script at /root/rust58_ppc32/work/pkg/usr/lib/rustlib/uninstall.sh
+install: installing component 'rustc'
+install: backing up existing file at /root/rust58_ppc32/work/pkg/usr/share/doc/rust/LICENSE-MIT
+install: backing up existing file at /root/rust58_ppc32/work/pkg/usr/share/doc/rust/README.md
+install: backing up existing file at /root/rust58_ppc32/work/pkg/usr/share/doc/rust/LICENSE-APACHE
+
+    rustc installed.
+
+Build completed successfully in 3:11:27
++ '[' -e /usr/bin/zsh ']'
++ rm -fr /root/rust58_ppc32/work/pkg/usr/share/zsh
++ rm -r /root/rust58_ppc32/work/pkg/usr/share/doc
++ rm /root/rust58_ppc32/work/pkg/usr/lib/rustlib/components /root/rust58_ppc32/work/pkg/usr/lib/rustlib/manifest-rustc /root/rust58_ppc32/work/pkg/usr/lib/rustlib/rust-installer-version /root/rust58_ppc32/work/pkg/usr/lib/rustlib/uninstall.sh
++ local file lib
++ read -rd '' file
+++ find /root/rust58_ppc32/work/pkg/usr/lib/rustlib -path '*/analysis/*.json' -print0
++ install -d /root/rust58_ppc32/work/pkg/etc/revdep.d

@@ -1,0 +1,47 @@
+changelog-seen = 2
+[llvm]
+ninja = false
+link-shared = true
+[build]
+build = "powerpc-unknown-linux-gnu"
+host = [ "powerpc-unknown-linux-gnu" ]
+target = [ "powerpc-unknown-linux-gnu" ]
+cargo = "/usr/bin/cargo"
+rustc = "/usr/bin/rustc"
+submodules = false
+python = "python3"
+locked-deps = true
+vendor = true
+full-bootstrap = false
+local-rebuild = false
+extended = true
+tools = ["cargo", "src"]
+docs = true
+[install]
+prefix = "/usr"
+[rust]
+optimize = true
+debug = false
+codegen-units = 1
+codegen-units-std = 1
+debuginfo-level = 0
+debuginfo-level-rustc = 0
+debuginfo-level-tests = 0
+incremental = false
+parallel-compiler = false
+channel = "stable"
+rpath = false
+verbose-tests = true
+dist-src = false
+jemalloc = false
+llvm-libunwind = "no"
+codegen-tests = false
+[dist]
+src-tarball = false
+[target.powerpc-unknown-linux-gnu]
+llvm-config = "/usr/bin/llvm-config"
+crt-static = false
+cc = "cc"
+cxx = "g++"
+ar = "ar"
+linker = "cc"
