@@ -159,7 +159,7 @@ EOF
 	export LIBGIT2_NO_PKG_CONFIG=1
 	export RUST_BACKTRACE=full
 	export RUST_COMPILER_RT_ROOT="$SRC/compiler-rt-$_llvm.src"
-	/usr/bin/python3 ./x.py build --config="${SRC}"/config.toml -j ${JOBS-1}
+	/usr/bin/python3 ./x.py build --config="${SRC}"/config.toml -j 1
 	DESTDIR=$PKG /usr/bin/python3 ./x.py --config="${SRC}"/config.toml install
 
 	[ -e '/usr/bin/zsh' ] || rm -r $PKG/usr/share/zsh
