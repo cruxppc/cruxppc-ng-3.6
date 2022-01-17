@@ -1,0 +1,5 @@
+#!/bin/sh
+rm -f footprint.in
+mv .footprint footprint.in
+egrep -v '[a-z0-9]{16}\.(rlib|json|so)$' footprint.in > .footprint
+rm -f footprint.in

@@ -1,0 +1,185 @@
+# Description: The Rust language with Cargo included.
+# URL: https://www.rust-lang.org/
+# Maintainer: Danny Rawlins, crux at romster dot me
+# Depends on: compiler-rt
+# Optional: sccache ccache libgit2 lld polly
+
+name=rust
+version=1.58.0
+_date=2021-12-02
+_rustc=1.57.0
+_cargo=$_rustc
+_llvm=13.0.0
+release=1
+source=(https://static.rust-lang.org/dist/${name}c-$version-src.tar.xz
+	https://static.rust-lang.org/dist/$_date/rust-std-$_rustc-powerpc64-unknown-linux-gnu.tar.xz
+	https://static.rust-lang.org/dist/$_date/rustc-$_rustc-powerpc64-unknown-linux-gnu.tar.xz
+	https://static.rust-lang.org/dist/$_date/cargo-$_cargo-powerpc64-unknown-linux-gnu.tar.xz
+	https://github.com/llvm/llvm-project/releases/download/llvmorg-$_llvm/compiler-rt-$_llvm.src.tar.xz
+	0040-rls-atomics.patch
+	libexec.patch
+	0002-compiler-Change-LLVM-targets.patch)
+
+unpack_source() {
+	for file in ${source[@]}; do
+		case ${file##*/} in
+			rustc-${version}-src.tar.xz|compiler-rt-${_llvm}.src.tar.xz)
+			echo "Unpacking $(get_filename $file)";
+			bsdtar -p -o -C ${SRC} -xf $(get_filename $file) ;;
+		*.tar.xz)
+			echo "Copying $(get_filename $file)";
+			mkdir -p ${SRC}/${name}c-$version-src/build/cache/${_date} || true
+			cp $(get_filename $file) ${SRC}/${name}c-$version-src/build/cache/${_date} ;;
+		*)
+			cp $(get_filename $file) ${SRC} ;;
+		esac
+	done
+}
+
+_check_version() {
+	local ERROR
+	local DATE="$(awk '/^.*"date": / {gsub(/"|,/, "", $2); print $2 }' $SRC/${name}c-$version-src/src/stage0.json)"
+	local RUSTC="$(awk '/^.*"version": / {gsub(/"|,/, "", $2); print $2 }' $SRC/${name}c-$version-src/src/stage0.json)"
+
+	printf '\033[0;32m%s\033[0m\n' "Checking versions for bootstrap compiler.."
+	printf '\033[0;32m%s\033[0m\n' "Got _date = $_date && _rustc = $_rustc"
+
+	if [ "$DATE" != "$_date" ]; then
+		printf '\e[1;31m%-6s\e[m\n' "Error: _date $_date != $DATE"
+		ERROR=1
+	fi
+	if [ "$RUSTC" != "$_rustc" ]; then
+		printf '\e[1;31m%-6s\e[m\n' "Error: _rustc $_rustc != $RUSTC"
+		ERROR=1
+	fi
+
+	[ $ERROR ] && exit 1
+	printf '\033[0;32m%s\033[0m\n' "Versions check out! Proceeding.."
+	unset DATE RUSTC ERROR
+}
+
+build() {
+	_check_version
+
+	cd "${name}c-$version-src"
+	patch -p1 -i $SRC/0040-rls-atomics.patch
+
+	# Patch cargo so credential helpers are in /usr/lib instead of /usr/libexec
+	patch -p1 -i $SRC/libexec.patch
+
+	# Use our *-pc-linux-gnu targets, making LTO with clang simpler
+	patch -p1 -i $SRC/0002-compiler-Change-LLVM-targets.patch
+
+cat <<- EOF > $SRC/config.toml
+	changelog-seen = 2
+
+	[llvm]
+	ninja = true
+	link-shared = true
+	@POLLY@
+	@CCACHE@
+
+	[install]
+	prefix = "/usr"
+
+	[rust]
+	# LLVM crashes when passing an object through ThinLTO twice.  This is triggered
+	# when using rust code in cross-language LTO if libstd was built using ThinLTO.
+	# http://blog.llvm.org/2019/09/closing-gap-cross-language-lto-between.html
+	# https://github.com/rust-lang/rust/issues/54872
+	codegen-units-std = 1
+	debuginfo-level-std = 2
+	codegen-tests = false
+
+	description = "CRUX"
+	channel = "stable"
+	parallel-compiler = true
+	rpath = false
+	optimize = true
+	@LLD@
+
+	[build]
+	target = ["powerpc64-unknown-linux-gnu"]
+	tools = ["cargo", "rls", "clippy", "rustfmt", "analysis", "src", "rust-demangler"]
+	docs = false
+	extended = true
+	sanitizers = true
+	profiler = true
+	vendor = true
+	python = "/usr/bin/python3"
+	@CARGO@
+	@RUST@
+	@RUSTFMT@
+
+	[target.powerpc64-unknown-linux-gnu]
+	llvm-config = "/usr/bin/llvm-config"
+	llvm-filecheck = "/usr/bin/FileCheck"
+EOF
+
+	if [ -e '/usr/bin/rustc' ]; then
+		if [[ -z "$(/usr/bin/ldd /usr/bin/rustc | egrep '.*libLLVM.*.so => not found')" && \
+			-z "$(/usr/bin/ldd /usr/bin/cargo | egrep 'libgit2.so.* => not found')" ]]; then
+
+			sed	-e 's|@CARGO@|cargo = "/usr/bin/cargo"|' \
+				-e 's|@RUST@|rustc = "/usr/bin/rustc"|' \
+				-e 's|@RUSTFMT@|rustfmt = "/usr/bin/rustfmt"|' \
+				-i $SRC/config.toml
+		else
+			sed -e 's|@CARGO@||' -e 's|@RUST@||' -e 's|@RUSTFMT@||' -i $SRC/config.toml
+			printf "\e[031mShared library missing, not using system rust to bootstrap.\033[0m\n"
+		fi
+	else
+		sed -e 's|@CARGO@||' -e 's|@RUST@||' -e 's|@RUSTFMT@||' -i $SRC/config.toml
+	fi
+
+	if [ -e '/usr/bin/ccache' ]; then
+		sed -e 's|@CCACHE@|ccache = "/usr/bin/ccache"|' -i $SRC/config.toml
+	else
+		sed -e 's|@CCACHE@||' -i $SRC/config.toml
+	fi
+
+	prt-get isinst lld && sed -e 's|@LLD@|use-lld = true|' -i $SRC/config.toml || sed -e 's|@LLD@||' -i $SRC/config.toml
+	prt-get isinst polly && sed -e 's|@POLLY@|polly = true|' -i $SRC/config.toml || sed -e 's|@POLLY@||' -i $SRC/config.toml
+
+	cat $SRC/config.toml
+
+	mkdir "$PKGMK_SOURCE_DIR/rust" || true
+	export CARGO_HOME="$PKGMK_SOURCE_DIR/rust"
+
+	if [ -e '/usr/bin/sccache' ]; then
+		export RUSTC_WRAPPER='/usr/bin/sccache'
+		export SCCACHE_IDLE_TIMEOUT='1500'
+	fi
+
+	#error: field is never read: `id`
+	#   --> src/bootstrap/lib.rs:280:5
+	#   = note: `-D dead-code` implied by `-D warnings`
+	export RUSTFLAGS+=' -A dead_code'
+
+	export LIBGIT2_NO_PKG_CONFIG=1
+	export RUST_BACKTRACE=full
+	export RUST_COMPILER_RT_ROOT="$SRC/compiler-rt-$_llvm.src"
+	/usr/bin/python3 ./x.py build --config="${SRC}"/config.toml -j ${JOBS-1}
+	DESTDIR=$PKG /usr/bin/python3 ./x.py --config="${SRC}"/config.toml install
+
+	[ -e '/usr/bin/zsh' ] || rm -r $PKG/usr/share/zsh
+
+	# cleanup
+	rm -r $PKG/usr/share/doc
+	rm -r $PKG/etc
+	rm $PKG/usr/lib/rustlib/{components,manifest-rustc,rust-installer-version,uninstall.sh}
+
+	# Remove analysis data for libs that weren't installed
+	local file lib
+	while read -rd '' file; do
+		lib="${file%.json}.rlib"
+		lib="${lib/\/analysis\///lib/}"
+		if [[ ! -e $lib ]]; then
+			echo "missing '$lib'"
+			rm -v "$file"
+		fi
+	done < <(find "$PKG/usr/lib/rustlib"  -path '*/analysis/*.json' -print0)
+
+	install -d $PKG/etc/revdep.d
+	#echo "/usr/lib/rustlib/i686-unknown-linux-gnu/lib" > $PKG/etc/revdep.d/$name
+}
