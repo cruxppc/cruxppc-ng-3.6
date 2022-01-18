@@ -1,7 +1,8 @@
 # Description: The Rust language with Cargo included.
 # URL: https://www.rust-lang.org/
-# Maintainer: Danny Rawlins, crux at romster dot me
-# Depends on: compiler-rt
+# Maintainer: cruxppc at gmail dot com
+# Depends on: cargo-bootstrap rust-bootstrap
+# (requires either *-bootstrap or rust)
 # Optional: sccache ccache libgit2 lld polly
 
 name=rust
@@ -9,18 +10,18 @@ version=1.58.0
 _date=2021-12-02
 _rustc=1.57.0
 _cargo=$_rustc
+_llvm=13.0.0
 release=1
 source=(https://static.rust-lang.org/dist/${name}c-$version-src.tar.xz
-	https://static.rust-lang.org/dist/$_date/rust-std-$_rustc-x86_64-unknown-linux-gnu.tar.xz
-	https://static.rust-lang.org/dist/$_date/rustc-$_rustc-x86_64-unknown-linux-gnu.tar.xz
-	https://static.rust-lang.org/dist/$_date/cargo-$_cargo-x86_64-unknown-linux-gnu.tar.xz
+	https://github.com/llvm/llvm-project/releases/download/llvmorg-$_llvm/compiler-rt-$_llvm.src.tar.xz
+	0040-rls-atomics.patch
 	libexec.patch
 	0002-compiler-Change-LLVM-targets.patch)
 
 unpack_source() {
 	for file in ${source[@]}; do
 		case ${file##*/} in
-			rustc-${version}-src.tar.xz)
+			rustc-${version}-src.tar.xz|compiler-rt-${_llvm}.src.tar.xz)
 			echo "Unpacking $(get_filename $file)";
 			bsdtar -p -o -C ${SRC} -xf $(get_filename $file) ;;
 		*.tar.xz)
@@ -59,6 +60,7 @@ build() {
 	_check_version
 
 	cd "${name}c-$version-src"
+	patch -p1 -i $SRC/0040-rls-atomics.patch
 
 	# Patch cargo so credential helpers are in /usr/lib instead of /usr/libexec
 	patch -p1 -i $SRC/libexec.patch
@@ -95,7 +97,7 @@ cat <<- EOF > $SRC/config.toml
 	@LLD@
 
 	[build]
-	target = ["x86_64-unknown-linux-gnu", "i686-unknown-linux-gnu"]
+	target = ["powerpc64-unknown-linux-gnu"]
 	tools = ["cargo", "rls", "clippy", "rustfmt", "analysis", "src", "rust-demangler"]
 	docs = false
 	extended = true
@@ -107,7 +109,7 @@ cat <<- EOF > $SRC/config.toml
 	@RUST@
 	@RUSTFMT@
 
-	[target.x86_64-unknown-linux-gnu]
+	[target.powerpc64-unknown-linux-gnu]
 	llvm-config = "/usr/bin/llvm-config"
 	llvm-filecheck = "/usr/bin/FileCheck"
 EOF
@@ -154,7 +156,8 @@ EOF
 
 	export LIBGIT2_NO_PKG_CONFIG=1
 	export RUST_BACKTRACE=full
-	/usr/bin/python3 ./x.py build --config="${SRC}"/config.toml -j ${JOBS-1}
+	export RUST_COMPILER_RT_ROOT="$SRC/compiler-rt-$_llvm.src"
+	/usr/bin/python3 ./x.py build --config="${SRC}"/config.toml -j 1
 	DESTDIR=$PKG /usr/bin/python3 ./x.py --config="${SRC}"/config.toml install
 
 	[ -e '/usr/bin/zsh' ] || rm -r $PKG/usr/share/zsh
@@ -176,5 +179,5 @@ EOF
 	done < <(find "$PKG/usr/lib/rustlib"  -path '*/analysis/*.json' -print0)
 
 	install -d $PKG/etc/revdep.d
-	echo "/usr/lib/rustlib/i686-unknown-linux-gnu/lib" > $PKG/etc/revdep.d/$name
+	#echo "/usr/lib/rustlib/i686-unknown-linux-gnu/lib" > $PKG/etc/revdep.d/$name
 }
