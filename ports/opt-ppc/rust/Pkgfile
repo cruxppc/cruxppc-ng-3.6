@@ -172,7 +172,7 @@ EOF
         # Hack for ppc32 unique config.toml.   This needs to be 
 	# made cleaner.
 	case $(uname -m) in
-		ppc) cp ppc32_config.toml config.toml ;;
+		ppc) cp $SRC/ppc32_config.toml $SRC/config.toml ;;
 	esac
 
 	cat $SRC/config.toml
