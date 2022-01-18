@@ -1,23 +1,25 @@
 # Description: clang compiler
 # URL: https://clang.llvm.org/
 # Maintainer: cruxppc at gmail dot com
-# Depends on: compiler-rt llvm
+# Depends on: compiler-rt
 
 name=clang
-version=12.0.1
-release=1
-source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/$name-$version.src.tar.xz
-	https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/$name-tools-extra-$version.src.tar.xz)
+version=13.0.0
+release=2
+source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/clang-$version.src.tar.xz
+	https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/clang-tools-extra-$version.src.tar.xz)
 
 build() {
+	mv clang-tools-extra-$version.src clang-$version.src/tools/extra
+
 	cmake -S $name-$version.src -B build -G Ninja \
 		-D CMAKE_INSTALL_PREFIX=/usr \
 		-D CMAKE_INSTALL_LIBEXECDIR=lib/clang \
 		-D CMAKE_BUILD_TYPE=Release \
 		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
 		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
-		-D LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR="$name-tools-extra-$version.src" \
-		-D LLVM_TARGETS_TO_BUILD='X86;AMDGPU;BPF;NVPTX;PowerPC' \
+		-D LLVM_EXTERNAL_LIT=/usr/bin/lit \
+		-D LLVM_TARGETS_TO_BUILD="X86;AMDGPU;BPF;NVPTX;WebAssembly;PowerPC" \
 		-D LLVM_PARALLEL_COMPILE_JOBS="${JOBS:-1}" \
 		-D CLANG_ENABLE_CLANGD="OFF" \
 		-Wno-dev
@@ -25,7 +27,9 @@ build() {
 	DESTDIR=$PKG cmake --install build
 
 	# -DCMAKE_INSTALL_LIBEXECDIR is still hardcoded..
-	mv $PKG/usr/libexec/{c++-analyzer,ccc-analyzer} $PKG/usr/lib/clang
+	mv $PKG/usr/libexec/analyze-{c++,cc} $PKG/usr/lib/clang
+	mv $PKG/usr/libexec/{c++,ccc}-analyzer $PKG/usr/lib/clang
+	mv $PKG/usr/libexec/intercept-{c++,cc} $PKG/usr/lib/clang
 	rmdir $PKG/usr/libexec
 	sed -i 's|libexec|lib/clang|' $PKG/usr/bin/scan-build
 }
