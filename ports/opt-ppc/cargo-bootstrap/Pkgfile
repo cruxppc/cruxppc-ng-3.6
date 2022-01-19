@@ -2,17 +2,25 @@
 # URL: https://www.rust-lang.org/
 # Maintainer: cruxppc at gmail dot com
 
+name=cargo-bootstrap
+_date=2021-12-02
+
 case $(uname -m) in
-	ppc) ARCH=powerpc ;;
-	ppc64) ARCH=powerpc64 ;;
+	ppc) 
+		version=0.58.0
+		ARCH=powerpc 
+		_url="https://alpha.de.repo.voidlinux.org/distfiles/cargo-$version-$ARCH-unknown-linux-gnu.tar.xz"
+	;;
+	ppc64) 
+		version=1.57.0
+		ARCH=powerpc64 
+		_url="https://static.rust-lang.org/dist/$_date/cargo-$version-$ARCH-unknown-linux-gnu.tar.xz"
+	;;
 	*) echo unknown arch!; exit 1 ;;
 esac
 
-name=cargo-bootstrap
-version=0.58.0
 release=1
-source=(https://alpha.de.repo.voidlinux.org/distfiles/cargo-$version-$ARCH-unknown-linux-gnu.tar.xz
-       )
+source=($_url)
 
 build() {
 	cd cargo-$version-powerpc*
