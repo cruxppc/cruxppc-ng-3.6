@@ -1,7 +1,7 @@
 # Description: The Rust language with Cargo included.
 # URL: https://www.rust-lang.org/
 # Maintainer: cruxppc at gmail dot com
-# Depends on: cargo-bootstrap rust-bootstrap
+# Depends on: rust-bootstrap
 # (requires either *-bootstrap or rust)
 # Optional: sccache ccache libgit2 lld polly
 

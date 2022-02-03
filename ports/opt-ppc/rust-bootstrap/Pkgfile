@@ -2,24 +2,37 @@
 # URL: https://www.rust-lang.org/
 # Maintainer: cruxppc at gmail dot com
 
-case $(uname -m) in
-	ppc) ARCH=powerpc ;;
-	ppc64) ARCH=powerpc64 ;;
-	*) echo unknown arch!; exit 1 ;;
-esac
-
 name=rust-bootstrap
 version=1.58.0
 release=1
+_date=2021-12-02
+
+case $(uname -m) in
+	ppc) 
+		ARCH=powerpc
+		_url="https://alpha.de.repo.voidlinux.org/distfiles/cargo-0.58.0-$ARCH-unknown-linux-gnu.tar.xz"
+	;;
+	ppc64) 
+		ARCH=powerpc64
+		_url="https://static.rust-lang.org/dist/$_date/cargo-1.57.0-$ARCH-unknown-linux-gnu.tar.xz"
+	;;
+	*) echo unknown arch!; exit 1 ;;
+esac
+
 source=(https://static.rust-lang.org/dist/rustc-${version}-$ARCH-unknown-linux-gnu.tar.xz
        https://static.rust-lang.org/dist/rust-std-${version}-$ARCH-unknown-linux-gnu.tar.xz
+       $_url
        )
 
 build() {
-	for d in *; do
+	for d in rust*; do
 		cd $d
 		./install.sh --prefix=/usr --destdir="${PKG}"
 		cd ..
 	done
 #	rm -f ${PKG}/usr/lib/rustlib/powerpc-unknown-linux-gnu/bin/rust-ll*
+
+	cd cargo-*-powerpc*
+	mkdir -p $PKG/usr/bin
+	cp cargo/bin/cargo  $PKG/usr/bin
 }
