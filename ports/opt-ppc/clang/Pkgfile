@@ -4,7 +4,7 @@
 # Depends on: compiler-rt
 
 name=clang
-version=13.0.0
+version=13.0.1
 release=2
 source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/clang-$version.src.tar.xz
 	https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/clang-tools-extra-$version.src.tar.xz)
