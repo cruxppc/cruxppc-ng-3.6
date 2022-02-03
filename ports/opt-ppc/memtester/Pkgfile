@@ -4,7 +4,7 @@
 # Depends on:
 
 name=memtester
-version=4.5.0
+version=4.5.1
 release=1
 source=(http://pyropus.ca/software/$name/old-versions/$name-$version.tar.gz)
 
