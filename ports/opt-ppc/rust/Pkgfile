@@ -6,9 +6,9 @@
 # Optional: sccache ccache libgit2 lld polly
 
 name=rust
-version=1.58.1
-_date=2021-12-02
-_rustc=1.57.0
+version=1.59.0
+_date=2022-01-13
+_rustc=1.58.0
 _cargo=$_rustc
 _llvm=13.0.1
 release=1
@@ -91,11 +91,11 @@ build() {
 	patch -p1 -i $SRC/0003-move-debugger-scripts-to-usr-share-rust.patch
 	patch -p1 -i $SRC/0004-fix-shebang-on-install-template.sh.patch
 	patch -p1 -i $SRC/0006-do-not-install-libunwind-source-removed.patch
-	patch -p1 -i $SRC/0007-fix-rustdoc-when-cross-compiling.patch
+	#patch -p1 -i $SRC/0007-fix-rustdoc-when-cross-compiling.patch
 	patch -p1 -i $SRC/0008-link-stage-2-tools-dynamically-to-libstd.patch
 	patch -p1 -i $SRC/fix-ppc32.patch
 	patch -p1 -i $SRC/ld-library-path.patch
-	patch -p1 -i $SRC/native-sysroot.patch
+	#patch -p1 -i $SRC/native-sysroot.patch
 	patch -p1 -i $SRC/need-ssp-nonshared-and-execinfo.patch
 
 cat <<- EOF > $SRC/config.toml
