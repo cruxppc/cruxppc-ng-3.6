@@ -5,7 +5,7 @@
 # Optional: libva
 
 name=mesa
-version=21.3.6
+version=21.3.7
 release=1
 source=(https://mesa.freedesktop.org/archive/$name-$version.tar.xz)
 
