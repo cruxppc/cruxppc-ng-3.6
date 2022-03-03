@@ -1,25 +1,31 @@
 # Description: Complete solution to record, convert and stream audio and video.
-# URL: http://ffmpeg.org/
+# URL: https://ffmpeg.org/
 # Maintainer: cruxppc at gmail com
-# Depends on: alsa-lib dav1d fdk-aac ffnvcodec-headers jack lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus pulseaudio x264 x265 yasm
-# Optional:   alsa-lib cuda dav1d fdk-aac ffnvcodec-headers gnutls gsm jack jack-audio-connection-kit lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus pulseaudio x264 x265
+# Depends on: alsa-lib dav1d fdk-aac nv-codec-headers jack lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus pulseaudio x264 x265 yasm
+# Optional: alsa-lib cuda dav1d fdk-aac nv-codec-headers gnutls gsm jack jack-audio-connection-kit lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus pulseaudio x264 x265
 
 name=ffmpeg
-version=4.4.1
+version=5.0
 release=1
 source=(https://ffmpeg.org/releases/$name-$version.tar.bz2
 	ffmpeg-x264-10bit.sh
-	CVE-2018-6621.patch)
+	vmaf-model-path.patch
+	add-av_stream_get_first_dts-for-chromium.patch)
 
 build() {
 	cd $name-$version
 
-	#https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6621
-	patch -p1 -i $SRC/CVE-2018-6621.patch
+	patch -p1 -i $SRC/vmaf-model-path.patch
 
-#[ -e '/usr/lib/pkgconfig/ffnvcodec.pc' ] && PKGMK_FFMPEG+=' --enable-nvdec --enable-nvenc'
+	# https://crbug.com/1251779
+	patch -p1 -i $SRC/add-av_stream_get_first_dts-for-chromium.patch
+
+[[ -e '/usr/bin/clang' && -e '/usr/lib/pkgconfig/cuda.pc' && -e '/usr/share/pkgconfig/ffnvcodec.pc' ]] && \
+	PKGMK_FFMPEG+=' --enable-cuda-llvm --enable-nonfree --enable-cuda-nvcc --enable-libnpp' && \
+	PKGMK_FFMPEG+=' --extra-cflags=-I/opt/cuda/include --extra-ldflags=-L/opt/cuda/lib64' && PATH="$PATH:/opt/cuda/bin"
+
+#[ -e '/usr/share/pkgconfig/ffnvcodec.pc' ] && PKGMK_FFMPEG+=' --enable-nvdec --enable-nvenc'
 [ -e '/usr/include/AMF/core/VulkanAMF.h' ] && PKGMK_FFMPEG+=' --enable-amf'
-[ -e '/usr/bin/clang' ] && [ -e '/usr/lib/pkgconfig/cuda.pc' ] && PKGMK_FFMPEG+=' --enable-cuda-llvm'
 [ -e '/usr/lib/pkgconfig/libwebp.pc' ] && PKGMK_FFMPEG+=' --enable-libwebp'
 [ -e '/usr/lib/pkgconfig/vdpau.pc' ] && PKGMK_FFMPEG+=' --enable-vdpau'
 [ -e '/usr/lib/pkgconfig/freetype2.pc' ] && PKGMK_FFMPEG+=' --enable-libfreetype'
@@ -55,10 +61,9 @@ build() {
 		--enable-avfilter \
 		--enable-postproc \
 		--enable-pthreads \
-		--enable-swresample \
 		--disable-altivec \
 		--extra-ldflags="-latomic" \
-		--enable-avresample
+		--enable-swresample
 
 	make
 	make DESTDIR=$PKG install install-man
