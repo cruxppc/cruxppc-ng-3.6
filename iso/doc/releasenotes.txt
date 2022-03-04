@@ -3,13 +3,13 @@ this from the install iso, be aware that there may be a newer
 version of this document in www.github.com/cruxppc/cruxppc-ng-3.6/iso/doc.
 
 Release Notes for CRUX PPC 3.6
-12/04/2021
+03/04/2022
 
    This page discusses the relevant changes introduced in CRUX PPC 3.6.
 
    This is the CRUX PPC 3.6 release.   
 
-   In this release, various packages have been updated to their most 
+   In this release update, various packages have been updated to their most 
    recent versions.   No functional changes have been made.
 
    
