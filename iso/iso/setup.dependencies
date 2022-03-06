@@ -342,8 +342,8 @@ xorg-xwininfo: xorg-xorgproto bzip2 expat ncurses libffi libnsl libtirpc mpdecim
 consolekit2: eudev linux-pam polkit consolekit2
 dav1d: meson ninja vulkan-loader dav1d
 fdk-aac: fdk-aac
-ffmpeg: alsa-lib dav1d fdk-aac ffnvcodec-headers jack lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus pulseaudio x264 x265 yasm ffmpeg
-ffnvcodec-headers: git ffnvcodec-headers
+ffmpeg: alsa-lib dav1d fdk-aac nv-codec-headers jack lame libass libsdl2 libtheora libva libvdpau libvorbis libvpx libwebp opus pulseaudio x264 x265 yasm ffmpeg
+nv-codec-headers: git nv-codec-headers
 flac: libogg flac
 gdk-pixbuf-xlib: gdk-pixbuf xorg-libx11 gdk-pixbuf-xlib
 gpicview: gtk gpicview
