@@ -4,7 +4,7 @@
 # Depends on: elfutils
 
 name=prt-utils
-version=1.2
+version=1.2.1
 release=1
 source=(http://crux.nu/files/tools/prt-utils/$name-$version.tar.xz
     prt-utils-ppc.patch)
