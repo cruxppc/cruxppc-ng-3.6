@@ -4,7 +4,7 @@
 # Depends on: libmpfr
 
 name=gcc-fortran
-version=9.4.0
+version=9.5.0
 release=1
 source=(ftp://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.tar.xz
 	gcc-nocheck-fixincludes.patch)
