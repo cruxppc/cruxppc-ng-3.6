@@ -7,14 +7,14 @@
 # set PATH=/usr/local/bin:$PATH during build for gcc6.
 
 name=arcticfox
-version=40.1
+version=27.12.0
 release=1
-source=(https://codeload.github.com/Arctic-Fox-40.1.tar.gz
+source=(https://codeload.github.com/wicknix/Arctic-Fox-${version}.tar.gz
     mozcfg-ppc64linux
     mozconfig)
 
 build() {
-	# tar xf v${version}
+#        tar xf v${version}
 	cd Arctic-Fox-${version}
 	case $(uname -m) in
 		ppc64) cp $SRC/mozcfg-ppc64linux .mozconfig ;;
