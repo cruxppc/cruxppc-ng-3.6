@@ -9,8 +9,8 @@ concise description of installation and configuration.  The supplemental
 materials provide additional information that may helpful.
 
 
-HANDBOOK FOR CRUX PPC 3.6   (preliminary WIP)
-03/04/2022
+HANDBOOK FOR CRUX PPC 3.6 
+01/19/2023
 
    1. Preface
 
